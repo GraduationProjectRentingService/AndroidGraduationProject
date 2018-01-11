@@ -47,6 +47,7 @@ public class HomepageFragment extends Fragment {
         int[] resIds = {R.drawable.test_picture_1, R.drawable.test_picture_2, R.drawable.test_picture_3, R.drawable.test_picture_4, R.drawable.test_picture_5};
         for (Integer id: resIds){
             ImageView view = new ImageView(mContext);
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
             view.setImageResource(id);
             list.add(view);
         }
