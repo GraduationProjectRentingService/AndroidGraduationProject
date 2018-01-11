@@ -84,16 +84,18 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//        ToastUtils.showToast("onPageScrolled " + position);
+
     }
 
     @Override
     public void onPageSelected(int position) {
 //        ToastUtils.showToast("onPageSelected " + position);
+        logger.d("onPageSelected->" + position);
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-//        ToastUtils.showToast("onPageScrollStateChanged " + state);
+
     }
+
 }

@@ -1,16 +1,21 @@
 package com.sunxuedian.graduationproject.view;
 
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
 import com.sunxuedian.graduationproject.R;
+import com.sunxuedian.graduationproject.utils.LoggerFactory;
+import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.ToastUtils;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MyLog logger = LoggerFactory.getLogger(MainActivity.class);
 
     private HomepageFragment mHomepageFragment;
 
@@ -37,6 +42,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.frameMain, mHomepageFragment);
         fragmentTransaction.commit();
     }
-
-
 }
