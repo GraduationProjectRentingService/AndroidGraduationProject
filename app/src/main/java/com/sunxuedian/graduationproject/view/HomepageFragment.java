@@ -51,8 +51,8 @@ public class HomepageFragment extends Fragment {
             view.setImageResource(id);
             list.add(view);
         }
-        mBannerView.setViewData(list);
-        mBannerView.updateView();
+        mBannerView.setViewList(list);
+        mBannerView.startBannerScrollTask(2000);
     }
 
     @Override
