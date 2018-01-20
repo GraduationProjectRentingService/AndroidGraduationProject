@@ -18,7 +18,7 @@ public class ExampleUnitTest {
 
     @Test
     public void test(){
-        int size = 13;
+        int size = 0;
         int mod = (Integer.MAX_VALUE / 2) % size;
         d("最大整数的一半为：" + Integer.MAX_VALUE / 2);
         d("最大数的一半对" + size + "取余数为：" + mod);

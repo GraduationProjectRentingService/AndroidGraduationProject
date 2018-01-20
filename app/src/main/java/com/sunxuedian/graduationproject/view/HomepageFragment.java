@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.sunxuedian.graduationproject.R;
+import com.sunxuedian.graduationproject.utils.LoggerFactory;
+import com.sunxuedian.graduationproject.utils.MyLog;
+import com.sunxuedian.graduationproject.utils.ToastUtils;
 import com.sunxuedian.graduationproject.widgets.BannerView;
 
 import java.util.ArrayList;
@@ -19,6 +22,8 @@ import butterknife.ButterKnife;
 
 
 public class HomepageFragment extends Fragment {
+
+    private MyLog logger = LoggerFactory.getLogger(this.getClass());
 
     private Context mContext;
 
@@ -52,7 +57,13 @@ public class HomepageFragment extends Fragment {
             list.add(view);
         }
         mBannerView.setViewList(list);
-        mBannerView.startBannerScrollTask(2000);
+        mBannerView.setOnBannerViewClickListener(new BannerView.OnBannerViewClickListener() {
+            @Override
+            public void onClick(int index) {
+                ToastUtils.showToast("index: " + index);
+            }
+        });
+//        mBannerView.startBannerScrollTask(2000);
     }
 
     @Override

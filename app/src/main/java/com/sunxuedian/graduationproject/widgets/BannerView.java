@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -53,7 +54,7 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
                 case UPDATE_VIEW_CODE:
                     mCurrentViewPosition++;
                     mViewPager.setCurrentItem(mCurrentViewPosition);
-                    logger.i("BannerView update view, current position is " + mCurrentViewPosition % mViewList.size());
+//                    logger.i("BannerView update view, current position is " + mCurrentViewPosition % mViewList.size());
                     break;
                 default:
                     super.handleMessage(msg);
@@ -97,6 +98,7 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
 
     public void setOnBannerViewClickListener(OnBannerViewClickListener mOnBannerViewClickListener){
         this.mOnBannerViewClickListener = mOnBannerViewClickListener;
+        addViewClickListener();
     }
 
     /**
@@ -111,7 +113,6 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
 
         logger.i("setViewList, the view size is " + data.size());
         mViewList = data;
-        addViewClickListener();
         updateBannerView();
     }
 
@@ -186,13 +187,44 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
     @Override
     public void onPageSelected(int position) {
 //        ToastUtils.showToast("onPageSelected " + position);
-        logger.d("onPageSelected->" + position);
+//        logger.d("onPageSelected->" + position);
         mCurrentViewPosition = position;
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        logger.d("onInterceptTouchEvent");
+        switch (ev.getAction()){
+            case MotionEvent.ACTION_BUTTON_PRESS:
+                logger.d("press");
+                break;
+            case MotionEvent.ACTION_DOWN:
+                logger.d("down");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                logger.d("move");
+                break;
+            case MotionEvent.ACTION_UP:
+                logger.d("up");
+                break;
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        logger.d("onTouchEvent");
+        return super.onTouchEvent(event);
     }
 
     /**

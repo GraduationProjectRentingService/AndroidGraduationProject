@@ -4,6 +4,9 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sunxuedian.graduationproject.utils.LoggerFactory;
+import com.sunxuedian.graduationproject.utils.MyLog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,7 @@ import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
+    private MyLog logger = LoggerFactory.getLogger(ViewPagerAdapter.class);
     private List<View> mViewList = new ArrayList<>();
 
     /**
@@ -37,6 +41,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
+        logger.d("destroyItem");
         if (mViewList.size() > 3){
             container.removeView(mViewList.get(position % mViewList.size()));
         }
@@ -44,8 +49,13 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = mViewList.get(position % mViewList.size());
-        container.addView(view, 0);
+        logger.d("instantiateItem");
+        View view = null;
+        if (mViewList.size() != 0){
+            view = mViewList.get(position % mViewList.size());
+            container.addView(view, 0);
+            logger.d("index: " + position % mViewList.size());
+        }
         return view;
     }
 
