@@ -1,4 +1,4 @@
-package com.sunxuedian.graduationproject.view;
+package com.sunxuedian.graduationproject.view.impl;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;

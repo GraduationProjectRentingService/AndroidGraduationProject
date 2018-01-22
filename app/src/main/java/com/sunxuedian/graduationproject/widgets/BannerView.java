@@ -196,13 +196,11 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
 
     }
 
+    // TODO: 2018/1/23 需处理按下轮播图的时候，关闭定时滚动任务
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        logger.d("onInterceptTouchEvent");
+//        logger.d("onInterceptTouchEvent");
         switch (ev.getAction()){
-            case MotionEvent.ACTION_BUTTON_PRESS:
-                logger.d("press");
-                break;
             case MotionEvent.ACTION_DOWN:
                 logger.d("down");
                 break;
@@ -212,19 +210,11 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
             case MotionEvent.ACTION_UP:
                 logger.d("up");
                 break;
+            case MotionEvent.ACTION_CANCEL:
+                logger.e("cancel");
+                break;
         }
         return super.onInterceptTouchEvent(ev);
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        logger.d("onTouchEvent");
-        return super.onTouchEvent(event);
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.sunxuedian.graduationproject.view;
+package com.sunxuedian.graduationproject.view.impl;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -19,6 +19,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.R.attr.x;
 
 
 public class HomepageFragment extends Fragment {
@@ -49,9 +51,9 @@ public class HomepageFragment extends Fragment {
 
     private void initView(){
         List<View> list = new ArrayList<>();
-        int[] resIds = {R.drawable.test_picture_1, R.drawable.test_picture_2, R.drawable.test_picture_3, R.drawable.test_picture_4, R.drawable.test_picture_5};
+        int[] resIds = {R.drawable.test_p_1, R.drawable.test_p_2, R.drawable.test_p_3, R.drawable.test_p_4, R.drawable.test_p_5,R.drawable.test_p_6};
         for (Integer id: resIds){
-            ImageView view = new ImageView(mContext);
+            ImageView view = new ImageView(getActivity());
             view.setScaleType(ImageView.ScaleType.FIT_XY);
             view.setImageResource(id);
             list.add(view);
@@ -63,7 +65,7 @@ public class HomepageFragment extends Fragment {
                 ToastUtils.showToast("index: " + index);
             }
         });
-//        mBannerView.startBannerScrollTask(2000);
+        mBannerView.startBannerScrollTask(2000);
     }
 
     @Override
