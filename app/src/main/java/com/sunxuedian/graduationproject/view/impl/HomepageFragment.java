@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.sunxuedian.graduationproject.R;
+import com.sunxuedian.graduationproject.presenter.impl.HomepagePresenterImpl;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.ToastUtils;
+import com.sunxuedian.graduationproject.view.BaseFragment;
+import com.sunxuedian.graduationproject.view.IHomepageView;
 import com.sunxuedian.graduationproject.widgets.BannerView;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import butterknife.ButterKnife;
 import static android.R.attr.x;
 
 
-public class HomepageFragment extends Fragment {
+public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresenterImpl> implements IHomepageView{
 
     private MyLog logger = LoggerFactory.getLogger(this.getClass());
 
@@ -38,6 +41,11 @@ public class HomepageFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public HomepagePresenterImpl createPresenter() {
+        return new HomepagePresenterImpl();
     }
 
     @Override
