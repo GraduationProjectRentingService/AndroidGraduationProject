@@ -21,10 +21,11 @@ public class MyLog {
     }
 
     public void e(String msg){
-        Log.d(mTag, msg);
+        Log.e(mTag, msg);
     }
 
     public void i(String msg){
+        if (debug)
         Log.i(mTag, msg);
     }
 

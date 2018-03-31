@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sunxuedian.graduationproject.view.impl.MainActivity"
+    tools:context="com.sunxuedian.graduationproject.view.activity.MainActivity"
     tools:layout_editor_absoluteY="25dp"
     tools:layout_editor_absoluteX="0dp">
 
@@ -25,7 +25,6 @@
         android:id="@+id/viewBottomNavigation"
         android:layout_width="0dp"
         android:layout_height="@dimen/heightSizeBottomNavigation"
-        android:background="@color/colorAccent"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -34,46 +33,105 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-            android:id="@+id/textViewMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawableTop="@android:drawable/presence_online"
-            android:text="@string/text_main"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawablePadding="5dp"/>
+        <RelativeLayout
+            android:id="@+id/rlMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:id="@+id/ivMain"
+                    android:layout_width="@dimen/sizeBottomNavigationIcon"
+                    android:layout_height="@dimen/sizeBottomNavigationIcon"
+                    android:src="@drawable/bnbar_main_icon_selector"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/sizeOfLittleMargin"/>
+                <TextView
+                    android:id="@+id/tvMain"
+                    style="@style/TextStyleOfNavigation"
+                    android:text="@string/text_main"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawableTop="@android:drawable/presence_online"
-            android:text="@string/text_main"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawablePadding="5dp"/>
+        <RelativeLayout
+            android:id="@+id/rlReservation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:id="@+id/ivReservation"
+                    android:layout_width="@dimen/sizeBottomNavigationIcon"
+                    android:layout_height="@dimen/sizeBottomNavigationIcon"
+                    android:src="@drawable/bnbar_reservation_icon_selector"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/sizeOfLittleMargin"/>
+                <TextView
+                    android:id="@+id/tvReservation"
+                    style="@style/TextStyleOfNavigation"
+                    android:text="@string/text_reservation"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawableTop="@android:drawable/presence_online"
-            android:text="@string/text_main"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawablePadding="5dp"/>
+        <RelativeLayout
+            android:id="@+id/rlOrder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:id="@+id/ivOrder"
+                    android:layout_width="@dimen/sizeBottomNavigationIcon"
+                    android:layout_height="@dimen/sizeBottomNavigationIcon"
+                    android:src="@drawable/bnbar_order_icon_selector"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/sizeOfLittleMargin"/>
+                <TextView
+                    android:id="@+id/tvOrder"
+                    style="@style/TextStyleOfNavigation"
+                    android:text="@string/text_order"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawableTop="@android:drawable/presence_online"
-            android:text="@string/text_main"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:drawablePadding="5dp"/>
+        <RelativeLayout
+            android:id="@+id/rlMine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:id="@+id/ivMine"
+                    android:layout_width="@dimen/sizeBottomNavigationIcon"
+                    android:layout_height="@dimen/sizeBottomNavigationIcon"
+                    android:src="@drawable/bnbar_mine_icon_selector"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/sizeOfLittleMargin"/>
+                <TextView
+                    android:id="@+id/tvMine"
+                    style="@style/TextStyleOfNavigation"
+                    android:text="@string/text_mine"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

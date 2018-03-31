@@ -13,4 +13,22 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="TextStyleOfNavigation">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@drawable/tab_text_selector</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/textSizeOfNavigation</item>
+    </style>
+
+    <style name="TextStyleOfSearchFilter">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawableRight">@drawable/search_filter_icon_selector</item>
+        <item name="android:textColor">@drawable/tab_text_selector</item>
+        <item name="android:layout_margin">@dimen/sizeOfLittleMargin</item>
+    </style>
+
 </resources>

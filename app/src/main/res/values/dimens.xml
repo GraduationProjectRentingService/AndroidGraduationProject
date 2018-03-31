@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="heightSizeBottomNavigation">64dp</dimen>
-    <dimen name="sizeBottomNavigationIcon">30dp</dimen>
+    <dimen name="heightSizeBottomNavigation">60dp</dimen>
+    <dimen name="sizeBottomNavigationIcon">20dp</dimen>
     <dimen name="heightSizeDivideLine">1dp</dimen>
+    <dimen name="heightBannerView">160dp</dimen>
+    <dimen name="heightOfSearchContent">32dp</dimen>
+    <dimen name="heightOfSearchBar">52dp</dimen>
+
+    <!--margin-->
+    <dimen name="sizeOfLittleMargin">5dp</dimen>
+    <dimen name="sizeOfMiddleMargin">10dp</dimen>
+    <dimen name="sizeOfLagerMargin">15dp</dimen>
+
+    <!--HouseListViewItem's Size-->
+    <dimen name="widthOfHouseListViewItem">200dp</dimen>
+    <dimen name="heightOfHouseListViewItem">160dp</dimen>
+    <dimen name="widthOfHouseListViewItemImage">200dp</dimen>
+    <dimen name="heightOfHouseListViewItemImage">120dp</dimen>
+    <dimen name="heightOfHouseListViewItemNotTitle">140dp</dimen>
+
+    <!-- HomePage SearchBar margin-->
+    <dimen name="marginLeftOfRightOfSearchBar">10dp</dimen>
+    <!-- marginTopOfSearchBar = heightBannerView - heightOfSearchContent - marginLeftOfRightOfSearchBar-->
+    <dimen name="marginTopOfSearchBar">118dp</dimen>
+
+    <!-- top bar-->
+    <dimen name="heightOfTopBar">50dp</dimen>
+    <dimen name="sizeOfBackIcon">24dp</dimen>
+    <dimen name="sizeOfMoreIcon">20dp</dimen>
+
+    <!-- House list View-->
+    <dimen name="sizeOfLocationIcon">24dp</dimen>
+
+    <!-- Text Size-->
+    <dimen name="textSizeOfNavigation">12sp</dimen>
+    <dimen name="textSizeOfEtSearch">14sp</dimen>
+    <dimen name="textSizeOfMainTitle">22sp</dimen>
+    <dimen name="textSizeOfHouseListViewItemTitle">14sp</dimen>
+    <dimen name="textSizeOfTopBarTitle">16sp</dimen>
+
+    <!-- vertical list view item-->
+    <dimen name="heightOfVListViewImage">200dp</dimen>
+    <dimen name="sizeOfHomeownerImage">60dp</dimen>
+    <dimen name="marginTopOfHomeownerImageView">170dp</dimen>
+    <dimen name="marginTopOfLikeView">120dp</dimen>
+    <dimen name="textSizeOfVHouseListItemTitle">16sp</dimen>
+    <dimen name="sizeOfLikeIcon">30dp</dimen>
+    <dimen name="textSizeOfItemMoney">18sp</dimen>
+
+    <!-- login view -->
+    <dimen name="heightOfLoginImageBg">220dp</dimen>
+    <dimen name="paddingBottomOfEditText">18dp</dimen>
+    <dimen name="textSizeOfLoginOrRegisterButton">18sp</dimen>
+    <dimen name="sizeOfOtherLoginIcon">30dp</dimen>
+    <dimen name="marginOfLoginView">24dp</dimen>
+
+    <!-- register view -->
+    <dimen name="textSizeOfGetCodeText">18sp</dimen>
+
+    <!-- icon size -->
+    <dimen name="sizeOfLittleIcon">16dp</dimen>
+    <dimen name="sizeOfMiddleIcon">40dp</dimen>
+
+    <!-- house detail view-->
+    <dimen name="heightOfBottomView">50dp</dimen>
+    <dimen name="sizeOfTopBarIcon">20dp</dimen>
+    <dimen name="textSizeOfHouseDetailTitle">20sp</dimen>
+    <dimen name="textSizeOfLittle">14sp</dimen>
+    <dimen name="textSizeOfLittleTitle">16sp</dimen>
+    <dimen name="sizeOfFacilityGridViewIcon">20dp</dimen>
+    <dimen name="heightOfFacilityGridView">360dp</dimen>
+
+    <!-- date picker -->
+    <dimen name="sizeOfDatePickerIcon">20dp</dimen>
+
 </resources>

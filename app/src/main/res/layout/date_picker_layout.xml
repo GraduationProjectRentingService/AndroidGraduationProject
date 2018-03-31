@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:id="@+id/ivGoLeft"
+            android:layout_width="@dimen/sizeOfDatePickerIcon"
+            android:layout_height="@dimen/sizeOfDatePickerIcon"
+            android:src="@drawable/date_picker_left_icon_selector"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/sizeOfLagerMargin"/>
+        <TextView
+            android:id="@+id/tvCurrentMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018.03"
+            android:layout_margin="@dimen/sizeOfMiddleMargin"
+            android:layout_gravity="center_vertical"/>
+        <ImageView
+            android:id="@+id/ivGoRight"
+            android:layout_width="@dimen/sizeOfDatePickerIcon"
+            android:layout_height="@dimen/sizeOfDatePickerIcon"
+            android:src="@drawable/date_picker_right_icon_selector"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/sizeOfLagerMargin"/>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpDateMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

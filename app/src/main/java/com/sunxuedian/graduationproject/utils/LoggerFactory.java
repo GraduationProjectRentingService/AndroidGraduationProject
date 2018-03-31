@@ -7,6 +7,8 @@ package com.sunxuedian.graduationproject.utils;
 
 public class LoggerFactory {
 
+    private static String TagFilter = "MyLog/";
+
     /**
      * 工厂模式新建Log类
      * @param clazz
@@ -23,6 +25,6 @@ public class LoggerFactory {
      * @return
      */
     public static MyLog getLogger(Class clazz, boolean debug){
-        return new MyLog(clazz.getSimpleName(), debug);
+        return new MyLog(TagFilter + clazz.getSimpleName(), debug);
     }
 }

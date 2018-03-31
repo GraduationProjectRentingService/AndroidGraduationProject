@@ -2,12 +2,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sunxuedian.graduationproject.view.impl.HomepageFragment">
+    tools:context="com.sunxuedian.graduationproject.view.fragment.HomepageFragment"
+    android:background="#eeeeee">
 
-    <com.sunxuedian.graduationproject.widgets.BannerView
-        android:id="@+id/bannerView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
-    </com.sunxuedian.graduationproject.widgets.BannerView>
+        android:layout_height="match_parent">
+
+        <com.sunxuedian.graduationproject.widgets.MyScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.sunxuedian.graduationproject.widgets.BannerView
+                    android:id="@+id/bannerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/heightBannerView"
+                    android:background="@color/colorPrimary">
+                </com.sunxuedian.graduationproject.widgets.BannerView>
+
+                <com.sunxuedian.graduationproject.widgets.HorizontalListContentView
+                    android:id="@+id/listContentViewOfTop10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/sizeOfMiddleMargin">
+                </com.sunxuedian.graduationproject.widgets.HorizontalListContentView>
+
+                <com.sunxuedian.graduationproject.widgets.HorizontalListContentView
+                    android:id="@+id/listContentViewOfTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/sizeOfMiddleMargin">
+                </com.sunxuedian.graduationproject.widgets.HorizontalListContentView>
+
+                <com.sunxuedian.graduationproject.widgets.HorizontalListContentView
+                    android:id="@+id/listContentViewOfHotDestination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/sizeOfMiddleMargin">
+                </com.sunxuedian.graduationproject.widgets.HorizontalListContentView>
+
+                <com.sunxuedian.graduationproject.widgets.HorizontalListContentView
+                    android:id="@+id/listContentViewOfStory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/sizeOfMiddleMargin">
+                </com.sunxuedian.graduationproject.widgets.HorizontalListContentView>
+            </LinearLayout>
+
+
+        </com.sunxuedian.graduationproject.widgets.MyScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <View
+        android:id="@+id/bgViewSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/heightOfSearchBar"
+        android:background="@color/colorOfSearchBar"
+        android:alpha="0">
+    </View>
+
+    <RelativeLayout
+        android:id="@+id/rlSearchContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/heightOfSearchContent"
+        android:layout_marginLeft="@dimen/marginLeftOfRightOfSearchBar"
+        android:layout_marginRight="@dimen/marginLeftOfRightOfSearchBar"
+        android:layout_marginTop="@dimen/marginTopOfSearchBar"
+        android:background="@drawable/bg_white_no_border_et_search">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_main_search_hint"
+            android:textColor="@color/colorMainGray_45"
+            android:textSize="@dimen/textSizeOfEtSearch"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/sizeOfLittleMargin"
+            android:layout_centerInParent="true"
+            android:drawableStart="@drawable/search_gray_24"
+            android:drawablePadding="10dp"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="26dp"
+            android:src="@mipmap/ic_logo"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
 
 </FrameLayout>

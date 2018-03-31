@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="@dimen/widthOfHouseListViewItem"
+    android:layout_height="@dimen/heightOfHouseListViewItem"
+    android:layout_margin="@dimen/sizeOfLittleMargin">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/widthOfHouseListViewItemImage"
+        android:layout_height="@dimen/heightOfHouseListViewItemImage"
+        android:src="@drawable/test_p_6"
+        android:scaleType="fitXY"/>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="这个是不错的房源"
+        android:layout_margin="@dimen/sizeOfMiddleMargin"
+        android:textSize="@dimen/textSizeOfHouseListViewItemTitle"/>
+</LinearLayout>

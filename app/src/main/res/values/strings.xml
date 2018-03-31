@@ -1,8 +1,66 @@
 <resources>
-    <string name="app_name">GraduationProject</string>
+    <string name="app_name">MiLuHouse</string>
 
-    <string name="text_main">主页</string>
+    <string name="text_main">推荐</string>
+    <string name="text_reservation">租房</string>
+    <string name="text_order">订单</string>
+    <string name="text_mine">我的</string>
+    <string name="text_see_more">查看更多</string>
 
+    <string name="text_main_search_hint">开启我的旅程</string>
+
+    <string name="text_top10_title">Top 10 特色房源</string>
+    <string name="text_theme_title">主题体验</string>
+    <string name="text_hot_destination_title">热门目的地</string>
+    <string name="text_story_title">旅游故事.人情味</string>
+
+    <!--text of house list -->
+    <string name="text_house_list_search_hint">位置信息/房东昵称/房源标题</string>
+    <string name="text_check_in_time">入住时段</string>
+    <string name="text_house_area">位置区域</string>
+    <string name="text_more_filter">更多筛选</string>
+    <string name="text_recommend_sort">推荐排序</string>
+
+    <!--login -->
+    <string name="text_phoneNum">手机号码</string>
+    <string name="text_password">密码</string>
+    <string name="text_rePassword">确认密码</string>
+    <string name="text_phoneNum_hint">您的手机号码</string>
+    <string name="text_password_hint">- - - - - -</string>
+    <string name="text_login">登录</string>
+    <string name="text_register">注册</string>
+    <string name="text_go_register">没有账号？前往注册</string>
+
+    <!--register-->
+    <string name="text_next">下一步</string>
+    <string name="text_phone_code">验证码</string>
+    <string name="text_get_phone_code">获取验证码</string>
+    <string name="text_phone_code_hint">- - - - - -</string>
+
+    <!-- House detail -->
+    <string name="text_house_detail_top_bar_title">房源详细</string>
+    <string name="text_contact_homeowner">联系房东</string>
+    <string name="text_reserve_room">立即订房</string>
+    <string name="text_excellent_product">优品</string>
+    <string name="text_verification">验真</string>
+    <string name="text_real_shot">实拍</string>
+    <string name="text_test_title">超精装亲海300平方私家庭院茶室独享</string>
+    <string name="text_of_house_description">房源描述</string>
+    <string name="text_of_description">| 个性描述</string>
+    <string name="text_of_house_info">| 内部情况</string>
+    <string name="text_of_house_location">| 房源位置</string>
+    <string name="text_of_house_rental_date">可租日期</string>
+    <string name="text_of_house_facility">基础设施</string>
+
+    <!-- text of test-->
+    <string name="text_of_test_description">房子位于上下九步行街旁老巷子里，是一座大概90年历史的小别墅，原屋主为民国粤剧名伶，现由美院的建筑系老师操刀改造，情调满满的同时又不会被老房子很多缺点所困扰｡\n
+一楼是一间私人茶馆,早上可以在茶香和咖啡香中醒来｡因为老宅的房间和空间有限,我们希望大家都可以有很好的体验,所以每个房间只能接受一位小伙伴,我们一共有三个房间,每个大概10平米的样子｡\n
+西关是广州城的Downtown,充满了人情味｡上下九步行街就在附近好吃好玩的很多,广州的名食几乎都在这儿,云吞面肠粉牛杂车仔面猪脚姜榴莲雪糕什么的｡</string>
+    <string name="text_of_test_house_info">房子在西关的老巷子里,特别特别老广的感觉｡巷口就是公安局,所以挺安全的｡以前老人家常说东山少爷西关小姐,说的就是东山住的都是军政干部,西关则是名商富贾,两边经常通婚由此而来这么一句话｡\n
+东山房子大气,西关则是充满了情趣｡前屋主是一位粤剧名伶,还在世｡有时会特意回来喝喝茶洗洗头发｡对,她们是不会自己洗头发的,一定要到外面洗｡房子后面就是平安大戏院,听说曾经她就是在这里装扮好然后披着大褂子走到对面去上台的｡想想也觉得特别浪漫｡\n
+附近百年茶居和老店都很多,都挺好吃,也不贵｡前几年茶居里还有人唱戏呢,不过现在没有了,年轻人都不喜欢这些,挺可惜的｡\n
+听老人家说以前大小姐们除了去私塾就得在家里,吃零食要买东西的小贩从一楼扔到三楼,她们再把钱扔到楼下去｡那些小贩现在步行街里还有一两个,都特别老｡有兴趣可以去找找看,找到帮我带一包｡(笑)</string>
+    <string name="text_of_test_house_location">广东省广州市荔湾区第十三甫路与珠玑路交界聚寿里巷</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
