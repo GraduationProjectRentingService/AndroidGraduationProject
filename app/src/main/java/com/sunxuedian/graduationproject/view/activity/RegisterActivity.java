@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterSwipeBackActivity extends BaseSwipeBackActivity<IRegisterView, RegisterPresenterImpl> implements IRegisterView {
+public class RegisterActivity extends BaseSwipeBackActivity<IRegisterView, RegisterPresenterImpl> implements IRegisterView {
 
     private boolean mCheckCodeSuccess = false;//判断是否已经验证手机号码了
 
@@ -56,7 +56,7 @@ public class RegisterSwipeBackActivity extends BaseSwipeBackActivity<IRegisterVi
 
     @OnClick(R.id.ivBack)
     public void goBack(){
-        Intent intent = new Intent(this, LoginSwipeBackActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
@@ -192,8 +192,6 @@ public class RegisterSwipeBackActivity extends BaseSwipeBackActivity<IRegisterVi
         userBean.setToken(token);
         UserSpUtils.saveUserToLocal(this, userBean);
         //实现跳转
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
         finish();
     }
 
@@ -209,5 +207,10 @@ public class RegisterSwipeBackActivity extends BaseSwipeBackActivity<IRegisterVi
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void showNetworkError() {
+        ToastUtils.showToast("网络不给力，请检查网络设置。");
     }
 }

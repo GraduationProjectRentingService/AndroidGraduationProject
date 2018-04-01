@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sunxuedian.graduationproject.view.activity.ReverseHouseActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlTopBar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/heightOfTopBar"
+        android:background="@color/colorOfSearchBar"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/sizeOfBackIcon"
+            android:layout_height="@dimen/sizeOfBackIcon"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back"
+            android:layout_marginLeft="@dimen/sizeOfMiddleMargin"/>
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/text_of_reverse_house_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeOfTopBarTitle"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorOfCutLine"
+            />
+
+    </RelativeLayout>
+
+    <com.sunxuedian.graduationproject.widgets.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlTopBar"
+        android:layout_above="@+id/lineBottomBar"
+        android:background="@color/colorGrayE"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:paddingTop="@dimen/sizeOfMiddleMargin"
+                android:paddingBottom="@dimen/sizeOfMiddleMargin">
+                <ImageView
+                    android:id="@+id/ivHouse"
+                    android:layout_width="@dimen/widthOfReverseHouseImgView"
+                    android:layout_height="@dimen/heightOfReverseHouseImgView"
+                    android:src="@drawable/test_p_5"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginRight="@dimen/sizeOfLagerMargin" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_test_title"
+                        android:textSize="@dimen/textSizeOfReverseHouseTitle"
+                        android:layout_marginRight="@dimen/sizeOfLagerMargin"/>
+
+                    <TextView
+                        android:id="@+id/tvReverseType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="整套出租"
+                        android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/text_check_in_time"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                android:padding="@dimen/sizeOfLittleMargin">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="@dimen/sizeOfCalendarIcon"
+                        android:layout_height="@dimen/sizeOfMiddleIcon"
+                        android:src="@drawable/calender_1"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:id="@+id/tvCheckInDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/sizeOfLittleMargin"
+                        android:text="4月2号"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="共1晚"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="@dimen/sizeOfCalendarIcon"
+                        android:layout_height="@dimen/sizeOfMiddleIcon"
+                        android:src="@drawable/calender_1"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:id="@+id/tvCheckOutDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/sizeOfLittleMargin"
+                        android:text="4月3号"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/text_of_check_in_people"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                />
+
+            <ListView
+                android:id="@+id/lvCheckInPeople"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin">
+            </ListView>
+
+            <Button
+                android:id="@+id/btnAddPeople"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="5dp"
+                android:text="@string/text_of_add_check_in_people"
+                android:textColor="@color/colorMainYellow"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/text_of_reverse_user_info"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heightOfBottomView"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_of_nick_name"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:text="用户1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heightOfBottomView"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_marginTop="1dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_of_phone"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:text="15512121212"/>
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同意MiLuHouse的相关租房规定"
+                android:textColor="@color/colorMainGray"
+                android:layout_margin="@dimen/sizeOfLagerMargin"/>
+
+        </LinearLayout>
+
+    </com.sunxuedian.graduationproject.widgets.MyScrollView>
+
+    <LinearLayout
+        android:id="@+id/lineBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/heightOfBottomView"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvTotalMoney"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="订单总额：￥1000"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/text_of_submit_order"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:background="@color/colorOfGold" />
+    </LinearLayout>
+
+</RelativeLayout>

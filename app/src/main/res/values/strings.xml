@@ -26,7 +26,7 @@
     <string name="text_password">密码</string>
     <string name="text_rePassword">确认密码</string>
     <string name="text_phoneNum_hint">您的手机号码</string>
-    <string name="text_password_hint">- - - - - -</string>
+    <string name="text_password_hint">------</string>
     <string name="text_login">登录</string>
     <string name="text_register">注册</string>
     <string name="text_go_register">没有账号？前往注册</string>
@@ -35,7 +35,7 @@
     <string name="text_next">下一步</string>
     <string name="text_phone_code">验证码</string>
     <string name="text_get_phone_code">获取验证码</string>
-    <string name="text_phone_code_hint">- - - - - -</string>
+    <string name="text_phone_code_hint">- - - -</string>
 
     <!-- House detail -->
     <string name="text_house_detail_top_bar_title">房源详细</string>
@@ -51,6 +51,40 @@
     <string name="text_of_house_location">| 房源位置</string>
     <string name="text_of_house_rental_date">可租日期</string>
     <string name="text_of_house_facility">基础设施</string>
+    <string name="text_of_house_trading_rules">交易规则</string>
+
+    <string name="text_of_day_rules">入住天数</string>
+    <string name="text_of_deposit_ratio">定金比例</string>
+    <string name="text_of_deposit_ratio_content">订单确认后，在线支付房款的100%作为定金</string>
+    <string name="text_of_deposit">押金</string>
+    <string name="text_of_clean_fee">清洁费用</string>
+    <string name="text_of_clean_fee_content">每单￥100</string>
+    <string name="text_of_add_guest">是否加客</string>
+    <string name="text_of_add_guest_content">同意加客人</string>
+    <string name="text_of_other_price">其他费用</string>
+    <string name="text_of_check_in_instructions">入住须知</string>
+    <string name="text_of_other_requirement">其他要求</string>
+    <string name="text_of_tip">其他贴士</string>
+
+    <string name="text_of_break_contact">违约责任</string>
+    <string name="text_of_break_contact_content">若距入住日中午14：00大于等于1天（1*24小时），订金全额退还。\n 若距入住日中午14：00大于等于1天（1*24小时），订金全额退还。</string>
+
+    <!-- 预定界面 -->
+    <string name="text_of_reverse_house_title">预订</string>
+    <string name="text_of_check_in_time">入住时间</string>
+    <string name="text_of_check_in_people">入住人信息</string>
+    <string name="text_of_add_check_in_people">添加入住人</string>
+    <string name="text_of_reverse_user_info">预订人信息</string>
+    <string name="text_of_nick_name">昵 称：</string>
+    <string name="text_of_phone">手 机：</string>
+    <string name="text_of_submit_order">提交订单</string>
+
+    <!--选择入住人-->
+    <string name="text_of_choose_people_title">选择入住人</string>
+    <string name="text_of_sure">确定</string>
+    <string name="text_of_sure_add">确认添加</string>
+    <string name="text_of_add_people_title">新增入住人</string>
+
 
     <!-- text of test-->
     <string name="text_of_test_description">房子位于上下九步行街旁老巷子里，是一座大概90年历史的小别墅，原屋主为民国粤剧名伶，现由美院的建筑系老师操刀改造，情调满满的同时又不会被老房子很多缺点所困扰｡\n

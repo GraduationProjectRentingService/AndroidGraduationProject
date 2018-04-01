@@ -1,5 +1,6 @@
 package com.sunxuedian.graduationproject.presenter.impl;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.sunxuedian.graduationproject.model.IModelCallback;
@@ -10,6 +11,7 @@ import com.sunxuedian.graduationproject.presenter.ILoginPresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.MyTextUtils;
+import com.sunxuedian.graduationproject.utils.NetworkUtils;
 import com.sunxuedian.graduationproject.view.ILoginView;
 
 /**
@@ -20,9 +22,11 @@ public class LoginPresenterImpl extends BasePresenter<ILoginView> implements ILo
 
     private MyLog logger = LoggerFactory.getLogger(getClass());
 
+    private Context mContext;
     private IUserModel mUserModel;
 
-    public LoginPresenterImpl(){
+    public LoginPresenterImpl(Context context){
+        mContext = context;
         mUserModel = new UserModelImpl();
     }
 
@@ -30,6 +34,12 @@ public class LoginPresenterImpl extends BasePresenter<ILoginView> implements ILo
     public void login() {
         if (!isViewAttached()){
             logger.e("the view is not attached!");
+            return;
+        }
+
+        if (!NetworkUtils.isNetworkAvailable(mContext)){
+            logger.e("network is not available!");
+            getView().showNetworkError();
             return;
         }
 

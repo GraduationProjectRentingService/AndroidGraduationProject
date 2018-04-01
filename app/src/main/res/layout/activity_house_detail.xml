@@ -280,8 +280,201 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/heightOfFacilityGridView"
                     android:numColumns="4">
-
                 </GridView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+                android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                android:layout_marginRight="@dimen/sizeOfLagerMargin"
+                android:layout_marginBottom="@dimen/sizeOfMiddleMargin"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_of_house_trading_rules"
+                    android:textColor="@color/colorMainGray_45"
+                    android:textSize="@dimen/textSizeOfLittleTitle"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+                    android:layout_marginBottom="@dimen/sizeOfLagerMargin"/>
+
+                <ImageView
+                    android:layout_width="@dimen/sizeOfLittleIcon"
+                    android:layout_height="@dimen/sizeOfLittleIcon"
+                    android:src="@drawable/calender"
+                    android:layout_marginLeft="@dimen/sizeOfMiddleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_day_rules"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvDayNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="至少1天，最多1周"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_deposit_ratio"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvDepositRatio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_of_deposit_ratio_content"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_deposit"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvDeposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥1000"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_clean_fee"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvCleanFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_of_clean_fee_content"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_add_guest"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvAddGuest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_of_add_guest_content"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_other_price"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvOtherPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="暂无"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_check_in_instructions"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvCheckInInstructions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="提供独立卫生间、被单每日更换、允许做饭、不允许吸烟"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_other_requirement"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvOtherRequirement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="暂无"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                <ImageView
+                    android:layout_width="@dimen/sizeOfLittleIcon"
+                    android:layout_height="@dimen/sizeOfLittleIcon"
+                    android:src="@drawable/smile"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+                    android:layout_marginLeft="@dimen/sizeOfMiddleMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_tip"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"/>
+                <TextView
+                    android:id="@+id/tvOtherTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="暂无"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+                android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                android:layout_marginRight="@dimen/sizeOfLagerMargin"
+                android:layout_marginBottom="@dimen/sizeOfMiddleMargin"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_of_break_contact"
+                    android:textColor="@color/colorMainGray_45"
+                    android:textSize="@dimen/textSizeOfLittleTitle"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+                    android:layout_marginBottom="@dimen/sizeOfLagerMargin"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_of_break_contact_content"
+                    />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -344,17 +537,29 @@
         android:layout_height="@dimen/heightOfBottomView"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
-        <TextView
+        <RelativeLayout
+            android:id="@+id/rlContactHost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:text="@string/text_contact_homeowner"
-            android:layout_weight="3"/>
+            android:layout_weight="3"
+            android:background="@color/colorGrayE"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/text_contact_homeowner"
+                android:drawableLeft="@drawable/phone"
+                android:drawablePadding="@dimen/sizeOfLittleMargin"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
         <TextView
+            android:id="@+id/tvReserveRoom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorMainYellow"
+            android:background="@color/colorOfGold"
             android:text="@string/text_reserve_room"
             android:gravity="center"
             android:layout_weight="2"/>

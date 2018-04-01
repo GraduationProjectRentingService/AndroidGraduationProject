@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGrayE"
+    tools:context="com.sunxuedian.graduationproject.view.activity.ChooseCheckInPeopleActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlTopBar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/heightOfTopBar"
+        android:background="@color/colorOfSearchBar"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/sizeOfBackIcon"
+            android:layout_height="@dimen/sizeOfBackIcon"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back"
+            android:layout_marginLeft="@dimen/sizeOfMiddleMargin"/>
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/text_of_choose_people_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeOfTopBarTitle"/>
+
+        <TextView
+            android:id="@+id/tvSure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_of_sure"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/sizeOfLagerMargin"
+            android:textColor="@color/black"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorOfCutLine"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnAddPeople"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/sizeOfLagerMargin"
+        android:text="@string/text_of_add_check_in_people"
+        android:textColor="@color/colorMainYellow"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCheckInPeople"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/sizeOfLagerMargin">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

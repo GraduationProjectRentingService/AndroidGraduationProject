@@ -71,6 +71,12 @@
     <dimen name="sizeOfFacilityGridViewIcon">20dp</dimen>
     <dimen name="heightOfFacilityGridView">360dp</dimen>
 
+    <!--预订 -->
+    <dimen name="widthOfReverseHouseImgView">140dp</dimen>
+    <dimen name="heightOfReverseHouseImgView">80dp</dimen>
+    <dimen name="textSizeOfReverseHouseTitle">20sp</dimen>
+    <dimen name="sizeOfCalendarIcon">30dp</dimen>
+
     <!-- date picker -->
     <dimen name="sizeOfDatePickerIcon">20dp</dimen>
 

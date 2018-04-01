@@ -1,5 +1,6 @@
 package com.sunxuedian.graduationproject.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.sunxuedian.graduationproject.utils.ImageLoader;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.ToastUtils;
+import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
 import com.sunxuedian.graduationproject.view.IHouseDetailView;
 import com.sunxuedian.graduationproject.view.base.BaseSwipeBackActivity;
 import com.sunxuedian.graduationproject.widgets.BannerView;
@@ -35,9 +37,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static cn.smssdk.utils.a.e;
-import static cn.smssdk.utils.a.f;
+import butterknife.OnClick;
 
 public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView, HouseDetailPresenterImpl> implements IHouseDetailView {
 
@@ -69,6 +69,28 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
     private List<CalendarDay> mHasRentedHouseDates;//已经被订房的日期
     private List<CalendarDay> mChooseDates = new ArrayList<>();//选中的订房日期
 
+    @OnClick(R.id.ivBack)
+    public void goBack(){
+        finish();
+    }
+    /**
+     * 点击立即订房
+     */
+    @OnClick(R.id.tvReserveRoom)
+    public void reserveRoom(){
+        if (UserSpUtils.isUserLogin(this)){
+            //跳转到订房界面
+            Intent intent = new Intent(this, ReverseHouseActivity.class);
+            // TODO: 2018/4/1 需要传日期和其他数据
+            startActivity(intent);
+            
+        }else {
+            ToastUtils.showToast("用户未登录，请先登录！");
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +98,18 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
         ButterKnife.bind(this);
         initView();
         loadData();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mBannerView.stopBannerScrollTask();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mBannerView.startBannerScrollTask(2000);
     }
 
     @Override
@@ -154,7 +188,7 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
         });
         mMaterialCalendarView.setDynamicHeightEnabled(true);
         mMaterialCalendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_RANGE);
-        mMaterialCalendarView.setDateSelected(new Date(System.currentTimeMillis()), true);
+//        mMaterialCalendarView.setDateSelected(new Date(System.currentTimeMillis()), true);
         mMaterialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {

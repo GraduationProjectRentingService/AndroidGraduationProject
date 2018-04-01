@@ -4,7 +4,7 @@ package com.sunxuedian.graduationproject.view;
  * Created by sunxuedian on 2018/3/23.
  */
 
-public interface IRegisterView extends IProgressView{
+public interface IRegisterView extends IProgressView, INetworkErrorView{
     String getPhoneNum();//获取手机号码
     String getCheckCode();//获取验证码
     String getPassword();//获取密码

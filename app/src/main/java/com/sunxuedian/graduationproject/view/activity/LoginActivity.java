@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginSwipeBackActivity extends BaseSwipeBackActivity<ILoginView, LoginPresenterImpl> implements ILoginView {
+public class LoginActivity extends BaseSwipeBackActivity<ILoginView, LoginPresenterImpl> implements ILoginView {
 
     private MyLog logger = LoggerFactory.getLogger(getClass());
 
@@ -43,7 +43,7 @@ public class LoginSwipeBackActivity extends BaseSwipeBackActivity<ILoginView, Lo
 
     @OnClick(R.id.tvGoRegister)
     public void goRegister(){
-        Intent intent = new Intent(this, RegisterSwipeBackActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
         finish();
     }
@@ -57,7 +57,7 @@ public class LoginSwipeBackActivity extends BaseSwipeBackActivity<ILoginView, Lo
 
     @Override
     protected LoginPresenterImpl createPresenter() {
-        return new LoginPresenterImpl();
+        return new LoginPresenterImpl(this);
     }
 
     @Override
@@ -87,8 +87,6 @@ public class LoginSwipeBackActivity extends BaseSwipeBackActivity<ILoginView, Lo
         userBean.setToken(token);
         UserSpUtils.saveUserToLocal(this, userBean);
         //实现跳转
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
         finish();
     }
 
@@ -104,5 +102,10 @@ public class LoginSwipeBackActivity extends BaseSwipeBackActivity<ILoginView, Lo
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void showNetworkError() {
+        ToastUtils.showToast("网络不给力，请检查网络设置。");
     }
 }

@@ -24,7 +24,7 @@ import com.sunxuedian.graduationproject.utils.ToastUtils;
 import com.sunxuedian.graduationproject.utils.ViewUtils;
 import com.sunxuedian.graduationproject.view.activity.BrowserActivity;
 import com.sunxuedian.graduationproject.view.activity.HouseDetailActivity;
-import com.sunxuedian.graduationproject.view.activity.HouseListSwipeBackActivity;
+import com.sunxuedian.graduationproject.view.activity.HouseListActivity;
 import com.sunxuedian.graduationproject.view.base.BaseFragment;
 import com.sunxuedian.graduationproject.view.IHomepageView;
 import com.sunxuedian.graduationproject.widgets.BannerView;
@@ -37,9 +37,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.R.attr.data;
-import static android.R.id.list;
 
 
 public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresenterImpl> implements IHomepageView{
@@ -192,7 +189,7 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
         mListContentViewOfTop10.setGoMoreClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HouseListSwipeBackActivity.class);
+                Intent intent = new Intent(getActivity(), HouseListActivity.class);
                 startActivity(intent);
             }
         });

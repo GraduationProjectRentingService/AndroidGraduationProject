@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/sizeOfMiddleMargin"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/delete_0"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/sizeOfMiddleMargin"
+        android:layout_marginRight="@dimen/sizeOfLagerMargin"
+        android:focusable="false"/>
+    <LinearLayout
+        android:layout_toRightOf="@+id/ivDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tvIdCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="身份证：44444444444444"
+            android:layout_marginTop="@dimen/sizeOfLittleMargin"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/go"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/sizeOfLagerMargin"/>
+</RelativeLayout>

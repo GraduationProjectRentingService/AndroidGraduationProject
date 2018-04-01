@@ -4,7 +4,7 @@ package com.sunxuedian.graduationproject.view;
  * Created by sunxuedian on 2018/3/22.
  */
 
-public interface ILoginView extends IProgressView{
+public interface ILoginView extends IProgressView, INetworkErrorView{
     String getPhoneNum();
     String getPassword();
     void onLoginSuccess(String phoneNum, String token);

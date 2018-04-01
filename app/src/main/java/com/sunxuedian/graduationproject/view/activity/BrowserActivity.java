@@ -16,6 +16,7 @@ import com.sunxuedian.graduationproject.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BrowserActivity extends SwipeBackActivity {
 
@@ -23,6 +24,11 @@ public class BrowserActivity extends SwipeBackActivity {
     LinearLayout mBaseView;
 
     private WebView mWebView;
+
+    @OnClick(R.id.ivBack)
+    public void goBack(){
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

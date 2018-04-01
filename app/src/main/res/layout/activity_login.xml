@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sunxuedian.graduationproject.view.activity.LoginSwipeBackActivity">
+    tools:context="com.sunxuedian.graduationproject.view.activity.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

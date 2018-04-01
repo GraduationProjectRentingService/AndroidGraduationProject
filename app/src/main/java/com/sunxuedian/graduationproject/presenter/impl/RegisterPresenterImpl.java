@@ -13,6 +13,7 @@ import com.sunxuedian.graduationproject.presenter.IRegisterPresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.MyTextUtils;
+import com.sunxuedian.graduationproject.utils.NetworkUtils;
 import com.sunxuedian.graduationproject.view.IRegisterView;
 
 import org.json.JSONException;
@@ -20,6 +21,8 @@ import org.json.JSONObject;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+
+import static android.R.attr.id;
 
 /**
  * Created by sunxuedian on 2018/3/23.
@@ -130,6 +133,12 @@ public class RegisterPresenterImpl extends BasePresenter<IRegisterView> implemen
     public void register() {
         if (!isViewAttached()){
             logger.e("the View is not attached！");
+            return;
+        }
+
+        if (!NetworkUtils.isNetworkAvailable(mContext)){
+            logger.e("network is not available!");
+            getView().showNetworkError();
             return;
         }
 

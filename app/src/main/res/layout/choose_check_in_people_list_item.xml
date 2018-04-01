@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/sizeOfLagerMargin"
+    android:background="@color/white"
+    android:layout_marginBottom="1dp">
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/sizeOfLagerMargin"
+        />
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tvIdCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="身份证：44444444444444"
+            android:layout_marginTop="@dimen/sizeOfLittleMargin"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sizeOfLittleIcon"
+        android:src="@drawable/edit"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/sizeOfLagerMargin"
+        android:focusable="false"/>
+
+</RelativeLayout>
