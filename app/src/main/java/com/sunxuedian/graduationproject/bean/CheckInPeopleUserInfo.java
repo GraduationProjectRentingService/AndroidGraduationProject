@@ -13,12 +13,22 @@ import java.io.Serializable;
 public class CheckInPeopleUserInfo implements Parcelable, Serializable{
     public static final String TAG = "CheckInPeopleUserInfo";
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     private String name;
     private String idCard;
     private String phone;
     private boolean isCheck;
 
     protected CheckInPeopleUserInfo(Parcel in) {
+        id = in.readInt();
         name = in.readString();
         idCard = in.readString();
         phone = in.readString();
@@ -87,6 +97,7 @@ public class CheckInPeopleUserInfo implements Parcelable, Serializable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(idCard);
         dest.writeString(phone);

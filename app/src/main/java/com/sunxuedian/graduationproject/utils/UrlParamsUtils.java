@@ -19,11 +19,20 @@ public class UrlParamsUtils {
 
     public static final String URL_GET_ALL_HOUSE = IP + "/house/user/getHousehaveReviewed";//获取所有房源
 
+    public static final String URL_CREATE_CHECK_IN_PEOPLE = IP + "/checkInPeople/create";//创建入住人信息
+    public static final String URL_UPDATE_CHECK_IN_PEOPLE = IP + "/checkInPeople/update";//修改入住人信息
+    public static final String URL_DELETE_CHECK_IN_PEOPLE = IP + "/checkInPeople/delete";//删除入住人信息
+    public static final String URL_GET_ALL_CHECK_IN_PEOPLE = IP + "/checkInPeople/getAll";//获取所有入住人信息
+
+
     public static final String USER_PHONE = "phoneNumber";
     public static final String USER_PASSWORD = "password";
     public static final String USER_NAME = "name";
     public static final String TOKEN = "token";
     public static final String SEX = "sex";
     public static final String USER_ICON_URL = "pic";
+
+    public static final String ID_CARD = "idCard";
+    public static final String CHECK_IN_PEOPLE_PHONE = "phone";
 
 }

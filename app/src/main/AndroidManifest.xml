@@ -36,7 +36,10 @@
         <activity android:name=".view.activity.UserInfoActivity" />
         <activity android:name=".view.activity.SetUserNameActivity" />
         <activity android:name=".view.activity.OrderListActivity" />
-        <activity android:name=".view.activity.LikeHouseListActivity"></activity>
+        <activity android:name=".view.activity.LikeHouseListActivity" />
+        <activity android:name=".view.activity.CheckInPeopleListActivity" />
+        <activity android:name=".view.activity.EditCheckInPeopleActivity" />
+        <activity android:name=".view.activity.SystemMessageActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorGrayE"
-    tools:context="com.sunxuedian.graduationproject.view.activity.ChooseCheckInPeopleActivity">
+    tools:context="com.sunxuedian.graduationproject.view.activity.CheckInPeopleListActivity">
 
     <RelativeLayout
         android:id="@+id/rlTopBar"
@@ -26,20 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="选择入住人"
+            android:text="入住人"
             android:textColor="@color/black"
             android:textSize="@dimen/textSizeOfTopBarTitle"/>
-
-        <TextView
-            android:id="@+id/tvSure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_of_sure"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/sizeOfLagerMargin"
-            android:textColor="@color/black"
-            android:padding="@dimen/sizeOfMiddleMargin"/>
 
     </RelativeLayout>
 
@@ -52,11 +41,11 @@
         android:text="@string/text_of_add_check_in_people"
         android:textColor="@color/colorMainYellow"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvCheckInPeople"
+    <ListView
+        android:id="@+id/lvCheckInPeople"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/sizeOfLagerMargin">
-    </android.support.v7.widget.RecyclerView>
+    </ListView>
 
 </LinearLayout>

@@ -1,5 +1,8 @@
 package com.sunxuedian.graduationproject.presenter;
 
+import com.sunxuedian.graduationproject.utils.LoggerFactory;
+import com.sunxuedian.graduationproject.utils.MyLog;
+
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 

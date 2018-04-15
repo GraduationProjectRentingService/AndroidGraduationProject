@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorGrayE"
-    tools:context="com.sunxuedian.graduationproject.view.activity.AddCheckInPeopleActivity">
+    tools:context="com.sunxuedian.graduationproject.view.activity.EditCheckInPeopleActivity">
 
     <RelativeLayout
         android:id="@+id/rlTopBar"
@@ -26,15 +26,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/text_of_add_people_title"
+            android:text="修改信息"
             android:textColor="@color/black"
             android:textSize="@dimen/textSizeOfTopBarTitle"/>
 
         <TextView
-            android:id="@+id/tvSureAdd"
+            android:id="@+id/tvSure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_of_sure_add"
+            android:text="修改"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/sizeOfLagerMargin"
@@ -137,4 +137,13 @@
             android:layout_gravity="center_vertical"
             android:textColorHint="@color/colorMainGray_45"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDelete"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        android:text="删除"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/sizeOfLagerMargin"/>
 </LinearLayout>

@@ -29,7 +29,7 @@ public class AddCheckInPeoplePresenterImpl extends BasePresenter<IAddCheckInPeop
 
     public AddCheckInPeoplePresenterImpl(Context mContext) {
         this.mContext = mContext;
-        mCheckInPeopleModel = new CheckInPeopleModelImpl();
+        mCheckInPeopleModel = CheckInPeopleModelImpl.getInstance();
     }
 
     @Override

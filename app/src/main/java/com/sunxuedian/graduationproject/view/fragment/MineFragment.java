@@ -19,6 +19,7 @@ import com.sunxuedian.graduationproject.utils.ImageLoader;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
+import com.sunxuedian.graduationproject.view.activity.CheckInPeopleListActivity;
 import com.sunxuedian.graduationproject.view.activity.LikeHouseListActivity;
 import com.sunxuedian.graduationproject.view.activity.LoginActivity;
 import com.sunxuedian.graduationproject.view.activity.OrderListActivity;
@@ -68,6 +69,12 @@ public class MineFragment extends Fragment {
     @OnClick(R.id.rlLikeList)
     public void goLikeHouseListView(){
         Intent intent = new Intent(getActivity(), LikeHouseListActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.rlCheckInPeople)
+    public void goCheckInPeoles(){
+        Intent intent = new Intent(getActivity(), CheckInPeopleListActivity.class);
         startActivity(intent);
     }
 

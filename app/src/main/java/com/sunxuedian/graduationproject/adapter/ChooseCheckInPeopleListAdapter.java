@@ -1,6 +1,8 @@
 package com.sunxuedian.graduationproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.sunxuedian.graduationproject.R;
 import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
+import com.sunxuedian.graduationproject.view.activity.EditCheckInPeopleActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +54,14 @@ public class ChooseCheckInPeopleListAdapter extends Adapter<ChooseCheckInPeopleL
             @Override
             public void onClick(View v) {
                 info.setCheck(myViewHolder.mCheckBox.isChecked());
+            }
+        });
+        myViewHolder.ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, EditCheckInPeopleActivity.class);
+                intent.putExtra(CheckInPeopleUserInfo.TAG, (Parcelable) info);
+                mContext.startActivity(intent);
             }
         });
         myViewHolder.tvName.setText(info.getName());

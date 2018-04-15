@@ -8,12 +8,12 @@ import com.sunxuedian.graduationproject.model.ICheckInPeopleModel;
 import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.model.impl.CheckInPeopleModelImpl;
 import com.sunxuedian.graduationproject.presenter.BasePresenter;
-import com.sunxuedian.graduationproject.presenter.IChooseCheckInPeoplePresenter;
+import com.sunxuedian.graduationproject.presenter.ICheckInPeoplesPresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.NetworkUtils;
 import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
-import com.sunxuedian.graduationproject.view.IChooseCheckInPeoplesView;
+import com.sunxuedian.graduationproject.view.ICheckInPeoplesView;
 
 import java.util.List;
 
@@ -21,15 +21,15 @@ import java.util.List;
  * Created by sunxuedian on 2018/4/2.
  */
 
-public class ChooseCheckInPeoplePresenterImpl extends BasePresenter<IChooseCheckInPeoplesView> implements IChooseCheckInPeoplePresenter {
+public class CheckInPeoplesPresenterImpl extends BasePresenter<ICheckInPeoplesView> implements ICheckInPeoplesPresenter {
 
     private MyLog logger = LoggerFactory.getLogger(getClass());
     private Context mContext;
     private ICheckInPeopleModel mCheckInPeopleModel;
 
-    public ChooseCheckInPeoplePresenterImpl(Context mContext) {
+    public CheckInPeoplesPresenterImpl(Context mContext) {
         this.mContext = mContext;
-        mCheckInPeopleModel = new CheckInPeopleModelImpl();
+        mCheckInPeopleModel = CheckInPeopleModelImpl.getInstance();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.sunxuedian.graduationproject.model;
 
 import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
+import com.sunxuedian.graduationproject.bean.UserBean;
 import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 
 import java.util.List;
@@ -12,4 +13,6 @@ import java.util.List;
 public interface ICheckInPeopleModel {
     void getCheckInPeoples(String phoneNum, String token, IModelCallback<List<CheckInPeopleUserInfo>> iModelCallback);//获取所有入住人的信息
     void addCheckInPeople(String phoneNum, String token, CheckInPeopleUserInfo info, IModelCallback<CheckInPeopleUserInfo> iModelCallback);//添加一个入住人信息
+    void updateCheckInPeople(UserBean userBean, CheckInPeopleUserInfo checkInPeopleUserInfo, IModelCallback<String> callback);
+    void deleteCheckInPeople(UserBean userBean, CheckInPeopleUserInfo checkInPeopleUserInfo, IModelCallback<String> callback);
 }

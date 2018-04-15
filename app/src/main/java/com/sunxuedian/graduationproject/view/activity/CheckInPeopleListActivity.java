@@ -2,11 +2,16 @@ package com.sunxuedian.graduationproject.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.mingle.widget.ShapeLoadingDialog;
 import com.sunxuedian.graduationproject.R;
+import com.sunxuedian.graduationproject.adapter.CheckInPeopleListAdapter;
 import com.sunxuedian.graduationproject.adapter.ChooseCheckInPeopleListAdapter;
 import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
 import com.sunxuedian.graduationproject.presenter.impl.CheckInPeoplesPresenterImpl;
@@ -21,10 +26,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ChooseCheckInPeopleActivity extends BaseSwipeBackActivity<ICheckInPeoplesView, CheckInPeoplesPresenterImpl> implements ICheckInPeoplesView {
+public class CheckInPeopleListActivity extends BaseSwipeBackActivity<ICheckInPeoplesView, CheckInPeoplesPresenterImpl> implements ICheckInPeoplesView{
 
-    @BindView(R.id.rvCheckInPeople)
-    RecyclerView mRvCheckInPeople;
+    @BindView(R.id.lvCheckInPeople)
+    ListView mLvCheckInPeople;
     private ShapeLoadingDialog mLoadingView;
 
     @OnClick(R.id.ivBack)
@@ -38,29 +43,13 @@ public class ChooseCheckInPeopleActivity extends BaseSwipeBackActivity<ICheckInP
         startActivity(intent);
     }
 
-    @OnClick(R.id.tvSure)
-    public void onSure(){
-        //在定义的列表中提供选中入住人列表的接口
-        ArrayList<CheckInPeopleUserInfo> list = mAdapter.getCheckedUserInfoList();
-        //判断用户是否有选中，如果没有选中则提示
-        if (list.size() > 0){
-            Intent data = new Intent();
-            data.putParcelableArrayListExtra(CheckInPeopleUserInfo.TAG, list);
-            //将数据返回到预订Activity中界面
-            setResult(RESULT_OK, data);
-            finish();
-        }else {
-            ToastUtils.showToast("请选择入住人！");
-        }
-    }
-
-    private ChooseCheckInPeopleListAdapter mAdapter;
+    private CheckInPeopleListAdapter mAdapter;
     private List<CheckInPeopleUserInfo> mCheckInPeopleUsers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_check_in_people);
+        setContentView(R.layout.activity_check_in_people_list);
         ButterKnife.bind(this);
         initView();
     }
@@ -80,9 +69,17 @@ public class ChooseCheckInPeopleActivity extends BaseSwipeBackActivity<ICheckInP
         mLoadingView = new ShapeLoadingDialog(this);
         mLoadingView.setLoadingText("加载中...");
 
-        mAdapter = new ChooseCheckInPeopleListAdapter(mCheckInPeopleUsers, this);
-        mRvCheckInPeople.setLayoutManager(new LinearLayoutManager(this));
-        mRvCheckInPeople.setAdapter(mAdapter);
+        mAdapter = new CheckInPeopleListAdapter(mCheckInPeopleUsers, this);
+        mAdapter.hideDeleteButton();
+        mLvCheckInPeople.setAdapter(mAdapter);
+        mLvCheckInPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CheckInPeopleListActivity.this, EditCheckInPeopleActivity.class);
+                intent.putExtra(CheckInPeopleUserInfo.TAG, (Parcelable) mCheckInPeopleUsers.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
 

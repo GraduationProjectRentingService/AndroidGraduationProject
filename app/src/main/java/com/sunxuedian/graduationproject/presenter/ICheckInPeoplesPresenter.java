@@ -4,6 +4,6 @@ package com.sunxuedian.graduationproject.presenter;
  * Created by sunxuedian on 2018/4/2.
  */
 
-public interface IChooseCheckInPeoplePresenter {
+public interface ICheckInPeoplesPresenter {
     void getAllCheckInPeoples();
 }
