@@ -1,14 +1,19 @@
 package com.sunxuedian.graduationproject.view.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mingle.widget.ShapeLoadingDialog;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -20,7 +25,10 @@ import com.sunxuedian.graduationproject.R;
 import com.sunxuedian.graduationproject.adapter.FacilityGridViewAdapter;
 import com.sunxuedian.graduationproject.bean.BannerViewBean;
 import com.sunxuedian.graduationproject.bean.FacilityGridViewBean;
+import com.sunxuedian.graduationproject.bean.HouseBean;
+import com.sunxuedian.graduationproject.bean.UserBean;
 import com.sunxuedian.graduationproject.presenter.impl.HouseDetailPresenterImpl;
+import com.sunxuedian.graduationproject.utils.AppActivityStackUtils;
 import com.sunxuedian.graduationproject.utils.ImageLoader;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
@@ -60,7 +68,34 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
     @BindView(R.id.calendarView)
     MaterialCalendarView mMaterialCalendarView;//显示选择日期的空间
     @BindView(R.id.gvFacility)
-    GridView mGvFacility;
+    GridView mGvFacility;//基础设施列表
+    @BindView(R.id.tvTitle)
+    TextView mTvTitle;//房源标题
+    @BindView(R.id.tvMoney)
+    TextView mTvMoney;//每晚的价格
+    @BindView(R.id.tvRentalType)
+    TextView mTvRentalType;//出租类型 整套/单间
+    @BindView(R.id.tvPeopleNum)
+    TextView mTvPeopleNum;//宜住的人数
+    @BindView(R.id.tvBedNum)
+    TextView mTvBedNum;//床的个数
+    @BindView(R.id.tvHouseDescription)
+    TextView mTvHouseDescription;//房源描述
+    @BindView(R.id.tvHouseInfo)
+    TextView mTvHouseInfo;//房源内部情况
+    @BindView(R.id.tvHouseLocation)
+    TextView mTvHouseLocation;//房源位置
+    @BindView(R.id.tvDayNum)
+    TextView mTvDayNum;//入住天数规则
+    @BindView(R.id.tvDeposit)
+    TextView mTvDeposit;//定金
+    @BindView(R.id.tvCheckInInstructions)
+    TextView mTvCheckInInstructions;//入住须知
+    @BindView(R.id.tvOtherRequirement)
+    TextView mTvOtherRequirement;//其他要求
+    @BindView(R.id.tvOtherTip)
+    TextView mTvOtherTip;//其他贴士
+
 
     private float mHeightOfBannerView;//轮播图的高
     private float mHeightOfTopBar;//顶部栏的高
@@ -68,22 +103,73 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
     private CalendarDay mCurrentDay = new CalendarDay(new Date(System.currentTimeMillis()));//当前日期
     private List<CalendarDay> mHasRentedHouseDates;//已经被订房的日期
     private List<CalendarDay> mChooseDates = new ArrayList<>();//选中的订房日期
+    private HouseBean mHouseBean;//当前HouseBean的对象
+    private ShapeLoadingDialog mLoadingView;
 
     @OnClick(R.id.ivBack)
     public void goBack(){
         finish();
+    }
+
+    @OnClick(R.id.ivLike)
+    public void addHouseToLike(){
+        mPresenter.addHouseToLike();//将房源添加到收藏列表中
+    }
+
+    /**
+     * 调用分享接口
+     */
+    @OnClick(R.id.ivShare)
+    public void shareHouse(){
+//        ToastUtils.showToast("暂未开通该功能！");
+        Intent textIntent = new Intent(Intent.ACTION_SEND);
+        textIntent.setType("text/plain");
+        textIntent.putExtra(Intent.EXTRA_TEXT, mHouseBean.getTitle());
+        startActivity(Intent.createChooser(textIntent, "分享"));
+    }
+
+    /**
+     * 联系房东
+     */
+    AlertDialog.Builder mContactHostDialog;
+    @OnClick(R.id.tvContactHost)
+    public void contactHost(){
+        if (mContactHostDialog == null){
+            mContactHostDialog = new AlertDialog.Builder(this)
+                    .setMessage("拨打电话给房东？")
+                    .setPositiveButton("拨打", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            Uri data = Uri.parse("tel:" + mHouseBean.getHostPhoneNum()  );
+                            intent.setData(data);
+                            startActivity(intent);
+                            dialog.dismiss();
+                        }
+                    })
+                    .setNegativeButton("取消", null);
+        }
+        mContactHostDialog.show();
     }
     /**
      * 点击立即订房
      */
     @OnClick(R.id.tvReserveRoom)
     public void reserveRoom(){
+        if (mChooseDates.size() == 0){
+            ToastUtils.showToast("请先选择入住的日期！");
+            return;
+        }
+        //判断用户是否登录
         if (UserSpUtils.isUserLogin(this)){
             //跳转到订房界面
             Intent intent = new Intent(this, ReverseHouseActivity.class);
-            // TODO: 2018/4/1 需要传日期和其他数据
-            startActivity(intent);
-            
+            //将选中的预定日期传到预订Activity界面中
+            intent.putParcelableArrayListExtra("chooseDates", (ArrayList<? extends Parcelable>) mChooseDates);
+            intent.putExtra(HouseBean.TAG, mHouseBean);
+            startActivity(intent);//启动Activity
+            AppActivityStackUtils.clear();//清空当前的Activity
+            AppActivityStackUtils.pushActivity(this);//将当前的Activity添加到栈中
         }else {
             ToastUtils.showToast("用户未登录，请先登录！");
             Intent intent = new Intent(this, LoginActivity.class);
@@ -96,14 +182,8 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_detail);
         ButterKnife.bind(this);
+        getIntentData();
         initView();
-        loadData();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mBannerView.stopBannerScrollTask();
     }
 
     @Override
@@ -113,17 +193,40 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        mBannerView.stopBannerScrollTask();
+    }
+
+    @Override
     protected HouseDetailPresenterImpl createPresenter() {
         return new HouseDetailPresenterImpl();
     }
 
     private void initView() {
+        mLoadingView = new ShapeLoadingDialog(this);
+        mLoadingView.setLoadingText("加载中...");
+
         mBannerView.setOnLoadImageListener(new BannerView.OnLoadImageListener() {
             @Override
             public void onLoadImage(ImageView imageView, String url) {
                 ImageLoader.showImage(HouseDetailActivity.this, imageView, url);
             }
         });
+
+        if (mHouseBean != null){
+            mTvTitle.setText(mHouseBean.getTitle());
+            mTvRentalType.setText(mHouseBean.getRentalTypeText());
+            mTvBedNum.setText(mHouseBean.getBedNum()+"张床");
+            mTvDeposit.setText("￥ " + mHouseBean.getDeposit());
+            mTvHouseDescription.setText(mHouseBean.getDescription());
+            mTvPeopleNum.setText("宜住" + mHouseBean.getPeopleNum() + "人");
+            mTvHouseInfo.setText(mHouseBean.getHouseInfo());
+            mTvHouseLocation.setText(mHouseBean.getLocation());
+            mTvDayNum.setText(String.format("至少%d天，最多%d天", mHouseBean.getLeastDay(), mHouseBean.getMostDay()));
+            mTvMoney.setText("￥" + mHouseBean.getMoneyOfEachNight());
+            showBannerView(mHouseBean.getHouseImgUrls());
+        }
 
         mHeightOfBannerView = getResources().getDimension(R.dimen.heightBannerView);
         mHeightOfTopBar = getResources().getDimension(R.dimen.heightOfTopBar);
@@ -153,9 +256,6 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
         });
 
         mHasRentedHouseDates = new ArrayList<>();
-        mHasRentedHouseDates.add(new CalendarDay(2018,3,2));
-        mHasRentedHouseDates.add(new CalendarDay(2018,3,6));
-        mHasRentedHouseDates.add(new CalendarDay(2018,3,7));
 
         mMaterialCalendarView.setAllowClickDaysOutsideCurrentMonth(true);
         mMaterialCalendarView.addDecorator(new DayViewDecorator() {
@@ -206,7 +306,7 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
                 if (day.isBefore(mCurrentDay)){
                     return day.getDay()+"";
                 }
-                return day.getDay() + "\n￥100";
+                return day.getDay() + "\n￥" + mHouseBean.getMoneyOfEachNight();
             }
         });
 
@@ -239,18 +339,24 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
         return true;
     }
 
-    private void loadData(){
-        mPresenter.getBannerImages();
+    /**
+     * 获取intent数据
+     */
+    private void getIntentData(){
+        Intent data = getIntent();
+        if (data != null){
+            mHouseBean = data.getParcelableExtra(HouseBean.TAG);
+        }
     }
 
     @Override
     public void showLoading() {
-
+        mLoadingView.show();
     }
 
     @Override
     public void stopLoading() {
-
+        mLoadingView.dismiss();
     }
 
 
@@ -260,9 +366,42 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
         mBannerView.startBannerScrollTask(2000);
     }
 
+
+    private void showBannerView(List<String> list){
+        List<BannerViewBean> bannerViewDatas = new ArrayList<>();
+        for (String url: list){
+            BannerViewBean bannerViewBean = new BannerViewBean();
+            bannerViewBean.setImgUrl(url);
+            bannerViewDatas.add(bannerViewBean);
+        }
+        showBannerImages(bannerViewDatas);
+    }
+
     @Override
     public void showErrorMsg(String msg) {
         ToastUtils.showToast(msg);
+    }
+
+    @Override
+    public HouseBean getHouseBean() {
+        return mHouseBean;
+    }
+
+    @Override
+    public UserBean getUser() {
+        return UserSpUtils.readLocalUser(this);
+    }
+
+    @Override
+    public void goLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showAddLikeSuccess() {
+        ToastUtils.showToast("收藏房源成功！");
+        mIvLike.setSelected(true);
     }
 
 }

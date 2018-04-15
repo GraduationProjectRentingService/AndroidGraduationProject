@@ -26,9 +26,9 @@ public class VerticalHouseListAdapter extends RecyclerView.Adapter<VerticalHouse
 
     private MyLog logger = LoggerFactory.getLogger(getClass());
 
-    private List<HouseBean> mData;
-    private Context mContext;
-    private RecyclerViewHolder.OnItemClickListener mOnItemClickListener;
+    protected List<HouseBean> mData;
+    protected Context mContext;
+    protected RecyclerViewHolder.OnItemClickListener mOnItemClickListener;
 
     public VerticalHouseListAdapter(Context context, RecyclerViewHolder.OnItemClickListener onItemClickListener){
         mContext = context;
@@ -47,13 +47,17 @@ public class VerticalHouseListAdapter extends RecyclerView.Adapter<VerticalHouse
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int i) {
-        HouseBean houseBean = mData.get(i);
+        final HouseBean houseBean = mData.get(i);
         myViewHolder.mIvLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.setSelected(!v.isSelected());
+                houseBean.setLike(v.isSelected());
             }
         });
+
+        myViewHolder.mIvLike.setSelected(houseBean.isLike());
+
         myViewHolder.mTvTitle.setText(houseBean.getTitle());
         myViewHolder.mTvDescription.setText(houseBean.getDescription());
         myViewHolder.mTvMoney.setText(String.format("￥ %s", houseBean.getMoneyOfEachNight()));

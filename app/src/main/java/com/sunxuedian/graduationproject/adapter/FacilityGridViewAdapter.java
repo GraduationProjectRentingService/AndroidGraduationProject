@@ -55,14 +55,16 @@ public class FacilityGridViewAdapter extends BaseAdapter{
         if (convertView == null){
             convertView = LayoutInflater.from(mContext).inflate(R.layout.facility_grid_view, null);
             viewHolder = new ViewHolder();
+            //绑定控件
             viewHolder.textView = convertView.findViewById(R.id.tvText);
             viewHolder.imageView = convertView.findViewById(R.id.ivIcon);
-            convertView.setTag(viewHolder);
+            convertView.setTag(viewHolder);//保存复用View
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        FacilityGridViewBean item = getItem(position);
+        FacilityGridViewBean item = getItem(position);//获取列表项的数据源
+        //显示数据源到列表项中
         ImageLoader.showImage(mContext, viewHolder.imageView, item.getResId());
         viewHolder.textView.setText(item.getText());
         if (item.isTextGray()){

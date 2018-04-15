@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.sunxuedian.graduationproject.bean.KeyValue;
 import com.sunxuedian.graduationproject.bean.ResponseBean;
-import com.sunxuedian.graduationproject.model.IModelCallback;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 
 import org.json.JSONObject;
 

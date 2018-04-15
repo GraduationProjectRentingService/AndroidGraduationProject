@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.mingle.widget.ShapeLoadingDialog;
 import com.sunxuedian.graduationproject.R;
 import com.sunxuedian.graduationproject.adapter.ChooseCheckInPeopleListAdapter;
 import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
@@ -28,6 +29,7 @@ public class ChooseCheckInPeopleActivity extends BaseSwipeBackActivity<IChooseCh
 
     @BindView(R.id.rvCheckInPeople)
     RecyclerView mRvCheckInPeople;
+    private ShapeLoadingDialog mLoadingView;
 
     @OnClick(R.id.ivBack)
     public void goBack(){
@@ -42,10 +44,13 @@ public class ChooseCheckInPeopleActivity extends BaseSwipeBackActivity<IChooseCh
 
     @OnClick(R.id.tvSure)
     public void onSure(){
+        //在定义的列表中提供选中入住人列表的接口
         ArrayList<CheckInPeopleUserInfo> list = mAdapter.getCheckedUserInfoList();
+        //判断用户是否有选中，如果没有选中则提示
         if (list.size() > 0){
             Intent data = new Intent();
             data.putParcelableArrayListExtra(CheckInPeopleUserInfo.TAG, list);
+            //将数据返回到预订Activity中界面
             setResult(RESULT_OK, data);
             finish();
         }else {
@@ -76,6 +81,9 @@ public class ChooseCheckInPeopleActivity extends BaseSwipeBackActivity<IChooseCh
     }
 
     private void initView(){
+        mLoadingView = new ShapeLoadingDialog(this);
+        mLoadingView.setLoadingText("加载中...");
+
         mAdapter = new ChooseCheckInPeopleListAdapter(mCheckInPeopleUsers, this);
         mRvCheckInPeople.setLayoutManager(new LinearLayoutManager(this));
         mRvCheckInPeople.setAdapter(mAdapter);
@@ -84,17 +92,17 @@ public class ChooseCheckInPeopleActivity extends BaseSwipeBackActivity<IChooseCh
 
     @Override
     public void showLoading() {
-
+        mLoadingView.show();
     }
 
     @Override
     public void stopLoading() {
-
+        mLoadingView.dismiss();
     }
 
     @Override
     public void showNetworkError() {
-
+        ToastUtils.showToast("网络错误！");
     }
 
     @Override

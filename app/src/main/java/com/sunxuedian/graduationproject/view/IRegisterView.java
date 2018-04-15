@@ -13,6 +13,6 @@ public interface IRegisterView extends IProgressView, INetworkErrorView{
     void onSendCodeFailure(String msg);//发送验证码失败
     void onCheckCodeSuccess();//验证手机成功
     void onCheckCodeFailure(String msg);//验证手机失败
-    void onRegisterSuccess(String phone, String token);//注册成功
+    void onRegisterSuccess();//注册成功
     void onRegisterFailure(String msg);//注册失败
 }

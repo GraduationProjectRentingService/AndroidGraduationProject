@@ -6,8 +6,8 @@ package com.sunxuedian.graduationproject.bean;
 
 public class BannerViewBean {
 
-    private String imgUrl;
-    private String webUrl;
+    private String imgUrl;//图片显示的url
+    private String webUrl;//轮播图点击之后跳转的页面url
 
     public String getImgUrl() {
         return imgUrl;

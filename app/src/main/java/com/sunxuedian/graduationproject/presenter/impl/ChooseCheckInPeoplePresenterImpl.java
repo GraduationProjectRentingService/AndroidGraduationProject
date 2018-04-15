@@ -5,7 +5,7 @@ import android.content.Context;
 import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
 import com.sunxuedian.graduationproject.bean.UserBean;
 import com.sunxuedian.graduationproject.model.ICheckInPeopleModel;
-import com.sunxuedian.graduationproject.model.IModelCallback;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.model.impl.CheckInPeopleModelImpl;
 import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IChooseCheckInPeoplePresenter;

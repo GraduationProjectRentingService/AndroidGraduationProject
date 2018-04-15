@@ -13,7 +13,7 @@
         android:background="@color/white">
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/sizeOfBackIcon"
+            android:layout_width="@dimen/widthOfBackIcon"
             android:layout_height="@dimen/sizeOfBackIcon"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -80,9 +80,15 @@
             />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvHouseList"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvHouseList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>

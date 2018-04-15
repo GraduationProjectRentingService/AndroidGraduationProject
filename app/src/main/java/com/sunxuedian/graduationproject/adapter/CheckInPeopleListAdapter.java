@@ -1,10 +1,12 @@
 package com.sunxuedian.graduationproject.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sunxuedian.graduationproject.R;
@@ -22,14 +24,19 @@ public class CheckInPeopleListAdapter extends BaseAdapter {
     private List<CheckInPeopleUserInfo> mData;
     private Context mContext;
     private OnDeleteListener mOnDeleteListener;
+    private boolean isShowDeleteButton = true;
 
     public CheckInPeopleListAdapter(List<CheckInPeopleUserInfo> mData, Context mContext) {
         this.mData = mData;
         this.mContext = mContext;
     }
 
-    public void setOnDeleteLisenter(OnDeleteListener lisenter){
-        mOnDeleteListener = lisenter;
+    public void hideDeleteButton(){
+        isShowDeleteButton = false;
+    }
+
+    public void setOnDeleteListener(OnDeleteListener listener){
+        mOnDeleteListener = listener;
     }
 
     public void addItem(CheckInPeopleUserInfo inPeopleUserInfo){
@@ -39,6 +46,7 @@ public class CheckInPeopleListAdapter extends BaseAdapter {
 
         mData.add(inPeopleUserInfo);
     }
+
     public void removeItem(int pos){
         if (mData == null || mData.size() <= pos){
             return;
@@ -71,19 +79,29 @@ public class CheckInPeopleListAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(mContext).inflate(R.layout.check_in_people_list_item, null);
-        if (mOnDeleteListener != null){
-            convertView.findViewById(R.id.ivDelete).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnDeleteListener.onDeleted(position);
-                }
-            });
+        ImageView ivDelete = convertView.findViewById(R.id.ivDelete);
+        if (!isShowDeleteButton){
+            ivDelete.setImageResource(R.drawable.head_icon);
+        }else {
+            if (mOnDeleteListener != null){
+                ivDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mOnDeleteListener.onDeleted(position);
+                    }
+                });
+            }
         }
         CheckInPeopleUserInfo info = getItem(position);
         TextView tvName = convertView.findViewById(R.id.tvName);
         tvName.setText(info.getName());
         TextView tvIdCard = convertView.findViewById(R.id.tvIdCard);
-        tvIdCard.setText("身份证：" + info.getIdCard());
+        String idCard = info.getIdCard();
+        if (!TextUtils.isEmpty(idCard)){
+            tvIdCard.setText("身份证：" + idCard.substring(0, 5) + "*********" + idCard.substring(idCard.length()-4, idCard.length()));
+        }else {
+            tvIdCard.setText("身份证：**********");
+        }
         return convertView;
     }
 

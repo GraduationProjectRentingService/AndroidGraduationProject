@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.mingle.widget.ShapeLoadingDialog;
 import com.sunxuedian.graduationproject.R;
 import com.sunxuedian.graduationproject.bean.UserBean;
 import com.sunxuedian.graduationproject.presenter.impl.RegisterPresenterImpl;
+import com.sunxuedian.graduationproject.utils.AppActivityStackUtils;
 import com.sunxuedian.graduationproject.utils.ToastUtils;
 import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
 import com.sunxuedian.graduationproject.view.IRegisterView;
@@ -75,6 +77,8 @@ public class RegisterActivity extends BaseSwipeBackActivity<IRegisterView, Regis
         }
     }
 
+    private ShapeLoadingDialog mLoadingView;//进度对话框
+
     //Timer and TimerTask
     private Timer timer;
     private TimerTask timerTask;
@@ -107,6 +111,8 @@ public class RegisterActivity extends BaseSwipeBackActivity<IRegisterView, Regis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+        mLoadingView = new ShapeLoadingDialog(this);
+        mLoadingView.setLoadingText("加载中...");
     }
 
     @Override
@@ -116,12 +122,12 @@ public class RegisterActivity extends BaseSwipeBackActivity<IRegisterView, Regis
 
     @Override
     public void showLoading() {
-
+        mLoadingView.show();
     }
 
     @Override
     public void stopLoading() {
-
+        mLoadingView.dismiss();
     }
 
     @Override
@@ -185,12 +191,8 @@ public class RegisterActivity extends BaseSwipeBackActivity<IRegisterView, Regis
     }
 
     @Override
-    public void onRegisterSuccess(String phone, String token) {
-        ToastUtils.showToast("注册成功！");
-        UserBean userBean = new UserBean();
-        userBean.setPhoneNum(phone);
-        userBean.setToken(token);
-        UserSpUtils.saveUserToLocal(this, userBean);
+    public void onRegisterSuccess() {
+        AppActivityStackUtils.clear();
         //实现跳转
         finish();
     }

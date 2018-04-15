@@ -103,6 +103,10 @@ public class SharedPreferencesUtils {
             editor.putFloat(key, (Float) value);
         }else if (value instanceof Long){
             editor.putLong(key, (Long) value);
+        }else {
+            logger.e("the value is null!");
+            editor.apply();
+            return false;
         }
 
         editor.apply();

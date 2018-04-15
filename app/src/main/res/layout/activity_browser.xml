@@ -15,11 +15,11 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/sizeOfBackIcon"
+            android:layout_width="@dimen/widthOfBackIcon"
             android:layout_height="@dimen/sizeOfBackIcon"
             android:layout_centerVertical="true"
             android:src="@drawable/back"
-            android:layout_marginLeft="@dimen/sizeOfMiddleMargin"/>
+            android:layout_marginLeft="@dimen/sizeOfMiddleMargin" />
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_width="@dimen/sizeOfMoreIcon"
             android:layout_height="@dimen/sizeOfMoreIcon"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/sizeOfMiddleMargin"
+            android:layout_marginRight="@dimen/sizeOfLagerMargin"
             android:layout_centerVertical="true"
             android:src="@drawable/more"/>
 

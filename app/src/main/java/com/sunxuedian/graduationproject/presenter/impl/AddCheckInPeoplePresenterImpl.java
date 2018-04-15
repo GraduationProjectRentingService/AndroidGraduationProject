@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
 import com.sunxuedian.graduationproject.bean.UserBean;
 import com.sunxuedian.graduationproject.model.ICheckInPeopleModel;
-import com.sunxuedian.graduationproject.model.IModelCallback;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.model.impl.CheckInPeopleModelImpl;
 import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IAddCheckInPeoplePresenter;
@@ -16,9 +16,6 @@ import com.sunxuedian.graduationproject.utils.MyTextUtils;
 import com.sunxuedian.graduationproject.utils.NetworkUtils;
 import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
 import com.sunxuedian.graduationproject.view.IAddCheckInPeopleView;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-import static android.os.Build.VERSION_CODES.M;
 
 /**
  * Created by sunxuedian on 2018/4/2.

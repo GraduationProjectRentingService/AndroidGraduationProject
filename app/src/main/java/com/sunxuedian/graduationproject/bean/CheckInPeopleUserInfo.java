@@ -3,12 +3,14 @@ package com.sunxuedian.graduationproject.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * 入住人信息类
  * Created by sunxuedian on 2018/4/1.
  */
 
-public class CheckInPeopleUserInfo implements Parcelable{
+public class CheckInPeopleUserInfo implements Parcelable, Serializable{
     public static final String TAG = "CheckInPeopleUserInfo";
 
     private String name;
@@ -89,5 +91,14 @@ public class CheckInPeopleUserInfo implements Parcelable{
         dest.writeString(idCard);
         dest.writeString(phone);
         dest.writeByte((byte) (isCheck ? 1 : 0));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CheckInPeopleUserInfo){
+            CheckInPeopleUserInfo info = (CheckInPeopleUserInfo) obj;
+            return info.getIdCard().equals(idCard)&&info.getName().equals(name);
+        }
+        return super.equals(obj);
     }
 }

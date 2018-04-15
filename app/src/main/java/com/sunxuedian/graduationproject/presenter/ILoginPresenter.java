@@ -6,4 +6,5 @@ package com.sunxuedian.graduationproject.presenter;
 
 public interface ILoginPresenter {
     void login();
+    void getUserInfo(String phone, String token);
 }

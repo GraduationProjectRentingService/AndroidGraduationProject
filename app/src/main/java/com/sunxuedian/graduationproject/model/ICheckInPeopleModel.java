@@ -1,6 +1,7 @@
 package com.sunxuedian.graduationproject.model;
 
 import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 
 import java.util.List;
 

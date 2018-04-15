@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrayE"
+    tools:context="com.sunxuedian.graduationproject.view.activity.OrderDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlTopBar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/heightOfTopBar"
+        android:background="@color/colorOfSearchBar"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/widthOfBackIcon"
+            android:layout_height="@dimen/sizeOfBackIcon"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back"
+            android:layout_marginLeft="@dimen/sizeOfMiddleMargin"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="订单详细"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeOfTopBarTitle"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorOfCutLine"
+            />
+
+    </RelativeLayout>
+
+    <com.sunxuedian.graduationproject.widgets.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlTopBar"
+        android:layout_above="@+id/lineBottomBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/sizeOfLagerMargin"
+                android:paddingRight="@dimen/sizeOfLagerMargin"
+                android:paddingTop="@dimen/sizeOfLittleMargin"
+                android:paddingBottom="@dimen/sizeOfLittleMargin"
+                android:background="@color/white">
+                <ImageView
+                    android:id="@+id/ivStatusIcon"
+                    android:layout_width="@dimen/sizeOfMiddleIcon"
+                    android:layout_height="@dimen/sizeOfMiddleIcon"
+                    android:src="@drawable/happy"/>
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已支付"
+                    android:textColor="@color/colorOfGreen"
+                    android:textSize="@dimen/textSizeOfReverseHouseTitle"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_test_title"
+                android:textSize="@dimen/textSizeOfReverseHouseTitle"
+                android:textColor="@color/black"
+                android:padding="@dimen/sizeOfLagerMargin"
+                android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+                android:layout_marginBottom="@dimen/sizeOfMiddleMargin"
+                android:background="@color/white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:paddingTop="@dimen/sizeOfMiddleMargin"
+                android:paddingBottom="@dimen/sizeOfMiddleMargin">
+
+                <ImageView
+                    android:id="@+id/ivHouse"
+                    android:layout_width="@dimen/widthOfReverseHouseImgView"
+                    android:layout_height="@dimen/heightOfReverseHouseImgView"
+                    android:src="@drawable/test_p_5"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginRight="@dimen/sizeOfLagerMargin" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/tvDayDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="入住时段：4月3号-4月4号 共1晚"/>
+                    <TextView
+                        android:id="@+id/tvRentalType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="整套出租"
+                        android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="预定数量：1"
+                        android:layout_marginTop="@dimen/sizeOfLittleMargin"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heightOfTextItem"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/sizeOfLagerMargin"
+                android:paddingRight="@dimen/sizeOfLagerMargin"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:text="房        东："/>
+                <TextView
+                    android:id="@+id/tvHostName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/text1"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:text="周先生"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heightOfTextItem"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/sizeOfLagerMargin"
+                android:paddingRight="@dimen/sizeOfLagerMargin"
+                android:layout_marginTop="1dp"
+                >
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:text="房东手机："/>
+                <TextView
+                    android:id="@+id/tvHostPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/text2"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:text="15511221122"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/sizeOfLagerMargin"
+                android:paddingRight="@dimen/sizeOfLagerMargin"
+                android:layout_marginTop="1dp">
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:text="详细地址："/>
+                <TextView
+                    android:id="@+id/tvHouseLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/text3"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+                    android:layout_marginBottom="@dimen/sizeOfMiddleMargin"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:text="@string/text_of_test_house_location"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="交易信息"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heightOfTextItem"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/sizeOfLagerMargin"
+                android:paddingRight="@dimen/sizeOfLagerMargin"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:text="房费："/>
+                <TextView
+                    android:id="@+id/tvHouseTotalMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSizeOfReverseHouseTitle"
+                    android:textColor="@color/colorMainYellow"
+                    android:text="￥ 1000"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/go"
+                    android:drawablePadding="@dimen/sizeOfLagerMargin"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heightOfTextItem"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/sizeOfLagerMargin"
+                android:paddingRight="@dimen/sizeOfLagerMargin"
+                android:layout_marginTop="1dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:text="押金："/>
+                <TextView
+                    android:id="@+id/tvDeposit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSizeOfReverseHouseTitle"
+                    android:textColor="@color/colorOfLittleGreen"
+                    android:text="￥ 400"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/go"
+                    android:drawablePadding="@dimen/sizeOfLagerMargin"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="入住人信息"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                android:layout_marginBottom="@dimen/sizeOfLagerMargin"
+                />
+
+            <ListView
+                android:id="@+id/lvCheckInPeople"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ListView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="预定人信息"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="@dimen/sizeOfLagerMargin"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="姓名："/>
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:text="张三"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="@dimen/sizeOfLagerMargin"
+                android:layout_marginTop="1dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="手机："/>
+
+                <TextView
+                    android:id="@+id/tvUserPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    android:text="15512345678"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="支付方式"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/sizeOfLagerMargin"
+                android:paddingRight="@dimen/sizeOfLagerMargin"
+                android:paddingTop="@dimen/sizeOfLittleMargin"
+                android:paddingBottom="@dimen/sizeOfLittleMargin"
+                android:layout_marginTop="@dimen/sizeOfLagerMargin"
+                android:layout_marginBottom="@dimen/sizeOfLittleMargin"
+                android:background="@color/white">
+                <ImageView
+                    android:id="@+id/ivPayWayIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="@dimen/sizeOfMiddleIcon"
+                    android:src="@drawable/wxpay"/>
+                <TextView
+                    android:id="@+id/tvPayWay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="微信支付"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="@dimen/sizeOfLagerMargin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="订单总额："
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/tvTotalMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSizeOfReverseHouseTitle"
+                    android:text="￥ 1000"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorMainYellow"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </com.sunxuedian.graduationproject.widgets.MyScrollView>
+
+</RelativeLayout>

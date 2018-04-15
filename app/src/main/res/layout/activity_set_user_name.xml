@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGrayE"
+    tools:context="com.sunxuedian.graduationproject.view.activity.SetUserNameActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/heightOfTopBar"
+        android:background="@color/white">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/sizeOfBackIcon"
+            android:layout_height="@dimen/sizeOfBackIcon"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/sizeOfLagerMargin"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textSize="@dimen/textSizeOfTopBarTitle"
+            android:textColor="@color/black"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/sizeOfLagerMargin">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/sizeOfLagerMargin"
+            android:layout_marginRight="@dimen/sizeOfLagerMargin"/>
+
+        <EditText
+            android:id="@+id/etUserName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:hint="输入用户名"
+            android:textSize="16sp"
+            android:textColorHint="@color/colorMainGray"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSure"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="@dimen/sizeOfLagerMargin"
+        android:background="@drawable/bg_btn_yellow"
+        android:text="@string/text_of_sure"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

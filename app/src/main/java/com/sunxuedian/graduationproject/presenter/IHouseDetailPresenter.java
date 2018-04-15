@@ -6,4 +6,5 @@ package com.sunxuedian.graduationproject.presenter;
 
 public interface IHouseDetailPresenter {
     void getBannerImages();
+    void addHouseToLike();//将该房源收藏起来
 }

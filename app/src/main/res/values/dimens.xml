@@ -27,6 +27,7 @@
     <!-- top bar-->
     <dimen name="heightOfTopBar">50dp</dimen>
     <dimen name="sizeOfBackIcon">24dp</dimen>
+    <dimen name="widthOfBackIcon">40dp</dimen>
     <dimen name="sizeOfMoreIcon">20dp</dimen>
 
     <!-- House list View-->
@@ -74,8 +75,11 @@
     <!--预订 -->
     <dimen name="widthOfReverseHouseImgView">140dp</dimen>
     <dimen name="heightOfReverseHouseImgView">80dp</dimen>
-    <dimen name="textSizeOfReverseHouseTitle">20sp</dimen>
+    <dimen name="textSizeOfReverseHouseTitle">18sp</dimen>
     <dimen name="sizeOfCalendarIcon">30dp</dimen>
+
+    <!-- 支付订单界面-->
+    <dimen name="heightOfTextItem">50dp</dimen>
 
     <!-- date picker -->
     <dimen name="sizeOfDatePickerIcon">20dp</dimen>

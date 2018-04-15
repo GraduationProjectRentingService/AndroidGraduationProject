@@ -36,13 +36,12 @@
 
     <ImageView
         android:id="@+id/ivEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/textSizeOfEtSearch"
         android:layout_height="@dimen/sizeOfLittleIcon"
         android:src="@drawable/edit"
         android:layout_gravity="center_vertical"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="@dimen/sizeOfLagerMargin"
         android:focusable="false"/>
 
 </RelativeLayout>

@@ -2,7 +2,7 @@ package com.sunxuedian.graduationproject.presenter.impl;
 
 import com.sunxuedian.graduationproject.bean.HouseBean;
 import com.sunxuedian.graduationproject.model.IHouseModel;
-import com.sunxuedian.graduationproject.model.IModelCallback;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.model.impl.HouseModelImpl;
 import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IHouseListPresenter;
@@ -23,7 +23,7 @@ public class HouseListPresenterImpl extends BasePresenter<IHouseListView> implem
     private IHouseModel mHouseModel;
 
     public HouseListPresenterImpl(){
-        mHouseModel = new HouseModelImpl();
+        mHouseModel = HouseModelImpl.getInstance();
     }
 
     @Override

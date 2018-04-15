@@ -1,8 +1,8 @@
 package com.sunxuedian.graduationproject.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,12 +72,17 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
     private int maxYOfSearchBar;
     private boolean isSearchContentHasBorder = false;//判断搜索框是否有边框
 
+    private List<HouseBean> mTop10HouseData = new ArrayList<>();//top10的房源数据
+    private List<HouseBean> mThemeHouseData = new ArrayList<>();//主题房源
+    private List<HouseBean> mStoryHouseData = new ArrayList<>();//故事房源
+
     /**
      * 点击了搜索栏
     */
     @OnClick(R.id.rlSearchContent)
     void onSearchClick(){
-        ToastUtils.showToast("点击了搜索按钮");
+        Intent intent = new Intent(getActivity(), HouseListActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -181,8 +186,8 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
         mListContentViewOfTop10.setRecyclerViewItemClickListener(new HorizontalListContentView.OnItemClickListener() {
             @Override
             public void onItemClick(HorizontalListContentViewBean item, int pos) {
-                ToastUtils.showToast("pos: " + pos + "item: " + item.getTitle());
                 Intent intent = new Intent(getActivity(), HouseDetailActivity.class);
+                intent.putExtra(HouseBean.TAG, mTop10HouseData.get(pos));
                 startActivity(intent);
             }
         });
@@ -190,6 +195,7 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), HouseListActivity.class);
+                intent.putParcelableArrayListExtra(HouseBean.TAG, (ArrayList<? extends Parcelable>) mTop10HouseData);
                 startActivity(intent);
             }
         });
@@ -198,13 +204,19 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
         mListContentViewOfTheme.setRecyclerViewItemClickListener(new HorizontalListContentView.OnItemClickListener() {
             @Override
             public void onItemClick(HorizontalListContentViewBean item, int pos) {
-                ToastUtils.showToast("pos: " + pos + "item: " + item.getTitle());
+//                ToastUtils.showToast("pos: " + pos + "item: " + item.getTitle());
+                Intent intent = new Intent(getActivity(), HouseDetailActivity.class);
+                intent.putExtra(HouseBean.TAG, mThemeHouseData.get(pos));
+                startActivity(intent);
             }
         });
         mListContentViewOfTheme.setGoMoreClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                mPresenter.obtainBannerView();
+                Intent intent = new Intent(getActivity(), HouseListActivity.class);
+                intent.putParcelableArrayListExtra(HouseBean.TAG, (ArrayList<? extends Parcelable>) mThemeHouseData);
+                startActivity(intent);
             }
         });
 
@@ -213,7 +225,7 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
         mListContentViewOfHotDestination.setRecyclerViewItemClickListener(new HorizontalListContentView.OnItemClickListener() {
             @Override
             public void onItemClick(HorizontalListContentViewBean item, int pos) {
-                ToastUtils.showToast("pos: " + pos + "item: " + item.getTitle());
+//                ToastUtils.showToast("pos: " + pos + "item: " + item.getTitle());
             }
         });
         mListContentViewOfHotDestination.setGoMoreClickListener(new View.OnClickListener() {
@@ -227,13 +239,19 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
         mListContentViewOfStory.setRecyclerViewItemClickListener(new HorizontalListContentView.OnItemClickListener() {
             @Override
             public void onItemClick(HorizontalListContentViewBean item, int pos) {
-                ToastUtils.showToast("pos: " + pos + "item: " + item.getTitle());
+//                ToastUtils.showToast("pos: " + pos + "item: " + item.getTitle());
+                Intent intent = new Intent(getActivity(), HouseDetailActivity.class);
+                intent.putExtra(HouseBean.TAG, mStoryHouseData.get(pos));
+                startActivity(intent);
             }
         });
         mListContentViewOfStory.setGoMoreClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                mPresenter.obtainBannerView();
+                Intent intent = new Intent(getActivity(), HouseListActivity.class);
+                intent.putParcelableArrayListExtra(HouseBean.TAG, (ArrayList<? extends Parcelable>) mStoryHouseData);
+                startActivity(intent);
             }
         });
 
@@ -245,6 +263,9 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
 
     }
 
+    /**
+     * 调用Presenter加载所有页面数据
+     */
     private void loadData(){
         //获取数据
         mPresenter.obtainBannerView();
@@ -255,24 +276,14 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         mBannerView.startBannerScrollTask(2000);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         mBannerView.stopBannerScrollTask();
     }
 
@@ -294,12 +305,19 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
     @Override
     public void showTop10House(List<HouseBean> list) {
         List<HorizontalListContentViewBean> data = new ArrayList<>();
+        int i = 0;
         for (HouseBean houseBean: list){
+            if (i == 5){
+                break;
+            }
             HorizontalListContentViewBean bean = new HorizontalListContentViewBean();
             bean.setTitle(houseBean.getTitle());
             bean.setImgUrl(houseBean.getImgUrl());
             data.add(bean);
+            ++i;
         }
+        mTop10HouseData.clear();
+        mTop10HouseData.addAll(list);
         mListContentViewOfTop10.setData(data);
     }
 
@@ -310,12 +328,19 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
     @Override
     public void showThemeHouse(List<HouseBean> list) {
         List<HorizontalListContentViewBean> data = new ArrayList<>();
+        int i = 0;
         for (HouseBean houseBean: list){
+            if (i == 5){
+                break;
+            }
+            i ++;
             HorizontalListContentViewBean bean = new HorizontalListContentViewBean();
             bean.setTitle(houseBean.getTitle());
             bean.setImgUrl(houseBean.getImgUrl());
             data.add(bean);
         }
+        mThemeHouseData.clear();
+        mThemeHouseData.addAll(list);
         mListContentViewOfTheme.setData(data);
     }
 
@@ -342,12 +367,20 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
     @Override
     public void showStoryAndHumanTouchHouse(List<HouseBean> list) {
         List<HorizontalListContentViewBean> data = new ArrayList<>();
+        int i = 0;
         for (HouseBean houseBean: list){
+            if (i == 5){
+                break;
+            }
+            i ++;
+
             HorizontalListContentViewBean bean = new HorizontalListContentViewBean();
             bean.setTitle(houseBean.getTitle());
             bean.setImgUrl(houseBean.getImgUrl());
             data.add(bean);
         }
+        mStoryHouseData.clear();
+        mStoryHouseData.addAll(list);
         mListContentViewOfStory.setData(data);
     }
 

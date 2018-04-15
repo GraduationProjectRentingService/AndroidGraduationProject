@@ -1,4 +1,4 @@
-package com.sunxuedian.graduationproject.model;
+package com.sunxuedian.graduationproject.model.callback;
 
 /**
  * Created by sunxuedian on 2018/3/14.

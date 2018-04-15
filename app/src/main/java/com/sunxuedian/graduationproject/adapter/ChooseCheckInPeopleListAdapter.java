@@ -89,6 +89,7 @@ public class ChooseCheckInPeopleListAdapter extends Adapter<ChooseCheckInPeopleL
     public ArrayList<CheckInPeopleUserInfo> getCheckedUserInfoList(){
         ArrayList<CheckInPeopleUserInfo> result = new ArrayList<>();
         for (CheckInPeopleUserInfo info: mData){
+            //如果选中，则添加到list中
             if (info.isCheck()){
                 result.add(info);
             }

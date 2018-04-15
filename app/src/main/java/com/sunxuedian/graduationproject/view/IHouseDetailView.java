@@ -1,6 +1,8 @@
 package com.sunxuedian.graduationproject.view;
 
 import com.sunxuedian.graduationproject.bean.BannerViewBean;
+import com.sunxuedian.graduationproject.bean.HouseBean;
+import com.sunxuedian.graduationproject.bean.UserBean;
 
 import java.util.List;
 
@@ -11,4 +13,8 @@ import java.util.List;
 public interface IHouseDetailView extends IProgressView {
     void showBannerImages(List<BannerViewBean> list);
     void showErrorMsg(String msg);
+    HouseBean getHouseBean();
+    UserBean getUser();
+    void goLogin();//前往登录
+    void showAddLikeSuccess();
 }

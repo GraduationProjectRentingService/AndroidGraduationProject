@@ -3,6 +3,7 @@
 
     <string name="text_main">推荐</string>
     <string name="text_reservation">租房</string>
+    <string name="text_like">收藏</string>
     <string name="text_order">订单</string>
     <string name="text_mine">我的</string>
     <string name="text_see_more">查看更多</string>
@@ -85,7 +86,8 @@
     <string name="text_of_sure_add">确认添加</string>
     <string name="text_of_add_people_title">新增入住人</string>
 
-
+    <!-- 支付订单界面-->
+    <string name="text_of_pay_order_title">支付订单</string>
     <!-- text of test-->
     <string name="text_of_test_description">房子位于上下九步行街旁老巷子里，是一座大概90年历史的小别墅，原屋主为民国粤剧名伶，现由美院的建筑系老师操刀改造，情调满满的同时又不会被老房子很多缺点所困扰｡\n
 一楼是一间私人茶馆,早上可以在茶香和咖啡香中醒来｡因为老宅的房间和空间有限,我们希望大家都可以有很好的体验,所以每个房间只能接受一位小伙伴,我们一共有三个房间,每个大概10平米的样子｡\n

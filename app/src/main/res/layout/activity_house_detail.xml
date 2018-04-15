@@ -163,7 +163,7 @@
                         android:id="@+id/tvBedNum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="独立单间"
+                        android:text="一张床"
                         android:textColor="@color/black"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="@dimen/sizeOfLittleMargin"/>
@@ -499,7 +499,7 @@
 
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/sizeOfBackIcon"
+            android:layout_width="@dimen/widthOfBackIcon"
             android:layout_height="@dimen/sizeOfBackIcon"
             android:src="@drawable/back_white"
             android:layout_centerVertical="true"
@@ -545,6 +545,7 @@
             android:background="@color/colorGrayE"
             >
             <TextView
+                android:id="@+id/tvContactHost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

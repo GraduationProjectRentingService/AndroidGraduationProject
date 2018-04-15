@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.EditText;
 
+import com.mingle.widget.ShapeLoadingDialog;
 import com.sunxuedian.graduationproject.R;
 import com.sunxuedian.graduationproject.bean.UserBean;
 import com.sunxuedian.graduationproject.presenter.impl.LoginPresenterImpl;
+import com.sunxuedian.graduationproject.utils.AppActivityStackUtils;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.ToastUtils;
@@ -30,6 +32,7 @@ public class LoginActivity extends BaseSwipeBackActivity<ILoginView, LoginPresen
     EditText mEtPhoneNum;
     @BindView(R.id.etPassword)
     EditText mEtPassword;
+    private ShapeLoadingDialog mLoadingView;
 
     @OnClick(R.id.ivBack)
     public void goBack(){
@@ -45,7 +48,7 @@ public class LoginActivity extends BaseSwipeBackActivity<ILoginView, LoginPresen
     public void goRegister(){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-        finish();
+        AppActivityStackUtils.pushActivity(this);
     }
 
     @Override
@@ -53,6 +56,8 @@ public class LoginActivity extends BaseSwipeBackActivity<ILoginView, LoginPresen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        mLoadingView = new ShapeLoadingDialog(this);
+        mLoadingView.setLoadingText("加载中...");
     }
 
     @Override
@@ -62,12 +67,12 @@ public class LoginActivity extends BaseSwipeBackActivity<ILoginView, LoginPresen
 
     @Override
     public void showLoading() {
-
+        mLoadingView.show();
     }
 
     @Override
     public void stopLoading() {
-
+        mLoadingView.dismiss();
     }
 
     @Override
@@ -81,11 +86,7 @@ public class LoginActivity extends BaseSwipeBackActivity<ILoginView, LoginPresen
     }
 
     @Override
-    public void onLoginSuccess(String phoneNum, String token) {
-        UserBean userBean = new UserBean();
-        userBean.setPhoneNum(phoneNum);
-        userBean.setToken(token);
-        UserSpUtils.saveUserToLocal(this, userBean);
+    public void onLoginSuccess() {
         //实现跳转
         finish();
     }

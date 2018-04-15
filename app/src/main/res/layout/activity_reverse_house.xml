@@ -14,13 +14,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/sizeOfBackIcon"
+            android:layout_width="@dimen/widthOfBackIcon"
             android:layout_height="@dimen/sizeOfBackIcon"
             android:layout_centerVertical="true"
             android:src="@drawable/back"
             android:layout_marginLeft="@dimen/sizeOfMiddleMargin"/>
         <TextView
-            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -66,17 +65,20 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
                     <TextView
+                        android:id="@+id/tvTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/text_test_title"
                         android:textSize="@dimen/textSizeOfReverseHouseTitle"
+                        android:textColor="@color/black"
                         android:layout_marginRight="@dimen/sizeOfLagerMargin"/>
 
                     <TextView
-                        android:id="@+id/tvReverseType"
+                        android:id="@+id/tvRentalType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="整套出租"
@@ -118,14 +120,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/sizeOfLittleMargin"
-                        android:text="4月2号"
+                        android:text="-月-号"
                         />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvTotalNight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="共1晚"
+                    android:text="共-晚"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/black"/>
 
@@ -145,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/sizeOfLittleMargin"
-                        android:text="4月3号"
+                        android:text="-月-号"
                         />
                 </LinearLayout>
 
@@ -199,6 +202,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/sizeOfLagerMargin"/>
                 <TextView
+                    android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -220,6 +224,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/sizeOfLagerMargin"/>
                 <TextView
+                    android:id="@+id/tvUserPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -239,21 +244,51 @@
 
     </com.sunxuedian.graduationproject.widgets.MyScrollView>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorOfCutLine"
+        android:layout_above="@+id/lineBottomBar"/>
+
     <LinearLayout
         android:id="@+id/lineBottomBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heightOfBottomView"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tvTotalMoney"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="订单总额：￥1000"
             android:layout_weight="1"
-            android:gravity="center"
-            />
+            android:orientation="horizontal"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="订单总额："
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/tvTotalMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSizeOfReverseHouseTitle"
+                    android:text="￥ 1000"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorMainYellow"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
         <TextView
+            android:id="@+id/tvSubmitOrder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/text_of_submit_order"

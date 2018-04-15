@@ -6,10 +6,17 @@ package com.sunxuedian.graduationproject.bean;
 
 public class UserBean {
 
-    private String phoneNum;
-    private String token;
+    private String userName = "";
+    private String iconUrl = "";
+    private String phoneNum = "";
+    private String sex = "";
+    private String token = "";
+
 
     public String getPhoneNum() {
+        if (phoneNum == null){
+            return "";
+        }
         return phoneNum;
     }
 
@@ -18,6 +25,9 @@ public class UserBean {
     }
 
     public String getToken() {
+        if (token == null){
+            return "";
+        }
         return token;
     }
 
@@ -25,5 +35,37 @@ public class UserBean {
         this.token = token;
     }
 
+    public String getUserName() {
+        if (userName == null){
+            return "";
+        }
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getIconUrl() {
+        if (iconUrl == null){
+            return "";
+        }
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
+    public String getSex() {
+        if (sex == null){
+            return "";
+        }
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
 }

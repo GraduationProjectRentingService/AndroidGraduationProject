@@ -13,7 +13,7 @@
         android:background="@drawable/home">
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/sizeOfBackIcon"
+            android:layout_width="@dimen/widthOfBackIcon"
             android:layout_height="@dimen/sizeOfBackIcon"
             android:src="@drawable/back_white"
             android:layout_margin="@dimen/sizeOfLagerMargin"/>
@@ -143,7 +143,7 @@
         android:layout_height="wrap_content"
         android:text="@string/text_next"
         android:layout_margin="@dimen/marginOfLoginView"
-        android:background="@drawable/bg_login_or_register_button"
+        android:background="@drawable/bg_btn_yellow"
         android:textColor="@color/white"
         android:textSize="@dimen/textSizeOfLoginOrRegisterButton"/>
 

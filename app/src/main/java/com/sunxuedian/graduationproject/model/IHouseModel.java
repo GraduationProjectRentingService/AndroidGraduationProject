@@ -3,6 +3,8 @@ package com.sunxuedian.graduationproject.model;
 import com.sunxuedian.graduationproject.bean.BannerViewBean;
 import com.sunxuedian.graduationproject.bean.DestinationBean;
 import com.sunxuedian.graduationproject.bean.HouseBean;
+import com.sunxuedian.graduationproject.bean.UserBean;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 
 import java.util.List;
 
@@ -20,5 +22,8 @@ public interface IHouseModel {
     void getBannerViewData(IModelCallback<List<BannerViewBean>> callback);//获取轮播图数据
     void getHouseData(int typeOfHouseData, IModelCallback<List<HouseBean>> callback);//获取房源信息
     void getHotDestination(IModelCallback<List<DestinationBean>> callback);//获取热门目的地
+
+    void addHouseToLike(UserBean userBean, HouseBean houseBean, IModelCallback<String> callback);//添加房源到收藏列表中
+    void getLikeHouseList(UserBean userBean, IModelCallback<List<HouseBean>> callback);//获取收藏列表
 
 }

@@ -30,7 +30,7 @@ import java.util.TimerTask;
 
 public class BannerView extends RelativeLayout implements ViewPager.OnPageChangeListener{
 
-    private MyLog logger = LoggerFactory.getLogger(BannerView.class, true);
+    private MyLog logger = LoggerFactory.getLogger(BannerView.class, false);
 
     private static final int UPDATE_VIEW_CODE = 1;//定时器更新View的code
     public static final int TIME_SPACE_MAX = 10 * 1000;//最大的时间间隔为10s
@@ -114,16 +114,17 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
      * @param list
      */
     public void setBannerViewData(List<BannerViewBean> list){
+        //判断加载图片的回调是否实现
         if (mOnLoadImageListener == null){
             logger.e("onLoadImageListener is null, please impl the listener to load image");
             return;
         }
-
+        //判断传进来的数据是否为空
         if (list == null || list.isEmpty()){
             logger.e("setBannerViewData is fail, because the param is null or empty");
             return;
         }
-
+        //判断数据的个数，如果小于4则进行处理数据
         if (list.size() > 1 && list.size() < 4){
             if (list.size() == 2){
                 list.addAll(list);
@@ -132,8 +133,9 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
             }
             logger.d("处理后的list的长度为： " + list.size());
         }
-
+        //设置数据
         mBannerViewBeanList = list;
+        //将设置的数据源处理为ImageView并添加到显示视图中
         setImageViews();
     }
 

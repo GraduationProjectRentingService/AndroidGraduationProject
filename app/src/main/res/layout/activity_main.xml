@@ -78,7 +78,7 @@
                 <TextView
                     android:id="@+id/tvReservation"
                     style="@style/TextStyleOfNavigation"
-                    android:text="@string/text_reservation"
+                    android:text="@string/text_like"
                     />
             </LinearLayout>
         </RelativeLayout>
@@ -141,7 +141,6 @@
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="0dp"
-        android:background="@android:color/holo_orange_light"
         app:layout_constraintBottom_toTopOf="@+id/viewDivideLine"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
