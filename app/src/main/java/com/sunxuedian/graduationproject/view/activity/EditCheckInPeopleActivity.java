@@ -1,24 +1,18 @@
 package com.sunxuedian.graduationproject.view.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 
 import com.mingle.widget.ShapeLoadingDialog;
 import com.sunxuedian.graduationproject.R;
-import com.sunxuedian.graduationproject.bean.BannerViewBean;
 import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
-import com.sunxuedian.graduationproject.bean.HouseBean;
 import com.sunxuedian.graduationproject.bean.UserBean;
 import com.sunxuedian.graduationproject.presenter.impl.EditCheckInPeoplePresenterImpl;
 import com.sunxuedian.graduationproject.utils.ToastUtils;
 import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
 import com.sunxuedian.graduationproject.view.IEditCheckInPeopleView;
-import com.sunxuedian.graduationproject.view.IHouseDetailView;
 import com.sunxuedian.graduationproject.view.base.BaseSwipeBackActivity;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,6 +114,21 @@ public class EditCheckInPeopleActivity extends BaseSwipeBackActivity<IEditCheckI
     @Override
     public CheckInPeopleUserInfo getCheckInPeople() {
         return mCheckInUserInfo;
+    }
+
+    @Override
+    public String getName() {
+        return mEtName.getText().toString().trim();
+    }
+
+    @Override
+    public String getPhone() {
+        return mEtPhoneNum.getText().toString().trim();
+    }
+
+    @Override
+    public String getIdCard() {
+        return mEtIdCard.getText().toString().trim();
     }
 
 }

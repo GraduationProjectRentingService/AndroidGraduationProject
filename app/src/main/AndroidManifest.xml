@@ -39,7 +39,8 @@
         <activity android:name=".view.activity.LikeHouseListActivity" />
         <activity android:name=".view.activity.CheckInPeopleListActivity" />
         <activity android:name=".view.activity.EditCheckInPeopleActivity" />
-        <activity android:name=".view.activity.SystemMessageActivity"></activity>
+        <activity android:name=".view.activity.SystemMessageActivity" />
+        <activity android:name=".view.activity.SearchHouseActivity"></activity>
     </application>
 
 </manifest>

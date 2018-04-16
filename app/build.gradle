@@ -65,7 +65,8 @@ dependencies {
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.squareup.okio:okio:1.12.0'
-    compile 'com.squareup.okhttp:okhttp:2.4.0'
+//    todo: 发布的时候，需要去掉注释，该注入为bomb上传文件所需
+//    compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
     compile 'com.jakewharton:butterknife:8.2.1'

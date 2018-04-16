@@ -16,5 +16,6 @@
         android:layout_height="wrap_content"
         android:text="这个是不错的房源"
         android:layout_margin="@dimen/sizeOfMiddleMargin"
+        android:lines="1"
         android:textSize="@dimen/textSizeOfHouseListViewItemTitle"/>
 </LinearLayout>
