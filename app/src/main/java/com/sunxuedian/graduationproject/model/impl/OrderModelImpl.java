@@ -2,6 +2,7 @@ package com.sunxuedian.graduationproject.model.impl;
 
 import android.text.TextUtils;
 
+import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
 import com.sunxuedian.graduationproject.bean.OrderBean;
 import com.sunxuedian.graduationproject.bean.ResponseBean;
 import com.sunxuedian.graduationproject.bean.UserBean;
@@ -59,9 +60,11 @@ public class OrderModelImpl implements IOrderModel {
                 if (TextUtils.equals(responseBean.getCode(), UrlParamsUtils.SUCCESS_CODE)){
                     try {
                         OrderBean order = JsonUtils.fromJson(OrderBean.class, responseBean.getContent().optJSONObject("order"));
+                        order.setCheckInPeopleUserInfoList(JsonUtils.getListByJSONArray(CheckInPeopleUserInfo.class, responseBean.getContent().optJSONObject("order").getJSONArray("checkInPeopleUserInfoList")));
                         callback.onSuccess(order);
                     }catch (Exception e){
                         e.printStackTrace();
+                        callback.onFailure("内部错误！");
                     }
                 }else{
                     callback.onFailure(responseBean.getMessage());
