@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.aitangba.swipeback.SwipeBackActivity;
 import com.mingle.widget.ShapeLoadingDialog;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.sunxuedian.graduationproject.R;
@@ -30,7 +29,6 @@ import com.sunxuedian.graduationproject.utils.ToastUtils;
 import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
 import com.sunxuedian.graduationproject.view.IReverseHouseView;
 import com.sunxuedian.graduationproject.view.base.BaseActivity;
-import com.sunxuedian.graduationproject.view.base.BaseSwipeBackActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +36,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.os.Build.VERSION_CODES.O;
 
 /**
  * 预定房源
@@ -281,6 +277,6 @@ public class ReverseHouseActivity extends BaseActivity<IReverseHouseView, Revers
 
     @Override
     public void showErrorMsg(String msg) {
-
+        ToastUtils.showToast("失败：" + msg);
     }
 }

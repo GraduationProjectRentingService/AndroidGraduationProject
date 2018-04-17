@@ -2,7 +2,6 @@ package com.sunxuedian.graduationproject.bean;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +30,16 @@ public class OrderBean implements Serializable{
     private int deposit;//定金
     private int totalMoney;//总共的订单总额
     private List<CheckInPeopleUserInfo> checkInPeopleUserInfoList;//入住人信息
+
+    public String getCheckInPeopleIdList() {
+        return checkInPeopleIdList;
+    }
+
+    public void setCheckInPeopleIdList(String checkInPeopleIdList) {
+        this.checkInPeopleIdList = checkInPeopleIdList;
+    }
+
+    private String checkInPeopleIdList;//入住人id 列表，用String拼接保存到数据库
     private String payWay;
     private int payWayCode;
     private int status;//订单状态

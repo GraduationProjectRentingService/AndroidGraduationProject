@@ -59,26 +59,33 @@ public class ReverseHousePresenterImpl extends BasePresenter<IReverseHouseView> 
         }
 
         OrderBean orderBean = new OrderBean();
+        orderBean.setHouseId(houseBean.getId());
         CalendarDay inDay = calendarDays.get(0);
         CalendarDay outDay = calendarDays.get(calendarDays.size() - 1);
-        orderBean.setDayNum(calendarDays.size() - 1);//设置入住天数，及入住日期
+//        orderBean.setDayNum(calendarDays.size() - 1);//设置入住天数，及入住日期
         orderBean.setCheckInDate(new Timestamp(inDay.getDate().getTime()));
         orderBean.setCheckOutDate(new Timestamp(outDay.getDate().getTime()));
-        //设置用户和房东信息
-        orderBean.setUserPhone(userBean.getPhoneNum());
-        orderBean.setUserName(userBean.getUserName());
-        orderBean.setHostPhone(houseBean.getHostPhoneNum());
-        //设置入住人信息
-        orderBean.setCheckInPeopleUserInfoList(checkInPeopleUsers);
-        //设置订单押金和金额
-        orderBean.setDeposit(houseBean.getDeposit());
-        orderBean.setTotalHouseMoney(houseBean.getMoneyOfEachNight() * orderBean.getDayNum());
-        orderBean.setTotalMoney(houseBean.getMoneyOfEachNight() * orderBean.getDayNum() + houseBean.getDeposit());
-        //设置房源信息
-        orderBean.setHouseTitle(houseBean.getTitle());
-        orderBean.setHouseRentalType(houseBean.getRentalTypeText());
-        orderBean.setHouseLocation(houseBean.getLocation());
-        orderBean.setHouseImgUrl(houseBean.getImgUrl());
+        String ids = "";
+        for (int i = 0; i < checkInPeopleUsers.size() - 1; ++ i){
+            ids += checkInPeopleUsers.get(i).getId() + ",";
+        }
+        ids += checkInPeopleUsers.get(checkInPeopleUsers.size() - 1).getId();
+        orderBean.setCheckInPeopleIdList(ids);
+//        //设置用户和房东信息
+//        orderBean.setUserPhone(userBean.getPhoneNum());
+//        orderBean.setUserName(userBean.getUserName());
+//        orderBean.setHostPhone(houseBean.getHostPhoneNum());
+//        //设置入住人信息
+//        orderBean.setCheckInPeopleUserInfoList(checkInPeopleUsers);
+//        //设置订单押金和金额
+//        orderBean.setDeposit(houseBean.getDeposit());
+//        orderBean.setTotalHouseMoney(houseBean.getMoneyOfEachNight() * orderBean.getDayNum());
+//        orderBean.setTotalMoney(houseBean.getMoneyOfEachNight() * orderBean.getDayNum() + houseBean.getDeposit());
+//        //设置房源信息
+//        orderBean.setHouseTitle(houseBean.getTitle());
+//        orderBean.setHouseRentalType(houseBean.getRentalTypeText());
+//        orderBean.setHouseLocation(houseBean.getLocation());
+//        orderBean.setHouseImgUrl(houseBean.getImgUrl());
         logger.d("创建的订单信息如下：" + orderBean.toString());
 
         getView().showLoading();

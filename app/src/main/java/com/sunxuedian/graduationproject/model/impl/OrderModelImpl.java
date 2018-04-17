@@ -1,12 +1,22 @@
 package com.sunxuedian.graduationproject.model.impl;
 
+import android.text.TextUtils;
+
 import com.sunxuedian.graduationproject.bean.OrderBean;
+import com.sunxuedian.graduationproject.bean.ResponseBean;
 import com.sunxuedian.graduationproject.bean.UserBean;
-import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.model.IOrderModel;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
+import com.sunxuedian.graduationproject.utils.JsonUtils;
+import com.sunxuedian.graduationproject.utils.LoggerFactory;
+import com.sunxuedian.graduationproject.utils.MyLog;
+import com.sunxuedian.graduationproject.utils.OkHttpUtils;
+import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sunxuedian on 2018/4/13.
@@ -14,6 +24,7 @@ import java.util.List;
 
 public class OrderModelImpl implements IOrderModel {
 
+    private MyLog logger = LoggerFactory.getLogger(getClass());
     private static List<OrderBean> mOrderList = new ArrayList<>();//保存订单信息的列表
     private static int mOrderCount = 0;
 
@@ -32,11 +43,31 @@ public class OrderModelImpl implements IOrderModel {
     }
 
     @Override
-    public void createOrder(UserBean userBean, OrderBean orderBean, IModelCallback<OrderBean> callback) {
-        orderBean.setStatus(OrderBean.STATUS_UNPAY);
-        orderBean.setOrderId(mOrderCount++);
-        mOrderList.add(orderBean);
-        callback.onSuccess(orderBean);// TODO: 2018/4/13 测试数据
+    public void createOrder(UserBean userBean, OrderBean orderBean, final IModelCallback<OrderBean> callback) {
+        Map<String, Object> params = new HashMap<>();
+        params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
+        params.put(UrlParamsUtils.TOKEN, userBean.getToken());
+        params.put("houseId", orderBean.getHouseId());
+        params.put("checkInDate", orderBean.getCheckInDate().toString().substring(0,10));
+        params.put("checkOutDate", orderBean.getCheckOutDate().toString().substring(0, 10));
+        params.put("checkInPeopleIdList", orderBean.getCheckInPeopleIdList());
+        params.put("order", orderBean);
+        logger.d(params.toString());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_CREATE_ORDER, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (TextUtils.equals(responseBean.getCode(), UrlParamsUtils.SUCCESS_CODE)){
+                    try {
+                        OrderBean order = JsonUtils.fromJson(OrderBean.class, responseBean.getContent().optJSONObject("order"));
+                        callback.onSuccess(order);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }else{
+                    callback.onFailure(responseBean.getMessage());
+                }
+            }
+        });
     }
 
     @Override

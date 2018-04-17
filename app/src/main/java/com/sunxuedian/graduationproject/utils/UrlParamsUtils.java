@@ -9,8 +9,9 @@ public class UrlParamsUtils {
 
     public static final String SUCCESS_CODE = "1";//成功返回的值
 
-    public static final String IP = "http://47.106.77.184:8080";//阿里云服务器ip
+//    public static final String IP = "http://47.106.77.184:8080";//阿里云服务器ip
 //    private static final String IP = "http://10.242.67.7:8080";//本地服务器ip
+    private static final String IP = "http://10.4.10.49:8080";//公司本地服务器ip
 
     public static final String URL_USER_REGISTER = IP + "/user/register";//注册
     public static final String URL_USER_LOGIN = IP + "/user/login";//登录
@@ -23,6 +24,8 @@ public class UrlParamsUtils {
     public static final String URL_UPDATE_CHECK_IN_PEOPLE = IP + "/checkInPeople/update";//修改入住人信息
     public static final String URL_DELETE_CHECK_IN_PEOPLE = IP + "/checkInPeople/delete";//删除入住人信息
     public static final String URL_GET_ALL_CHECK_IN_PEOPLE = IP + "/checkInPeople/getAll";//获取所有入住人信息
+
+    public static final String URL_CREATE_ORDER = IP + "/order/createOrder";//创建订单
 
 
     public static final String USER_PHONE = "phoneNumber";
