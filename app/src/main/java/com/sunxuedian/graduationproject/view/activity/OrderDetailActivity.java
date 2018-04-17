@@ -110,8 +110,8 @@ public class OrderDetailActivity extends SwipeBackActivity {
             }
             mTvPayWay.setText(mOrderBean.getPayWay());
             //显示入住日期新
-            Timestamp inDay = mOrderBean.getCheckInDate();
-            Timestamp outDay = mOrderBean.getCheckOutDate();
+            Timestamp inDay = new Timestamp(mOrderBean.getCheckInDate());
+            Timestamp outDay = new Timestamp(mOrderBean.getCheckOutDate());
             mTvDayDetail.setText(String.format("入住时段：\n%d月%d号-%d月%d号 共%d晚", inDay.getMonth() + 1, inDay.getDate(), outDay.getMonth() + 1, outDay.getDate(), mOrderBean.getDayNum()));
             mTvTitle.setText(mOrderBean.getHouseTitle());
             mTvHostPhone.setText(mOrderBean.getHostPhone());

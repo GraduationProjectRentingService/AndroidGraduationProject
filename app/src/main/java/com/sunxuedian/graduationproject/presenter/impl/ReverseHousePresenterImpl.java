@@ -63,8 +63,8 @@ public class ReverseHousePresenterImpl extends BasePresenter<IReverseHouseView> 
         CalendarDay inDay = calendarDays.get(0);
         CalendarDay outDay = calendarDays.get(calendarDays.size() - 1);
 //        orderBean.setDayNum(calendarDays.size() - 1);//设置入住天数，及入住日期
-        orderBean.setCheckInDate(new Timestamp(inDay.getDate().getTime()));
-        orderBean.setCheckOutDate(new Timestamp(outDay.getDate().getTime()));
+        orderBean.setCheckInDate(inDay.getDate().getTime());
+        orderBean.setCheckOutDate(outDay.getDate().getTime());
         String ids = "";
         for (int i = 0; i < checkInPeopleUsers.size() - 1; ++ i){
             ids += checkInPeopleUsers.get(i).getId() + ",";

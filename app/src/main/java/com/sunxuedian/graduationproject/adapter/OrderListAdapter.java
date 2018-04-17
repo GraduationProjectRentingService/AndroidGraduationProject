@@ -12,6 +12,7 @@ import com.sunxuedian.graduationproject.R;
 import com.sunxuedian.graduationproject.bean.OrderBean;
 import com.sunxuedian.graduationproject.utils.ImageLoader;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,8 +42,10 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
     public void onBindViewHolder(MyViewHolder myViewHolder, int pos) {
         OrderBean orderBean = mData.get(pos);
         myViewHolder.mTvTitle.setText(orderBean.getHouseTitle());
-        myViewHolder.mTvDayDetail.setText(String.format("%d月%d日-%d月%d日 共%d晚", orderBean.getCheckInDate().getMonth()+1, orderBean.getCheckInDate().getDate()
-        , orderBean.getCheckOutDate().getMonth() + 1, orderBean.getCheckOutDate().getDate(), orderBean.getDayNum()));
+        Date inDate = new Date(orderBean.getCheckInDate());
+        Date outDate = new Date(orderBean.getCheckOutDate());
+        myViewHolder.mTvDayDetail.setText(String.format("%d月%d日-%d月%d日 共%d晚", inDate.getMonth()+1, inDate.getDate()
+        , outDate.getMonth() + 1, outDate.getDate(), orderBean.getDayNum()));
 
         myViewHolder.mTvRentalType.setText(orderBean.getHouseRentalType());
         myViewHolder.mTvTotalMoney.setText("订单总额：￥" + orderBean.getTotalMoney());

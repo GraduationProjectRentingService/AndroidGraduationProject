@@ -2,7 +2,6 @@ package com.sunxuedian.graduationproject.model.impl;
 
 import android.text.TextUtils;
 
-import com.sunxuedian.graduationproject.bean.CheckInPeopleUserInfo;
 import com.sunxuedian.graduationproject.bean.OrderBean;
 import com.sunxuedian.graduationproject.bean.ResponseBean;
 import com.sunxuedian.graduationproject.bean.UserBean;
@@ -26,8 +25,6 @@ import java.util.Map;
 public class OrderModelImpl implements IOrderModel {
 
     private MyLog logger = LoggerFactory.getLogger(getClass());
-    private static List<OrderBean> mOrderList = new ArrayList<>();//保存订单信息的列表
-    private static int mOrderCount = 0;
 
     private static OrderModelImpl mInstance;
     private OrderModelImpl(){}
@@ -44,13 +41,13 @@ public class OrderModelImpl implements IOrderModel {
     }
 
     @Override
-    public void createOrder(UserBean userBean, OrderBean orderBean, final IModelCallback<OrderBean> callback) {
+    public void createOrder(UserBean userBean, final OrderBean orderBean, final IModelCallback<OrderBean> callback) {
         Map<String, Object> params = new HashMap<>();
         params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
         params.put(UrlParamsUtils.TOKEN, userBean.getToken());
         params.put("houseId", orderBean.getHouseId());
-        params.put("checkInDate", orderBean.getCheckInDate().toString().substring(0,10));
-        params.put("checkOutDate", orderBean.getCheckOutDate().toString().substring(0, 10));
+        params.put("checkInDate", orderBean.getCheckInDate());
+        params.put("checkOutDate", orderBean.getCheckOutDate());
         params.put("checkInPeopleIdList", orderBean.getCheckInPeopleIdList());
         params.put("order", orderBean);
         logger.d(params.toString());
@@ -59,9 +56,14 @@ public class OrderModelImpl implements IOrderModel {
             public void onSuccess(ResponseBean responseBean) {
                 if (TextUtils.equals(responseBean.getCode(), UrlParamsUtils.SUCCESS_CODE)){
                     try {
-                        OrderBean order = JsonUtils.fromJson(OrderBean.class, responseBean.getContent().optJSONObject("order"));
-                        order.setCheckInPeopleUserInfoList(JsonUtils.getListByJSONArray(CheckInPeopleUserInfo.class, responseBean.getContent().optJSONObject("order").getJSONArray("checkInPeopleUserInfoList")));
-                        callback.onSuccess(order);
+//                        OrderDto orderDto = JsonUtils.fromJson(OrderDto.class, responseBean.getContent().optJSONObject("order"));
+//                        order.setCheckInPeopleUserInfoList(JsonUtils.getListByJSONArray(CheckInPeopleUserInfo.class, responseBean.getContent().optJSONObject("order").getJSONArray("checkInPeopleUserInfoList")));
+//                        callback.onSuccess(order);
+                        OrderBean orderBean = JsonUtils.fromJson(OrderBean.class, responseBean.getContent().optJSONObject("order"));
+                        logger.d(orderBean.toString());
+//                        orderBean.setCheckInPeopleUserInfoList(JsonUtils.getListByJSONArray(CheckInPeopleUserInfo.class, responseBean.getContent().optJSONObject("order").getJSONArray("checkInPeopleUserInfoList")));
+                        callback.onSuccess(orderBean);
+//                        logger.d(orderDto.toString());
                     }catch (Exception e){
                         e.printStackTrace();
                         callback.onFailure("内部错误！");
@@ -75,26 +77,34 @@ public class OrderModelImpl implements IOrderModel {
 
     @Override
     public void payOrder(UserBean userBean, OrderBean orderBean, IModelCallback<OrderBean> callback) {
-        if (mOrderList.contains(orderBean)){
-            OrderBean resultOrder = mOrderList.get(mOrderList.indexOf(orderBean));
-            resultOrder.setPayWayCode(orderBean.getPayWayCode());
-            resultOrder.setPayWay(orderBean.getPayWay());
-            resultOrder.setStatus(OrderBean.STATUS_FINISH);
-        }
-        callback.onSuccess(orderBean);
+        // TODO: 2018/4/18 修改
     }
 
     @Override
     public void cancelOrder(UserBean userBean, OrderBean orderBean, IModelCallback<OrderBean> callback) {
-        if (mOrderList.contains(orderBean)){
-            orderBean = mOrderList.get(mOrderList.indexOf(orderBean));
-            orderBean.setStatus(OrderBean.STATUS_CANCEL);
-        }
-        callback.onSuccess(orderBean);
+        // todo 修改
     }
 
     @Override
-    public void getOrderList(UserBean userBean, IModelCallback<List<OrderBean>> callback) {
-        callback.onSuccess(mOrderList);
+    public void getOrderList(UserBean userBean, final IModelCallback<List<OrderBean>> callback) {
+        Map<String, Object> params = new HashMap<>();
+        params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
+        params.put(UrlParamsUtils.TOKEN, userBean.getToken());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_GET_ALL_ORDERS, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (TextUtils.equals(responseBean.getCode(), UrlParamsUtils.SUCCESS_CODE)){
+                    try {
+                        List<OrderBean> orders = JsonUtils.getListByJSONArray(OrderBean.class, responseBean.getContent().optJSONArray("list"));
+                        callback.onSuccess(orders);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        callback.onFailure("内部错误！");
+                    }
+                }else{
+                    callback.onFailure(responseBean.getMessage());
+                }
+            }
+        });
     }
 }

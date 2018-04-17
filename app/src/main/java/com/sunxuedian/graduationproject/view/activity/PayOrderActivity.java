@@ -39,6 +39,7 @@ import com.sunxuedian.graduationproject.view.base.BaseActivity;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -164,8 +165,8 @@ public class PayOrderActivity extends BaseActivity<IPayOrderView, PayOrderPresen
 
         if (mOrderBean != null){
             logger.d(mOrderBean.toString());
-            Timestamp inDay = mOrderBean.getCheckInDate();
-            Timestamp outDay = mOrderBean.getCheckOutDate();
+            Date inDay = new Date(mOrderBean.getCheckInDate());
+            Date outDay = new Date(mOrderBean.getCheckOutDate());
             mTvDayDetail.setText(String.format("入住时段：\n%d月%d号-%d月%d号 共%d晚", inDay.getMonth() + 1, inDay.getDate(), outDay.getMonth() + 1, outDay.getDate(), mOrderBean.getDayNum()));
             mTvTitle.setText(mOrderBean.getHouseTitle());
             mTvHostPhone.setText(mOrderBean.getHostPhone());

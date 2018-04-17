@@ -2,6 +2,7 @@ package com.sunxuedian.graduationproject.bean;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,8 +14,8 @@ public class OrderBean implements Serializable{
     public static String TAG = "OrderBean";
 
     private long orderId;
-    private Timestamp createTime;//创建时间
-    private Timestamp lastChangeTime;//最后一次修改时间
+    private long createTime;//创建时间
+    private long lastChangeTime;//最后一次修改时间
     private String userPhone;
     private String userName;
     private String hostPhone;
@@ -23,8 +24,8 @@ public class OrderBean implements Serializable{
     private String houseTitle;//房源标题
     private String houseRentalType;//出租类型
     private String houseLocation;//房源地址
-    private Timestamp checkInDate;
-    private Timestamp checkOutDate;
+    private long checkInDate;
+    private long checkOutDate;
     private int dayNum;
     private int totalHouseMoney;//总共的房费
     private int deposit;//定金
@@ -58,19 +59,19 @@ public class OrderBean implements Serializable{
         this.orderId = orderId;
     }
 
-    public Timestamp getCreateTime() {
+    public long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(long createTime) {
         this.createTime = createTime;
     }
 
-    public Timestamp getLastChangeTime() {
+    public long getLastChangeTime() {
         return lastChangeTime;
     }
 
-    public void setLastChangeTime(Timestamp lastChangeTime) {
+    public void setLastChangeTime(long lastChangeTime) {
         this.lastChangeTime = lastChangeTime;
     }
 
@@ -140,19 +141,19 @@ public class OrderBean implements Serializable{
         this.houseLocation = houseLocation;
     }
 
-    public Timestamp getCheckInDate() {
+    public long getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(Timestamp checkInDate) {
+    public void setCheckInDate(long checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public Timestamp getCheckOutDate() {
+    public long getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(Timestamp checkOutDate) {
+    public void setCheckOutDate(long checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
