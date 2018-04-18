@@ -13,7 +13,6 @@ import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.OkHttpUtils;
 import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,13 +75,43 @@ public class OrderModelImpl implements IOrderModel {
     }
 
     @Override
-    public void payOrder(UserBean userBean, OrderBean orderBean, IModelCallback<OrderBean> callback) {
-        // TODO: 2018/4/18 修改
+    public void payOrder(UserBean userBean, OrderBean orderBean, final IModelCallback<OrderBean> callback) {
+        Map<String, Object> params = new HashMap<>();
+        params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
+        params.put(UrlParamsUtils.TOKEN, userBean.getToken());
+        params.put("orderId", orderBean.getOrderId());
+        params.put("payWayCode", orderBean.getPayWayCode());
+        params.put("payWay", orderBean.getPayWay());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_PAY_ORDER, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (TextUtils.equals(responseBean.getCode(), UrlParamsUtils.SUCCESS_CODE)){
+                    OrderBean order = JsonUtils.fromJson(OrderBean.class, responseBean.getContent().optJSONObject("order"));
+                    callback.onSuccess(order);
+                }else {
+                    callback.onFailure(responseBean.getMessage());
+                }
+            }
+        });
     }
 
     @Override
-    public void cancelOrder(UserBean userBean, OrderBean orderBean, IModelCallback<OrderBean> callback) {
-        // todo 修改
+    public void cancelOrder(UserBean userBean, OrderBean orderBean, final IModelCallback<OrderBean> callback) {
+        Map<String, Object> params = new HashMap<>();
+        params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
+        params.put(UrlParamsUtils.TOKEN, userBean.getToken());
+        params.put("orderId", orderBean.getOrderId());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_CANCEL_ORDER, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (TextUtils.equals(responseBean.getCode(), UrlParamsUtils.SUCCESS_CODE)){
+                    OrderBean order = JsonUtils.fromJson(OrderBean.class, responseBean.getContent().optJSONObject("order"));
+                    callback.onSuccess(order);
+                }else {
+                    callback.onFailure(responseBean.getMessage());
+                }
+            }
+        });
     }
 
     @Override
