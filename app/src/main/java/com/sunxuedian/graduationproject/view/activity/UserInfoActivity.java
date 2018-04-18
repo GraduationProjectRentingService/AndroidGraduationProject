@@ -304,4 +304,10 @@ public class UserInfoActivity extends BaseSwipeBackActivity<IUserInfoView, UserI
     public UserBean getUser() {
         return mUserBean;
     }
+
+    @Override
+    public void onTokenIllegalView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }

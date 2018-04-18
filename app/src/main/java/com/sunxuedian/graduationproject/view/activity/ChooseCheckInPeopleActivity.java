@@ -112,4 +112,10 @@ public class ChooseCheckInPeopleActivity extends BaseSwipeBackActivity<ICheckInP
     public void showError(String msg) {
         ToastUtils.showToast(msg);
     }
+
+    @Override
+    public void onTokenIllegalView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }

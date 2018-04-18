@@ -34,7 +34,8 @@ public class HouseModelImpl implements IHouseModel {
 
     private static HouseModelImpl mInstance;
 
-    private List<HouseBean> mLikeHouseList = new ArrayList<>();
+    private static List<HouseBean> mAllHouses = new ArrayList<>();
+    private static List<HouseBean> mLikeHouses = new ArrayList<>();
 
     private HouseModelImpl(){}
 
@@ -83,6 +84,8 @@ public class HouseModelImpl implements IHouseModel {
                 if (TextUtils.equals(responseBean.getCode(),UrlParamsUtils.SUCCESS_CODE)){
                     try {
                         List<HouseDto> list = JsonUtils.getListByJSONArray(HouseDto.class, responseBean.getContent().getJSONArray("list"));
+                        mAllHouses.clear();
+                        mAllHouses.addAll(HouseBean.transList(list));//添加到缓冲中
                         switch (typeOfHouseData){
                             case HOUSE_TYPE_ALL:
                                 callback.onSuccess(HouseBean.transList(list));
@@ -157,18 +160,92 @@ public class HouseModelImpl implements IHouseModel {
     }
 
     @Override
-    public void addHouseToLike(UserBean userBean, HouseBean houseBean, IModelCallback<String> callback) {
-        //模拟
-        if (!mLikeHouseList.contains(houseBean)){
-            houseBean.setLike(true);
-            mLikeHouseList.add(houseBean);
-        }
-        callback.onSuccess("添加成功");
+    public void addHouseToLike(UserBean userBean, final HouseBean houseBean, final IModelCallback<String> callback) {
+        Map<String,Object> params = new HashMap<>();
+        params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
+        params.put(UrlParamsUtils.TOKEN, userBean.getToken());
+        params.put("houseId", houseBean.getId());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_ADD_HOUSE_TO_LIKE, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (TextUtils.equals(UrlParamsUtils.SUCCESS_CODE, responseBean.getCode())){
+                    mLikeHouses.add(houseBean);
+                    callback.onSuccess(responseBean.getMessage());
+                }else {
+                    callback.onResultCode(responseBean.getCode());
+                    callback.onFailure(responseBean.getMessage());
+                }
+            }
+        });
     }
 
     @Override
-    public void getLikeHouseList(UserBean userBean, IModelCallback<List<HouseBean>> callback) {
-        callback.onSuccess(mLikeHouseList);
+    public void getLikeHouseList(UserBean userBean, final IModelCallback<List<HouseBean>> callback) {
+        Map<String,Object> params = new HashMap<>();
+        params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
+        params.put(UrlParamsUtils.TOKEN, userBean.getToken());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_GET_ALL_LIKE_HOUSE, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (TextUtils.equals(UrlParamsUtils.SUCCESS_CODE, responseBean.getCode())){
+                    List<HouseDto> list = JsonUtils.getListByJSONArray(HouseDto.class, responseBean.getContent().optJSONArray("list"));
+                    List<HouseBean> houseBeanList = HouseBean.transList(list, true);
+                    mLikeHouses.clear();
+                    mLikeHouses.addAll(houseBeanList);//将其添加到缓冲中
+                    callback.onSuccess(houseBeanList);
+                }else {
+                    callback.onResultCode(responseBean.getCode());
+                    callback.onFailure(responseBean.getMessage());
+                }
+            }
+        });
     }
+
+    @Override
+    public void removeHouseFromLike(UserBean userBean, final HouseBean houseBean, final IModelCallback<String> callback) {
+        Map<String,Object> params = new HashMap<>();
+        params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
+        params.put(UrlParamsUtils.TOKEN, userBean.getToken());
+        params.put("houseId", houseBean.getId());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_REMOVE_HOUSE_FROM_LIKE, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (TextUtils.equals(UrlParamsUtils.SUCCESS_CODE, responseBean.getCode())){
+                    mLikeHouses.remove(houseBean);
+                    callback.onSuccess(responseBean.getMessage());
+                }else {
+                    callback.onResultCode(responseBean.getCode());
+                    callback.onFailure(responseBean.getMessage());
+                }
+            }
+        });
+    }
+
+    @Override
+    public void isHouseInLike(UserBean userBean, final HouseBean houseBean, final IModelCallback<Boolean> callback) {
+        if (mLikeHouses.contains(houseBean)){
+            callback.onSuccess(true);
+            return;
+        }
+        //不存在则网络请求查看
+        Map<String,Object> params = new HashMap<>();
+        params.put(UrlParamsUtils.USER_PHONE, userBean.getPhoneNum());
+        params.put(UrlParamsUtils.TOKEN, userBean.getToken());
+        params.put("houseId", houseBean.getId());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_REMOVE_HOUSE_FROM_LIKE, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (TextUtils.equals(UrlParamsUtils.SUCCESS_CODE, responseBean.getCode())){
+                    boolean result = responseBean.getContent().optBoolean("isLike", false);
+                    callback.onSuccess(result);
+                }else {
+                    callback.onResultCode(responseBean.getCode());
+                    callback.onFailure(responseBean.getMessage());
+                }
+            }
+        });
+
+    }
+
 
 }

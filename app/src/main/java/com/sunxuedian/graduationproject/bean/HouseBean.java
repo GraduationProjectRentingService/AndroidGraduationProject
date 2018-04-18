@@ -88,6 +88,26 @@ public class HouseBean implements Parcelable{
         }
         return resultList;
     }
+
+    /**
+     * 将HouseDto的list转换为HouseBean的list
+     * @param list
+     * @return
+     */
+    public static List<HouseBean> transList(List<HouseDto> list, boolean isLike){
+        if (list == null || list.size() == 0){
+            return new ArrayList<>();
+        }
+
+        List<HouseBean> resultList = new ArrayList<>();
+        for (HouseDto dto:list) {
+            HouseBean bean = createHouseBean(dto);
+            bean.setLike(isLike);
+            resultList.add(bean);
+        }
+        return resultList;
+    }
+
     /**
      * 通过HouseDto构造一个HouseBean对象
      * @param houseDto

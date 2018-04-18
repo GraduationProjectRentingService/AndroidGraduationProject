@@ -7,6 +7,7 @@ import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.ILikeHousePresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
+import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 import com.sunxuedian.graduationproject.view.ILikeHouseView;
 
 import java.util.List;
@@ -45,6 +46,13 @@ public class LikeHousePresenterImpl extends BasePresenter<ILikeHouseView> implem
             public void onFailure(String msg) {
                 getView().stopLoading();
                 getView().showErrorMsg(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+                if (UrlParamsUtils.TOKEN_ILLEGAL_CODE.equals(code)){
+                    getView().onTokenIllegalView();
+                }
             }
         });
     }

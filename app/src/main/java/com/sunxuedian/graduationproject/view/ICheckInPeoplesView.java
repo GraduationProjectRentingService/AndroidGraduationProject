@@ -8,7 +8,7 @@ import java.util.List;
  * Created by sunxuedian on 2018/4/2.
  */
 
-public interface ICheckInPeoplesView extends INetworkErrorView, IProgressView {
+public interface ICheckInPeoplesView extends INetworkErrorView, IProgressView, ITokenIllegalView {
     void showAllCheckInPeoples(List<CheckInPeopleUserInfo> list);
     void showError(String msg);
 }

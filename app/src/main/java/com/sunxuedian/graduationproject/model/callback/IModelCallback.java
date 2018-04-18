@@ -7,4 +7,5 @@ package com.sunxuedian.graduationproject.model.callback;
 public interface IModelCallback<T> {
     void onSuccess(T data);
     void onFailure(String msg);
+    void onResultCode(String code);
 }

@@ -12,6 +12,7 @@ import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IHouseDetailPresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
+import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 import com.sunxuedian.graduationproject.view.IHouseDetailView;
 
 import java.util.List;
@@ -32,59 +33,116 @@ public class HouseDetailPresenterImpl extends BasePresenter<IHouseDetailView> im
     @Override
     public void getBannerImages() {
 
-        if (!isViewAttached()){
-            logger.e("the view is not attached！");
-            return;
-        }
-
-        getView().showLoading();
-
-        mHouseModel.getBannerViewData(new IModelCallback<List<BannerViewBean>>() {
-            @Override
-            public void onSuccess(List<BannerViewBean> data) {
-                logger.e("onSuccess: " + Thread.currentThread().getName());
-                getView().showBannerImages(data);
-                getView().stopLoading();
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                getView().showErrorMsg(msg);
-                getView().stopLoading();
-            }
-        });
     }
 
-    @Override
-    public void addHouseToLike() {
-
+    private boolean check(){
         if (!isViewAttached()){
             logger.e("the view is not attached！");
-            return;
+            return false;
         }
 
         UserBean userBean = getView().getUser();
         if (userBean == null || TextUtils.isEmpty(userBean.getToken())){
             getView().showErrorMsg("请先登录！");
             getView().goLogin();//前往登录
-            return;
+            return false;
         }
 
         HouseBean houseBean = getView().getHouseBean();
         if (houseBean == null){
             getView().showErrorMsg("当前房源信息为空！");
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public void addHouseToLike() {
+
+        if (!check()){
             return;
         }
 
-        mHouseModel.addHouseToLike(userBean, houseBean, new IModelCallback<String>() {
+        getView().showLoading();
+        mHouseModel.addHouseToLike(getView().getUser(), getView().getHouseBean(), new IModelCallback<String>() {
             @Override
             public void onSuccess(String data) {
+                getView().stopLoading();
                 getView().showAddLikeSuccess();
             }
 
             @Override
             public void onFailure(String msg) {
+                getView().stopLoading();
                 getView().showErrorMsg(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+                if (UrlParamsUtils.TOKEN_ILLEGAL_CODE.equals(code)){
+                    getView().onTokenIllegalView();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void removeHouseFromLike() {
+
+        if (!check()){
+            return;
+        }
+
+        getView().showLoading();
+        mHouseModel.removeHouseFromLike(getView().getUser(), getView().getHouseBean(), new IModelCallback<String>() {
+            @Override
+            public void onSuccess(String data) {
+                getView().stopLoading();
+                getView().showRemoveHouseFromLikeSuccess();
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                getView().stopLoading();
+                getView().showErrorMsg(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+                if (UrlParamsUtils.TOKEN_ILLEGAL_CODE.equals(code)){
+                    getView().onTokenIllegalView();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public void isHouseInLike() {
+        if (!check()){
+            return;
+        }
+
+        getView().showLoading();
+        mHouseModel.isHouseInLike(getView().getUser(), getView().getHouseBean(), new IModelCallback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean data) {
+                getView().stopLoading();
+                getView().showLikeStatus(data);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                getView().stopLoading();
+                getView().showErrorMsg(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+                if (UrlParamsUtils.TOKEN_ILLEGAL_CODE.equals(code)){
+                    getView().onTokenIllegalView();
+                }
             }
         });
     }

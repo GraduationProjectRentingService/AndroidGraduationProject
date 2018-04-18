@@ -1,5 +1,6 @@
 package com.sunxuedian.graduationproject.view.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -91,5 +92,11 @@ public class AddCheckInPeopleActivity extends BaseSwipeBackActivity<IAddCheckInP
     @Override
     public String getPhoneNum() {
         return mEtPhoneNum.getText().toString().trim();
+    }
+
+    @Override
+    public void onTokenIllegalView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }

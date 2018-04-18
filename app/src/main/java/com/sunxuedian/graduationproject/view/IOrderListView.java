@@ -9,7 +9,7 @@ import java.util.List;
  * Created by sunxuedian on 2018/4/13.
  */
 
-public interface IOrderListView extends IProgressView{
+public interface IOrderListView extends IProgressView,ITokenIllegalView{
     UserBean getUser();
     void showOrderList(List<OrderBean> list);
     void showErrorMsg(String msg);

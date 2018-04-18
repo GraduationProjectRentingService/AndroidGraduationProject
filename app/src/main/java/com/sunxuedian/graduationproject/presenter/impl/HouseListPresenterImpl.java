@@ -8,6 +8,7 @@ import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IHouseListPresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
+import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 import com.sunxuedian.graduationproject.view.IHouseListView;
 
 import java.util.List;
@@ -46,6 +47,11 @@ public class HouseListPresenterImpl extends BasePresenter<IHouseListView> implem
             public void onFailure(String msg) {
                 getView().stopLoading();
                 getView().showError(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+
             }
         });
     }

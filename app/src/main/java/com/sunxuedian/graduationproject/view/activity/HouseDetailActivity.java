@@ -113,7 +113,11 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
 
     @OnClick(R.id.ivLike)
     public void addHouseToLike(){
-        mPresenter.addHouseToLike();//将房源添加到收藏列表中
+        if (mIvLike.isSelected()){
+            mPresenter.removeHouseFromLike();//将房源添加到收藏列表中
+        }else {
+            mPresenter.addHouseToLike();
+        }
     }
 
     /**
@@ -184,6 +188,7 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
         ButterKnife.bind(this);
         getIntentData();
         initView();
+        mPresenter.isHouseInLike();
     }
 
     @Override
@@ -204,6 +209,7 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
     }
 
     private void initView() {
+
         mLoadingView = new ShapeLoadingDialog(this);
         mLoadingView.setLoadingText("加载中...");
 
@@ -402,6 +408,23 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
     public void showAddLikeSuccess() {
         ToastUtils.showToast("收藏房源成功！");
         mIvLike.setSelected(true);
+    }
+
+    @Override
+    public void showRemoveHouseFromLikeSuccess() {
+        ToastUtils.showToast("移除房源成功！");
+        mIvLike.setSelected(false);
+    }
+
+    @Override
+    public void showLikeStatus(boolean isLike) {
+        mIvLike.setSelected(isLike);
+    }
+
+    @Override
+    public void onTokenIllegalView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -263,5 +263,9 @@ public class PayOrderActivity extends BaseActivity<IPayOrderView, PayOrderPresen
         ToastUtils.showToast(msg);
     }
 
-
+    @Override
+    public void onTokenIllegalView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }

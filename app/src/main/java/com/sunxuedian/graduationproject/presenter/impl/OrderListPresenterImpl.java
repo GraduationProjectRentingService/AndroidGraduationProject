@@ -8,6 +8,7 @@ import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IOrderListPresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
+import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 import com.sunxuedian.graduationproject.view.IOrderListView;
 
 import java.util.List;
@@ -53,6 +54,13 @@ public class OrderListPresenterImpl extends BasePresenter<IOrderListView> implem
             public void onFailure(String msg) {
                 getView().stopLoading();
                 getView().showErrorMsg(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+                if (UrlParamsUtils.TOKEN_ILLEGAL_CODE.equals(code)){
+                    getView().onTokenIllegalView();
+                }
             }
         });
     }

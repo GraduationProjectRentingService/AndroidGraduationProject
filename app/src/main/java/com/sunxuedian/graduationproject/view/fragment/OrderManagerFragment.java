@@ -72,13 +72,9 @@ public class OrderManagerFragment extends BaseFragment<IOrderListView, OrderList
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        if (!hidden){
-            if (!isUserLogin()){
-                goLogin();
-            }
-        }
-        super.onHiddenChanged(hidden);
+    public void onResume() {
+        super.onResume();
+        mPresenter.getOrderList();
     }
 
     private void initView(){
@@ -91,13 +87,6 @@ public class OrderManagerFragment extends BaseFragment<IOrderListView, OrderList
         }
 
         mRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorOfBlue);
-        mRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mRefreshLayout.setRefreshing(true);
-                mPresenter.getOrderList();
-            }
-        });
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -186,5 +175,10 @@ public class OrderManagerFragment extends BaseFragment<IOrderListView, OrderList
     @Override
     public OrderListPresenterImpl createPresenter() {
         return new OrderListPresenterImpl();
+    }
+
+    @Override
+    public void onTokenIllegalView() {
+        goLogin();
     }
 }

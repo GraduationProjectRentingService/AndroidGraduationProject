@@ -26,6 +26,8 @@ import butterknife.OnClick;
 
 public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, HouseListPresenterImpl> implements IHouseListView {
 
+    private static final int SEARCH_CODE = 66;//跳转到输入界面
+
     private View mLastClickFilterView;
 
     private VerticalHouseListAdapter mAdapter;
@@ -62,6 +64,12 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
     @OnClick(R.id.ivBack)
     public void goBack(){
         finish();
+    }
+
+    @OnClick(R.id.tvSearch)
+    public void goSearchView(){
+        Intent intent = new Intent(this, SearchHouseActivity.class);
+        startActivityForResult(intent, SEARCH_CODE);
     }
 
     @Override
@@ -124,6 +132,16 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SEARCH_CODE && resultCode == RESULT_OK && data != null){
+            int type = data.getIntExtra("type", SearchHouseActivity.SEARCH_TYPE_TITLE);
+            String text = data.getStringExtra("text");
+            ToastUtils.showToast("type: " + type + " text: " + text);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     protected HouseListPresenterImpl createPresenter() {
         return new HouseListPresenterImpl();
     }
@@ -152,4 +170,5 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
         mRefreshLayout.setRefreshing(false);
         mLoadingView.dismiss();
     }
+
 }

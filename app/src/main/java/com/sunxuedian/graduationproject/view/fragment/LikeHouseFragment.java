@@ -66,19 +66,14 @@ public class LikeHouseFragment extends BaseFragment<ILikeHouseView, LikeHousePre
         View view = inflater.inflate(R.layout.fragment_like_house, container, false);
         ButterKnife.bind(this, view);
         initView();
-        mPresenter.getLikeHouseList();
         return view;
     }
 
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        if (!hidden){
-            if (!isUserLogin()){
-                goLoginView();
-            }
-        }
-        super.onHiddenChanged(hidden);
+    public void onResume() {
+        super.onResume();
+        mPresenter.getLikeHouseList();
     }
 
     private void initView(){
@@ -130,12 +125,17 @@ public class LikeHouseFragment extends BaseFragment<ILikeHouseView, LikeHousePre
 
     @Override
     public void showHouseList(List<HouseBean> list) {
-        if (list != null && list.size() > 0){
-            mTvHint.setVisibility(View.GONE);
-            mLikeHouses.clear();
-            mLikeHouses.addAll(list);
+        if (list != null){
+            if (list.size() > 0 ){
+                mTvHint.setVisibility(View.GONE);
+                mLikeHouses.clear();
+                mLikeHouses.addAll(list);
+            }else {
+                mTvHint.setVisibility(View.VISIBLE);
+                mLikeHouses.clear();
+            }
             mAdapter.notifyDataSetChanged();
-        }else {
+        }else{
             mTvHint.setVisibility(View.VISIBLE);
         }
 
@@ -170,5 +170,10 @@ public class LikeHouseFragment extends BaseFragment<ILikeHouseView, LikeHousePre
         if (mRefreshLayout.isRefreshing()){
             mRefreshLayout.setRefreshing(false);
         }
+    }
+
+    @Override
+    public void onTokenIllegalView() {
+        goLoginView();
     }
 }

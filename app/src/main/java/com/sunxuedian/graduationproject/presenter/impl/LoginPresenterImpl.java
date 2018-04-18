@@ -72,6 +72,11 @@ public class LoginPresenterImpl extends BasePresenter<ILoginView> implements ILo
                 getView().stopLoading();
                 getView().onLoginFailure(msg);
             }
+
+            @Override
+            public void onResultCode(String code) {
+
+            }
         });
     }
 
@@ -95,6 +100,11 @@ public class LoginPresenterImpl extends BasePresenter<ILoginView> implements ILo
                 //提示View界面登录失败
                 getView().stopLoading();
                 getView().onLoginFailure(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+
             }
         });
     }

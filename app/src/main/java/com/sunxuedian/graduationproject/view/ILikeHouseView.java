@@ -9,7 +9,7 @@ import java.util.List;
  * Created by sunxuedian on 2018/4/12.
  */
 
-public interface ILikeHouseView extends IProgressView{
+public interface ILikeHouseView extends IProgressView,ITokenIllegalView{
     boolean isUserLogin();
     UserBean getUser();
     void showHouseList(List<HouseBean> list);

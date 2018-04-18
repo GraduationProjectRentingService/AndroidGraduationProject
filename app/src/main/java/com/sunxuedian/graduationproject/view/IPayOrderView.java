@@ -7,7 +7,7 @@ import com.sunxuedian.graduationproject.bean.UserBean;
  * Created by sunxuedian on 2018/4/13.
  */
 
-public interface IPayOrderView extends IProgressView{
+public interface IPayOrderView extends IProgressView, ITokenIllegalView{
     UserBean getUser();
     OrderBean getOrderBean();
     int getPayWay();

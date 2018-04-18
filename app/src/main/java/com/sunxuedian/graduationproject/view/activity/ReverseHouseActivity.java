@@ -279,4 +279,10 @@ public class ReverseHouseActivity extends BaseActivity<IReverseHouseView, Revers
     public void showErrorMsg(String msg) {
         ToastUtils.showToast("失败：" + msg);
     }
+
+    @Override
+    public void onTokenIllegalView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }

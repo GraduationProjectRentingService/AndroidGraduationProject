@@ -25,5 +25,6 @@ public interface IHouseModel {
 
     void addHouseToLike(UserBean userBean, HouseBean houseBean, IModelCallback<String> callback);//添加房源到收藏列表中
     void getLikeHouseList(UserBean userBean, IModelCallback<List<HouseBean>> callback);//获取收藏列表
-
+    void removeHouseFromLike(UserBean userBean, HouseBean houseId, IModelCallback<String> callback);//将房源从收藏列表中移除
+    void isHouseInLike(UserBean userBean, HouseBean houseId, IModelCallback<Boolean> callback);//判断该房源是否为收藏状态
 }

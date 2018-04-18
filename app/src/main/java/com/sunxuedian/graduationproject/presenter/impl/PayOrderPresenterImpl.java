@@ -8,6 +8,7 @@ import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IPayOrderPresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
+import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 import com.sunxuedian.graduationproject.view.IPayOrderView;
 
 /**
@@ -60,6 +61,13 @@ public class PayOrderPresenterImpl extends BasePresenter<IPayOrderView> implemen
                 getView().stopLoading();
                 getView().showErrorMsg(msg);
             }
+
+            @Override
+            public void onResultCode(String code) {
+                if (UrlParamsUtils.TOKEN_ILLEGAL_CODE.equals(code)){
+                    getView().onTokenIllegalView();
+                }
+            }
         });
 
     }
@@ -97,6 +105,13 @@ public class PayOrderPresenterImpl extends BasePresenter<IPayOrderView> implemen
             public void onFailure(String msg) {
                 getView().stopLoading();
                 getView().showErrorMsg(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+                if (UrlParamsUtils.TOKEN_ILLEGAL_CODE.equals(code)){
+                    getView().onTokenIllegalView();
+                }
             }
         });
 

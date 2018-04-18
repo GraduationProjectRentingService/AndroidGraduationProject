@@ -19,4 +19,5 @@ public class LikeHouseListActivity extends SwipeBackActivity {
         fragmentTransaction.add(R.id.mainFragment, likeHouseFragment);
         fragmentTransaction.commit();
     }
+
 }

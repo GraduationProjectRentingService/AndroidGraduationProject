@@ -169,6 +169,11 @@ public class RegisterPresenterImpl extends BasePresenter<IRegisterView> implemen
                 getView().stopLoading();
                 getView().onRegisterFailure(msg);
             }
+
+            @Override
+            public void onResultCode(String code) {
+
+            }
         });
     }
 
@@ -189,6 +194,11 @@ public class RegisterPresenterImpl extends BasePresenter<IRegisterView> implemen
                 logger.e(msg);
                 getView().stopLoading();
                 getView().onRegisterFailure(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+
             }
         });
     }

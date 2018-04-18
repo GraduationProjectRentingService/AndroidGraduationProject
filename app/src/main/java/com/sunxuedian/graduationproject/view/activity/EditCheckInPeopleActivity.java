@@ -131,4 +131,10 @@ public class EditCheckInPeopleActivity extends BaseSwipeBackActivity<IEditCheckI
         return mEtIdCard.getText().toString().trim();
     }
 
+    @Override
+    public void onTokenIllegalView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -14,6 +14,7 @@ import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.MyTextUtils;
 import com.sunxuedian.graduationproject.utils.NetworkUtils;
+import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
 import com.sunxuedian.graduationproject.view.IAddCheckInPeopleView;
 
@@ -87,6 +88,13 @@ public class AddCheckInPeoplePresenterImpl extends BasePresenter<IAddCheckInPeop
             public void onFailure(String msg) {
                 getView().stopLoading();
                 getView().onAddFailure(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+                if (UrlParamsUtils.TOKEN_ILLEGAL_CODE.equals(code)){
+                    getView().onTokenIllegalView();
+                }
             }
         });
     }

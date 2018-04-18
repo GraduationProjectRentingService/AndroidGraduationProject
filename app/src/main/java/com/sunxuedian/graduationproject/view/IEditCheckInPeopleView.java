@@ -7,7 +7,7 @@ import com.sunxuedian.graduationproject.bean.UserBean;
  * Created by sunxuedian on 2018/4/15.
  */
 
-public interface IEditCheckInPeopleView extends IProgressView{
+public interface IEditCheckInPeopleView extends IProgressView, ITokenIllegalView{
     void onUpdateCheckInPeopleSuccess();
     void onDeleteCheckInPeopleSuccess();
     void showErrorMsg(String msg);

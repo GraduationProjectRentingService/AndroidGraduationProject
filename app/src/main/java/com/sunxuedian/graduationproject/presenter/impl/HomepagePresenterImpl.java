@@ -50,6 +50,11 @@ public class HomepagePresenterImpl extends BasePresenter<IHomepageView> implemen
                 getView().showErrorMsg(msg);
                 getView().stopLoading();
             }
+
+            @Override
+            public void onResultCode(String code) {
+
+            }
         });
     }
 
@@ -74,6 +79,11 @@ public class HomepagePresenterImpl extends BasePresenter<IHomepageView> implemen
             public void onFailure(String msg) {
                 getView().stopLoading();
                 getView().showErrorMsg(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+
             }
         });
     }
@@ -100,6 +110,11 @@ public class HomepagePresenterImpl extends BasePresenter<IHomepageView> implemen
                 getView().stopLoading();
                 getView().showErrorMsg(msg);
             }
+
+            @Override
+            public void onResultCode(String code) {
+
+            }
         });
     }
 
@@ -125,6 +140,11 @@ public class HomepagePresenterImpl extends BasePresenter<IHomepageView> implemen
                 getView().stopLoading();
                 getView().showErrorMsg(msg);
             }
+
+            @Override
+            public void onResultCode(String code) {
+
+            }
         });
     }
 
@@ -149,6 +169,11 @@ public class HomepagePresenterImpl extends BasePresenter<IHomepageView> implemen
             public void onFailure(String msg) {
                 getView().stopLoading();
                 getView().showErrorMsg(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+
             }
         });
     }

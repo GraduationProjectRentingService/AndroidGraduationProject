@@ -68,6 +68,7 @@ public class OrderModelImpl implements IOrderModel {
                         callback.onFailure("内部错误！");
                     }
                 }else{
+                    callback.onResultCode(responseBean.getCode());
                     callback.onFailure(responseBean.getMessage());
                 }
             }
@@ -89,6 +90,7 @@ public class OrderModelImpl implements IOrderModel {
                     OrderBean order = JsonUtils.fromJson(OrderBean.class, responseBean.getContent().optJSONObject("order"));
                     callback.onSuccess(order);
                 }else {
+                    callback.onResultCode(responseBean.getCode());
                     callback.onFailure(responseBean.getMessage());
                 }
             }
@@ -108,6 +110,7 @@ public class OrderModelImpl implements IOrderModel {
                     OrderBean order = JsonUtils.fromJson(OrderBean.class, responseBean.getContent().optJSONObject("order"));
                     callback.onSuccess(order);
                 }else {
+                    callback.onResultCode(responseBean.getCode());
                     callback.onFailure(responseBean.getMessage());
                 }
             }
@@ -131,6 +134,7 @@ public class OrderModelImpl implements IOrderModel {
                         callback.onFailure("内部错误！");
                     }
                 }else{
+                    callback.onResultCode(responseBean.getCode());
                     callback.onFailure(responseBean.getMessage());
                 }
             }

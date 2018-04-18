@@ -12,7 +12,7 @@ import java.util.List;
  * Created by sunxuedian on 2018/4/13.
  */
 
-public interface IReverseHouseView extends IProgressView{
+public interface IReverseHouseView extends IProgressView, ITokenIllegalView{
     UserBean getUser();
     HouseBean getHouseBean();
     List<CalendarDay> getCheckInOutDate();

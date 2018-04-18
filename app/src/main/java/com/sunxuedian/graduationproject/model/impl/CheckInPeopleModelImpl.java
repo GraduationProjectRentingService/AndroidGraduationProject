@@ -48,6 +48,7 @@ public class CheckInPeopleModelImpl implements ICheckInPeopleModel {
                     List<CheckInPeopleUserInfo> list = JsonUtils.getListByJSONArray(CheckInPeopleUserInfo.class, responseBean.getContent().optJSONArray("list"));
                     iModelCallback.onSuccess(list);
                 }else {
+                    iModelCallback.onResultCode(responseBean.getCode());
                     iModelCallback.onFailure(responseBean.getMessage());
                 }
             }
@@ -68,6 +69,7 @@ public class CheckInPeopleModelImpl implements ICheckInPeopleModel {
                 if (TextUtils.equals(UrlParamsUtils.SUCCESS_CODE, responseBean.getCode())){
                     iModelCallback.onSuccess(info);
                 }else {
+                    iModelCallback.onResultCode(responseBean.getCode());
                     iModelCallback.onFailure(responseBean.getMessage());
                 }
             }
@@ -90,6 +92,7 @@ public class CheckInPeopleModelImpl implements ICheckInPeopleModel {
                 if (TextUtils.equals(UrlParamsUtils.SUCCESS_CODE, responseBean.getCode())){
                     iModelCallback.onSuccess("");
                 }else {
+                    iModelCallback.onResultCode(responseBean.getCode());
                     iModelCallback.onFailure(responseBean.getMessage());
                 }
             }
@@ -108,6 +111,7 @@ public class CheckInPeopleModelImpl implements ICheckInPeopleModel {
                 if (TextUtils.equals(UrlParamsUtils.SUCCESS_CODE, responseBean.getCode())){
                     iModelCallback.onSuccess("");
                 }else {
+                    iModelCallback.onResultCode(responseBean.getCode());
                     iModelCallback.onFailure(responseBean.getMessage());
                 }
             }
