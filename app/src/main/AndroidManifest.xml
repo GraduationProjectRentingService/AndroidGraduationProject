@@ -16,32 +16,72 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.BrowserActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.HouseListActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.LoginActivity" android:screenOrientation="portrait" android:launchMode="singleInstance"/>
-        <activity android:name=".view.activity.RegisterActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.HouseDetailActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.ReverseHouseActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.ChooseCheckInPeopleActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.AddCheckInPeopleActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.PayOrderActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.OrderDetailActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.UserInfoActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.SetUserNameActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.OrderListActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.LikeHouseListActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.CheckInPeopleListActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.EditCheckInPeopleActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.SystemMessageActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.SearchHouseActivity" android:screenOrientation="portrait" >
-        </activity>
+        <activity
+            android:name=".view.activity.BrowserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.HouseListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.HouseDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ReverseHouseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ChooseCheckInPeopleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.AddCheckInPeopleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.PayOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.OrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SetUserNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.OrderListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LikeHouseListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.CheckInPeopleListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.EditCheckInPeopleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SystemMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SearchHouseActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.activity.MessageDetailActivity" />
+        <activity android:name=".view.activity.AboutActivity"></activity>
     </application>
 
 </manifest>

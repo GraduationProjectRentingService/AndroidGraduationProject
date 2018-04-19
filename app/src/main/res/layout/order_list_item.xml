@@ -16,7 +16,7 @@
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/sizeOfLagerMargin"
             android:lines="1"
-            android:layout_toLeftOf="@id/tvOrderStatus"
+            android:layout_toLeftOf="@+id/tvOrderStatus"
             android:layout_marginRight="@dimen/sizeOfLagerMargin"
             android:text="标题"/>
         <TextView

@@ -43,12 +43,13 @@
         </RelativeLayout>
 
         <ImageView
-            android:layout_width="22dp"
-            android:layout_height="@dimen/sizeOfMiddleIcon"
+            android:id="@+id/ivMessage"
+            android:layout_width="42dp"
+            android:layout_height="20dp"
             android:src="@drawable/message"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+            android:layout_marginTop="@dimen/sizeOfLagerMargin"
             android:layout_marginRight="@dimen/sizeOfLagerMargin"/>
 
     </RelativeLayout>
@@ -170,7 +171,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rlSetting"
+        android:id="@+id/rlAbout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/white"

@@ -10,9 +10,9 @@ public class UrlParamsUtils {
     public static final String SUCCESS_CODE = "1";//成功返回的值
     public static final String TOKEN_ILLEGAL_CODE = "11";//token过期
 
-//    public static final String IP = "http://47.106.77.184:8080";//阿里云服务器ip
+    public static final String IP = "http://47.106.77.184:8080";//阿里云服务器ip
 //    private static final String IP = "http://10.242.67.7:8080";// 校园网本地服务器ip
-    private static final String IP = "http://10.4.10.49:8080";//公司本地服务器ip
+//    private static final String IP = "http://10.4.10.49:8080";//公司本地服务器ip
 //    private static final String IP = "http://192.168.43.227:8080";//手机WiFi ip
 
     public static final String URL_USER_REGISTER = IP + "/user/register";//注册
@@ -35,6 +35,8 @@ public class UrlParamsUtils {
     public static final String URL_GET_ALL_LIKE_HOUSE = IP + "/like/getAll";//获取所有收藏房源列表
     public static final String URL_ADD_HOUSE_TO_LIKE = IP + "/like/addHouse";//添加房源到收藏列表中
     public static final String URL_REMOVE_HOUSE_FROM_LIKE = IP + "/like/deleteHouse";//将房源从收藏列表中移除
+
+    public static final String URL_GET_SYSTEM_MESSAGE = IP + "/message/getAll";//获取系统信息接口
 
     public static final String USER_PHONE = "phoneNumber";
     public static final String USER_PASSWORD = "password";

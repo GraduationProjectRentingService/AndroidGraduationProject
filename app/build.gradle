@@ -54,6 +54,7 @@ dependencies {
 
     compile name: 'recyclerview-v7-21.0.0', ext: 'aar'
     //CDN文件服务使用okhttp相关包进行文件的上传和下载（必填）
+    //    todo: 发布的时候，需要去掉注释，该注入为bomb上传文件所需
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:26.0.0-alpha1'
@@ -65,7 +66,6 @@ dependencies {
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.squareup.okio:okio:1.12.0'
-//    todo: 发布的时候，需要去掉注释，该注入为bomb上传文件所需
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'

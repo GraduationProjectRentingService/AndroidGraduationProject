@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGrayE">
+    android:background="@color/colorGrayE"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/rlTopBar"
@@ -21,29 +22,30 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/textSizeOfTopBarTitle"
             android:textColor="@color/black"
-            android:text="消息"
+            android:text="消息详情"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rlTopBar"
-        android:layout_marginTop="1dp">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvMessages"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:padding="@dimen/sizeOfMiddleMargin"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="标题"/>
+        <TextView
+            android:id="@+id/tvMessage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:text="消息内容"
+            android:layout_marginTop="@dimen/sizeOfMiddleMargin"
+            />
+    </LinearLayout>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-    <TextView
-        android:id="@+id/tvHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="还没有消息喔~"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
-</RelativeLayout>
+</LinearLayout>

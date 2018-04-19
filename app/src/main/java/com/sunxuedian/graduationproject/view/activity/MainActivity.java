@@ -3,6 +3,7 @@ package com.sunxuedian.graduationproject.view.activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     private OrderManagerFragment mOrderManagerFragment;//订单管理模块
     private MineFragment mMineFragment;//个人中心
 
+
+
+    private long keyDownTime = 0;//返回时记录的系统时间
+    private long timeInterval = 2000;//双击退出的时间间隔
 
     /**
      * 绑定View
@@ -165,6 +170,21 @@ public class MainActivity extends AppCompatActivity {
         if (needCommit){
             fragmentTransaction.commit();
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - keyDownTime < timeInterval){
+                finish();
+            }else {
+                ToastUtils.showToast("再按一次，退出程序");
+                keyDownTime = currentTime;
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
