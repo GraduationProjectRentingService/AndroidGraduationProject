@@ -145,12 +145,17 @@ public class OrderManagerFragment extends BaseFragment<IOrderListView, OrderList
 
     @Override
     public void showOrderList(List<OrderBean> list) {
-        if (list != null && list.size() > 0 ){
-            mOrders.clear();
-            mOrders.addAll(list);
+        if (list != null){
+            if (list.size() > 0 ){
+                mTvHint.setVisibility(View.GONE);
+                mOrders.clear();
+                mOrders.addAll(list);
+            }else {
+                mTvHint.setVisibility(View.VISIBLE);
+                mOrders.clear();
+            }
             mAdapter.notifyDataSetChanged();
-            mTvHint.setVisibility(View.GONE);
-        }else {
+        }else{
             mTvHint.setVisibility(View.VISIBLE);
         }
 

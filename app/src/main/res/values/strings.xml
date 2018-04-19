@@ -16,7 +16,7 @@
     <string name="text_story_title">旅游故事.人情味</string>
 
     <!--text of house list -->
-    <string name="text_house_list_search_hint">位置信息/房东昵称/房源标题</string>
+    <string name="text_house_list_search_hint">位置信息/房东信息/房源标题</string>
     <string name="text_check_in_time">入住时段</string>
     <string name="text_house_area">位置区域</string>
     <string name="text_more_filter">更多筛选</string>

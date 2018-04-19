@@ -8,8 +8,8 @@ import com.sunxuedian.graduationproject.bean.HouseBean;
 import com.sunxuedian.graduationproject.bean.HouseDto;
 import com.sunxuedian.graduationproject.bean.ResponseBean;
 import com.sunxuedian.graduationproject.bean.UserBean;
-import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.model.IHouseModel;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.utils.JsonUtils;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static android.R.id.list;
 
 /**
  * Created by sunxuedian on 2018/1/23.
@@ -245,6 +243,61 @@ public class HouseModelImpl implements IHouseModel {
             }
         });
 
+    }
+
+    @Override
+    public void searchHouse(final int type, final String text, final IModelCallback<List<HouseBean>> callback) {
+        if (!mAllHouses.isEmpty()){
+            callback.onSuccess(search(type, text));
+        }else {
+            //为空重新获取
+            getHouseData(HOUSE_TYPE_ALL, new IModelCallback<List<HouseBean>>() {
+                @Override
+                public void onSuccess(List<HouseBean> data) {
+                    mAllHouses.clear();
+                    mAllHouses.addAll(data);
+                    callback.onSuccess(search(type, text));
+                }
+
+                @Override
+                public void onFailure(String msg) {
+                    callback.onFailure("搜索失败！");
+                }
+
+                @Override
+                public void onResultCode(String code) {
+
+                }
+            });
+        }
+    }
+
+    private List<HouseBean> search(int type, String text){
+        List<HouseBean> result = new ArrayList<>();
+        switch (type){
+            case SEARCH_TYPE_MAP:
+                for (HouseBean houseBean: mAllHouses){
+                    if (houseBean.getLocation() != null && houseBean.getLocation().contains(text)){
+                        result.add(houseBean);
+                    }
+                }
+                break;
+            case SEARCH_TYPE_HOST_INFO:
+                for (HouseBean houseBean: mAllHouses){
+                    if (houseBean.getHostPhoneNum() != null && houseBean.getHostPhoneNum().contains(text)){
+                        result.add(houseBean);
+                    }
+                }
+                break;
+            case SEARCH_TYPE_TITLE:
+                for (HouseBean houseBean: mAllHouses){
+                    if (houseBean.getTitle() != null && houseBean.getTitle().contains(text)){
+                        result.add(houseBean);
+                    }
+                }
+                break;
+        }
+        return result;
     }
 
 

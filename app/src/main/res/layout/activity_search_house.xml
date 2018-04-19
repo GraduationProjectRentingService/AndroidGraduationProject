@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="查询房东昵称："/>
+            android:text="查询房东信息："/>
         <TextView
             android:id="@+id/tvHostName"
             android:layout_width="wrap_content"

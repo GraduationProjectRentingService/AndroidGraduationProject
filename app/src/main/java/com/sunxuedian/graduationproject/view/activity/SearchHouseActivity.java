@@ -17,12 +17,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.sunxuedian.graduationproject.model.IHouseModel.SEARCH_TYPE_HOST_INFO;
+import static com.sunxuedian.graduationproject.model.IHouseModel.SEARCH_TYPE_MAP;
+import static com.sunxuedian.graduationproject.model.IHouseModel.SEARCH_TYPE_TITLE;
+
 public class SearchHouseActivity extends AppCompatActivity {
-
-    public static final int SEARCH_TYPE_TITLE = 1;//搜索类型为标题
-    public static final int SEARCH_TYPE_MAP = 2;//搜索类型为位置
-    public static final int SEARCH_TYPE_NAME = 3;//搜索类型为房东昵称
-
 
     @BindView(R.id.etSearch)
     EditText mEtSearch;
@@ -51,7 +50,7 @@ public class SearchHouseActivity extends AppCompatActivity {
                 type = SEARCH_TYPE_MAP;
                 break;
             case R.id.llHostName:
-                type = SEARCH_TYPE_NAME;
+                type = SEARCH_TYPE_HOST_INFO;
                 break;
         }
         data.putExtra("type", type);

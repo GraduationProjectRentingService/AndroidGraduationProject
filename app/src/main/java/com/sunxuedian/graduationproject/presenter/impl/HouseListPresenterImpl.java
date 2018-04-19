@@ -8,7 +8,6 @@ import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IHouseListPresenter;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
-import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 import com.sunxuedian.graduationproject.view.IHouseListView;
 
 import java.util.List;
@@ -37,6 +36,34 @@ public class HouseListPresenterImpl extends BasePresenter<IHouseListView> implem
         getView().showLoading();
 
         mHouseModel.getHouseData(0, new IModelCallback<List<HouseBean>>() {
+            @Override
+            public void onSuccess(List<HouseBean> data) {
+                getView().stopLoading();
+                getView().showHouseList(data);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                getView().stopLoading();
+                getView().showError(msg);
+            }
+
+            @Override
+            public void onResultCode(String code) {
+
+            }
+        });
+    }
+
+    @Override
+    public void searchHouse(int type, String key) {
+        if (!isViewAttached()){
+            logger.e("the view is not attached!");
+            return;
+        }
+
+        getView().showLoading();
+        mHouseModel.searchHouse(type, key, new IModelCallback<List<HouseBean>>() {
             @Override
             public void onSuccess(List<HouseBean> data) {
                 getView().stopLoading();

@@ -3,9 +3,8 @@ package com.sunxuedian.graduationproject.presenter.impl;
 import android.app.Activity;
 import android.text.TextUtils;
 
-import com.sunxuedian.graduationproject.bean.UserBean;
-import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.model.IUserModel;
+import com.sunxuedian.graduationproject.model.callback.IModelCallback;
 import com.sunxuedian.graduationproject.model.impl.UserModelImpl;
 import com.sunxuedian.graduationproject.presenter.BasePresenter;
 import com.sunxuedian.graduationproject.presenter.IRegisterPresenter;
@@ -13,7 +12,6 @@ import com.sunxuedian.graduationproject.utils.LoggerFactory;
 import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.MyTextUtils;
 import com.sunxuedian.graduationproject.utils.NetworkUtils;
-import com.sunxuedian.graduationproject.utils.data.UserSpUtils;
 import com.sunxuedian.graduationproject.view.IRegisterView;
 
 import org.json.JSONException;
@@ -161,7 +159,8 @@ public class RegisterPresenterImpl extends BasePresenter<IRegisterView> implemen
         mUserModel.register(mPhone, password, new IModelCallback<String>() {
             @Override
             public void onSuccess(String token) {
-                getUserInfo(password, token);
+                getView().stopLoading();
+                getView().onRegisterSuccess(mPhone, token);
             }
 
             @Override
@@ -177,31 +176,31 @@ public class RegisterPresenterImpl extends BasePresenter<IRegisterView> implemen
         });
     }
 
-    public void getUserInfo(String phone, String token) {
-        UserBean userBean = new UserBean();
-        userBean.setPhoneNum(phone);
-        userBean.setToken(token);
-        mUserModel.getUserInfo(userBean, new IModelCallback<UserBean>() {
-            @Override
-            public void onSuccess(UserBean data) {
-                UserSpUtils.saveUserToLocal(mContext, data);
-                getView().stopLoading();
-                getView().onRegisterSuccess();
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                logger.e(msg);
-                getView().stopLoading();
-                getView().onRegisterFailure(msg);
-            }
-
-            @Override
-            public void onResultCode(String code) {
-
-            }
-        });
-    }
+//    public void getUserInfo(String phone, String token) {
+//        UserBean userBean = new UserBean();
+//        userBean.setPhoneNum(phone);
+//        userBean.setToken(token);
+//        mUserModel.getUserInfo(userBean, new IModelCallback<UserBean>() {
+//            @Override
+//            public void onSuccess(UserBean data) {
+//                UserSpUtils.saveUserToLocal(mContext, data);
+//                getView().stopLoading();
+//                getView().onRegisterSuccess();
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                logger.e(msg);
+//                getView().stopLoading();
+//                getView().onRegisterFailure(msg);
+//            }
+//
+//            @Override
+//            public void onResultCode(String code) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void detachView() {

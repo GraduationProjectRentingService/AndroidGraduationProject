@@ -1,9 +1,9 @@
 package com.sunxuedian.graduationproject.view.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -191,8 +191,12 @@ public class RegisterActivity extends BaseSwipeBackActivity<IRegisterView, Regis
     }
 
     @Override
-    public void onRegisterSuccess() {
+    public void onRegisterSuccess(String phone, String token) {
         AppActivityStackUtils.clear();
+        UserBean userBean = new UserBean();
+        userBean.setPhoneNum(phone);
+        userBean.setToken(token);
+        UserSpUtils.saveUserToLocal(this, userBean);
         //实现跳转
         finish();
     }

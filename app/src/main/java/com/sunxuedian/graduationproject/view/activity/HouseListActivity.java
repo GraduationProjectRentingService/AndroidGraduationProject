@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.mingle.widget.ShapeLoadingDialog;
 import com.sunxuedian.graduationproject.R;
@@ -24,6 +25,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.sunxuedian.graduationproject.model.IHouseModel.SEARCH_TYPE_HOST_INFO;
+import static com.sunxuedian.graduationproject.model.IHouseModel.SEARCH_TYPE_MAP;
+import static com.sunxuedian.graduationproject.model.IHouseModel.SEARCH_TYPE_TITLE;
+
 public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, HouseListPresenterImpl> implements IHouseListView {
 
     private static final int SEARCH_CODE = 66;//跳转到输入界面
@@ -39,6 +44,10 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
     SwipeRefreshLayout mRefreshLayout;
     @BindView(R.id.rvHouseList)
     RecyclerView mRVHouseList;
+    @BindView(R.id.tvHint)
+    TextView mTvHint;
+    @BindView(R.id.tvSearch)
+    TextView mTvSearch;
 
     private List<HouseBean> mShowHouseList = new ArrayList<>();
     private ShapeLoadingDialog mLoadingView;
@@ -134,9 +143,20 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SEARCH_CODE && resultCode == RESULT_OK && data != null){
-            int type = data.getIntExtra("type", SearchHouseActivity.SEARCH_TYPE_TITLE);
+            int type = data.getIntExtra("type", SEARCH_TYPE_TITLE);
             String text = data.getStringExtra("text");
-            ToastUtils.showToast("type: " + type + " text: " + text);
+            switch (type){
+                case SEARCH_TYPE_HOST_INFO:
+                    mTvSearch.setText("房东信息：" + text);
+                    break;
+                case SEARCH_TYPE_MAP:
+                    mTvSearch.setText("位置信息：" + text);
+                    break;
+                case SEARCH_TYPE_TITLE:
+                    mTvSearch.setText("房源标题：" + text);
+                    break;
+            }
+            mPresenter.searchHouse(type, text);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -152,6 +172,11 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
             mShowHouseList.clear();
             mShowHouseList.addAll(list);
             mAdapter.notifyDataSetChanged();
+            mTvHint.setVisibility(View.INVISIBLE);
+        }else {
+            mShowHouseList.clear();
+            mAdapter.notifyDataSetChanged();
+            mTvHint.setVisibility(View.VISIBLE);
         }
     }
 

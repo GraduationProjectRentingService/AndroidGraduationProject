@@ -13,6 +13,7 @@ import com.sunxuedian.graduationproject.utils.MyLog;
 import com.sunxuedian.graduationproject.utils.OkHttpUtils;
 import com.sunxuedian.graduationproject.utils.UrlParamsUtils;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,10 @@ public class OrderModelImpl implements IOrderModel {
         params.put("checkInPeopleIdList", orderBean.getCheckInPeopleIdList());
         params.put("order", orderBean);
         logger.d(params.toString());
+        Timestamp timestamp = new Timestamp(orderBean.getCheckInDate());
+        logger.d("入住时间：" + timestamp.toString());
+        Timestamp timestamp1 = new Timestamp(orderBean.getCheckOutDate());
+        logger.d("离开时间：" + timestamp.toString());
         OkHttpUtils.executeRequest(UrlParamsUtils.URL_CREATE_ORDER, params, callback, new OkHttpUtils.OnSuccessCallBack() {
             @Override
             public void onSuccess(ResponseBean responseBean) {
