@@ -16,6 +16,7 @@ import com.sunxuedian.graduationproject.bean.DestinationBean;
 import com.sunxuedian.graduationproject.bean.HorizontalListContentViewBean;
 import com.sunxuedian.graduationproject.bean.HouseBean;
 import com.sunxuedian.graduationproject.bean.ViewSizeBean;
+import com.sunxuedian.graduationproject.model.IHouseModel;
 import com.sunxuedian.graduationproject.presenter.impl.HomepagePresenterImpl;
 import com.sunxuedian.graduationproject.utils.ImageLoader;
 import com.sunxuedian.graduationproject.utils.LoggerFactory;
@@ -75,6 +76,7 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
     private List<HouseBean> mTop10HouseData = new ArrayList<>();//top10的房源数据
     private List<HouseBean> mThemeHouseData = new ArrayList<>();//主题房源
     private List<HouseBean> mStoryHouseData = new ArrayList<>();//故事房源
+    private List<DestinationBean> mDestinationData = new ArrayList<>();//热门地方
 
     /**
      * 点击了搜索栏
@@ -226,12 +228,18 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
             @Override
             public void onItemClick(HorizontalListContentViewBean item, int pos) {
 //                ToastUtils.showToast("pos: " + pos + "item: " + item.getTitle());
+                Intent intent = new Intent(getActivity(), HouseListActivity.class);
+                intent.putExtra("text", mDestinationData.get(pos).getTitle());
+                intent.putExtra("type", IHouseModel.SEARCH_TYPE_MAP);
+                intent.putExtra("search", true);
+                startActivity(intent);
             }
         });
         mListContentViewOfHotDestination.setGoMoreClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                mPresenter.obtainBannerView();
+                ToastUtils.showToast("没有更多~");
             }
         });
 
@@ -357,6 +365,8 @@ public class HomepageFragment extends BaseFragment<IHomepageView, HomepagePresen
             bean.setImgUrl(destinationBean.getImgUrl());
             data.add(bean);
         }
+        mDestinationData.clear();
+        mDestinationData.addAll(list);
         mListContentViewOfHotDestination.setData(data);
     }
 

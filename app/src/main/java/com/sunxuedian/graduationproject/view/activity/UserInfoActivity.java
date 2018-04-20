@@ -3,6 +3,7 @@ package com.sunxuedian.graduationproject.view.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -183,7 +184,8 @@ public class UserInfoActivity extends BaseSwipeBackActivity<IUserInfoView, UserI
             }
         });
         mPopChooseIcon = new PopupWindow(chooseIconView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        mPopChooseIcon.setOutsideTouchable(false);
+        mPopChooseIcon.setBackgroundDrawable(new BitmapDrawable());
+        mPopChooseIcon.setOutsideTouchable(true);
         //设置显示与消失样式
         mPopChooseIcon.setAnimationStyle(R.style.mypopwindow_anim_go_style);
 
@@ -222,7 +224,8 @@ public class UserInfoActivity extends BaseSwipeBackActivity<IUserInfoView, UserI
             }
         });
         mPopChooseSex = new PopupWindow(chooseSexView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        mPopChooseSex.setOutsideTouchable(false);
+        mPopChooseSex.setBackgroundDrawable(new BitmapDrawable());
+        mPopChooseSex.setOutsideTouchable(true);
         //设置显示与消失样式
         mPopChooseSex.setAnimationStyle(R.style.mypopwindow_anim_go_style);
     }

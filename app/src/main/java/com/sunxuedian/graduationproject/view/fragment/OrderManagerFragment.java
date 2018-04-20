@@ -34,6 +34,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static cn.smssdk.utils.a.c;
+
 /**
  * Created by sunxuedian on 2018/4/4.
  */
@@ -56,11 +58,6 @@ public class OrderManagerFragment extends BaseFragment<IOrderListView, OrderList
 
     private OrderListAdapter mAdapter;
     private List<OrderBean> mOrders = new ArrayList<>();
-    private boolean mCanGoBack  = true;
-
-    public OrderManagerFragment(boolean canGoBack){
-        mCanGoBack = canGoBack;
-    }
 
     @Nullable
     @Override
@@ -78,13 +75,6 @@ public class OrderManagerFragment extends BaseFragment<IOrderListView, OrderList
     }
 
     private void initView(){
-
-        if (mCanGoBack){
-            mIvBack.setVisibility(View.VISIBLE);
-        }else {
-            mIvBack.setVisibility(View.GONE);
-            mIvBack.setClickable(false);
-        }
 
         mRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorOfBlue);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

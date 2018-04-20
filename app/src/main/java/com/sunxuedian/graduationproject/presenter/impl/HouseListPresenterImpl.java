@@ -12,6 +12,8 @@ import com.sunxuedian.graduationproject.view.IHouseListView;
 
 import java.util.List;
 
+import static android.R.attr.data;
+
 /**
  * Created by sunxuedian on 2018/3/22.
  */
@@ -35,7 +37,7 @@ public class HouseListPresenterImpl extends BasePresenter<IHouseListView> implem
 
         getView().showLoading();
 
-        mHouseModel.getHouseData(0, new IModelCallback<List<HouseBean>>() {
+        mHouseModel.getHouseData(IHouseModel.HOUSE_TYPE_ALL, new IModelCallback<List<HouseBean>>() {
             @Override
             public void onSuccess(List<HouseBean> data) {
                 getView().stopLoading();
@@ -56,14 +58,16 @@ public class HouseListPresenterImpl extends BasePresenter<IHouseListView> implem
     }
 
     @Override
-    public void searchHouse(int type, String key) {
+    public void searchHouse(int type, String key, boolean isRefresh) {
         if (!isViewAttached()){
             logger.e("the view is not attached!");
             return;
         }
 
+        logger.d("type: " + type + "key：" + key);
         getView().showLoading();
-        mHouseModel.searchHouse(type, key, new IModelCallback<List<HouseBean>>() {
+
+        mHouseModel.searchHouse(type, key, isRefresh, new IModelCallback<List<HouseBean>>() {
             @Override
             public void onSuccess(List<HouseBean> data) {
                 getView().stopLoading();

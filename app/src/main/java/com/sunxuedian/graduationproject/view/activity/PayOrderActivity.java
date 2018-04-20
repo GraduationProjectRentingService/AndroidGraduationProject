@@ -3,6 +3,7 @@ package com.sunxuedian.graduationproject.view.activity;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -98,6 +99,31 @@ public class PayOrderActivity extends BaseActivity<IPayOrderView, PayOrderPresen
         }
         mExitDialog.show();
     }
+
+    /**
+     * 联系房东
+     */
+    AlertDialog.Builder mContactHostDialog;
+    @OnClick(R.id.tvContactHost)
+    public void contactHost(){
+        if (mContactHostDialog == null){
+            mContactHostDialog = new AlertDialog.Builder(this)
+                    .setMessage("拨打电话给房东？")
+                    .setPositiveButton("拨打", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            Uri data = Uri.parse("tel:" + mOrderBean.getHostPhone());
+                            intent.setData(data);
+                            startActivity(intent);
+                            dialog.dismiss();
+                        }
+                    })
+                    .setNegativeButton("取消", null);
+        }
+        mContactHostDialog.show();
+    }
+
 
     AlertDialog.Builder mCancelOrderDialog;
     @OnClick(R.id.tvCancelOrder)

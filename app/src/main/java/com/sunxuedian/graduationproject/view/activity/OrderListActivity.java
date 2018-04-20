@@ -15,7 +15,7 @@ public class OrderListActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        OrderManagerFragment orderManagerFragment = new OrderManagerFragment(true);
+        OrderManagerFragment orderManagerFragment = new OrderManagerFragment();
         transaction.add(R.id.mainFragment, orderManagerFragment);
         transaction.commit();
     }

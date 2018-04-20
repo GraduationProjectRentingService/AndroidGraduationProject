@@ -198,6 +198,9 @@ public class ReverseHouseActivity extends BaseActivity<IReverseHouseView, Revers
         });
         mLvCheckInPeople.setAdapter(mAdapter);
         ListViewUtil.setListViewHeightBasedOnChildren(mLvCheckInPeople);
+
+        //默认为选中
+        mCheckBox.setSelected(true);
     }
 
     @Override

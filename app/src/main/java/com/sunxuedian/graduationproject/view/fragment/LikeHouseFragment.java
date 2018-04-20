@@ -54,11 +54,7 @@ public class LikeHouseFragment extends BaseFragment<ILikeHouseView, LikeHousePre
 
     private LikeHouseListAdapter mAdapter;
     private List<HouseBean> mLikeHouses = new ArrayList<>();
-    private boolean mCanGoBack = true;
-
-    public LikeHouseFragment(boolean canBack){
-        mCanGoBack = canBack;//设置是否可以返回
-    }
+    public LikeHouseFragment(){}
 
     @Nullable
     @Override
@@ -77,13 +73,6 @@ public class LikeHouseFragment extends BaseFragment<ILikeHouseView, LikeHousePre
     }
 
     private void initView(){
-
-        if (mCanGoBack){
-            mIvBack.setVisibility(View.VISIBLE);
-        }else {
-            mIvBack.setVisibility(View.GONE);
-            mIvBack.setClickable(false);
-        }
 
         mRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorOfBlue);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

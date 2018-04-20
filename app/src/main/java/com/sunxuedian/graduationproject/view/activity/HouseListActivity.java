@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.sunxuedian.graduationproject.R;
 import com.sunxuedian.graduationproject.adapter.RecyclerViewHolder;
 import com.sunxuedian.graduationproject.adapter.VerticalHouseListAdapter;
 import com.sunxuedian.graduationproject.bean.HouseBean;
+import com.sunxuedian.graduationproject.model.IHouseModel;
 import com.sunxuedian.graduationproject.presenter.impl.HouseListPresenterImpl;
 import com.sunxuedian.graduationproject.utils.ToastUtils;
 import com.sunxuedian.graduationproject.view.IHouseListView;
@@ -48,6 +50,9 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
     TextView mTvHint;
     @BindView(R.id.tvSearch)
     TextView mTvSearch;
+
+    private int mSearchType = IHouseModel.SEARCH_TYPE_TITLE;//搜索类型
+    private String mSearchKey = "";//搜索关键字
 
     private List<HouseBean> mShowHouseList = new ArrayList<>();
     private ShapeLoadingDialog mLoadingView;
@@ -93,13 +98,35 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
     private void loadData(){
         Intent data = getIntent();
         if (data != null){
-            ArrayList<HouseBean> listExtra = data.getParcelableArrayListExtra(HouseBean.TAG);
-            if (listExtra != null && listExtra.size() > 0){
-                mShowHouseList.clear();
-                mShowHouseList.addAll(listExtra);
-                mAdapter.notifyDataSetChanged();
+            if (data.getBooleanExtra("search", false)){
+                String text = data.getStringExtra("text");
+                int type = data.getIntExtra("type", IHouseModel.SEARCH_TYPE_MAP);
+                mSearchType = type;
+                if (TextUtils.isEmpty(text)){
+                    text = "";
+                }
+                mSearchKey = text;
+                switch (type){
+                    case SEARCH_TYPE_HOST_INFO:
+                        mTvSearch.setText("房东信息：" + text);
+                        break;
+                    case SEARCH_TYPE_MAP:
+                        mTvSearch.setText("位置信息：" + text);
+                        break;
+                    case SEARCH_TYPE_TITLE:
+                        mTvSearch.setText("房源标题：" + text);
+                        break;
+                }
+                mPresenter.searchHouse(type, text, false);//开启的时候已经要进行搜索
             }else {
-                mPresenter.getHouseList();
+                ArrayList<HouseBean> listExtra = data.getParcelableArrayListExtra(HouseBean.TAG);
+                if (listExtra != null && listExtra.size() > 0){
+                    mShowHouseList.clear();
+                    mShowHouseList.addAll(listExtra);
+                    mAdapter.notifyDataSetChanged();
+                }else {
+                    mPresenter.getHouseList();
+                }
             }
         }else {
             mPresenter.getHouseList();
@@ -110,13 +137,13 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.getHouseList();
+                mPresenter.searchHouse(mSearchType, mSearchKey, true);
             }
         });
         mRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorOfBlue);
 
         mLoadingView = new ShapeLoadingDialog(this);
-        mLoadingView.setLoadingText("加载中...");
+        mLoadingView.setLoadingText("搜索中...");
 
         mAdapter = new VerticalHouseListAdapter(this, new RecyclerViewHolder.OnItemClickListener() {
             @Override
@@ -156,7 +183,7 @@ public class HouseListActivity extends BaseSwipeBackActivity<IHouseListView, Hou
                     mTvSearch.setText("房源标题：" + text);
                     break;
             }
-            mPresenter.searchHouse(type, text);
+            mPresenter.searchHouse(type, text, false);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

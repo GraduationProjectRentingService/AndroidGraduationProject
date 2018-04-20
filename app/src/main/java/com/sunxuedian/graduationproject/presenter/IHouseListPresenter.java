@@ -6,5 +6,5 @@ package com.sunxuedian.graduationproject.presenter;
 
 public interface IHouseListPresenter {
     void getHouseList();
-    void searchHouse(int type, String key);
+    void searchHouse(int type, String key, boolean isRefresh);
 }

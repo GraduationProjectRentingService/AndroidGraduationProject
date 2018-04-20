@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 mIvReservation.setSelected(true);
                 mTvReservation.setSelected(true);
                 if (mLikeHouseFragment == null){
-                    mLikeHouseFragment = new LikeHouseFragment(false);
+                    mLikeHouseFragment = new LikeHouseFragment();
                     fragmentTransaction.add(R.id.frameMain, mLikeHouseFragment);
                 }else {
                     fragmentTransaction.show(mLikeHouseFragment);
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 mIvOrder.setSelected(true);
                 mTvOrder.setSelected(true);
                 if (mOrderManagerFragment == null){
-                    mOrderManagerFragment = new OrderManagerFragment(false);
+                    mOrderManagerFragment = new OrderManagerFragment();
                     fragmentTransaction.add(R.id.frameMain, mOrderManagerFragment);
                 }else {
                     fragmentTransaction.show(mOrderManagerFragment);

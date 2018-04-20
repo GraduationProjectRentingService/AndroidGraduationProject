@@ -146,11 +146,12 @@ public class HouseModelImpl implements IHouseModel {
         List<DestinationBean> list = new ArrayList<>();
 
         String imgUrls[] = {"chaozhou.jpg", "beijing.jpg","daocheng.jpg","shanghai.jpg", "wuhan.jpg"};
+        String titles[] = {"潮州", "北京", "稻城", "上海", "武汉"};
 
-
-        for (String imgUrl : imgUrls) {
+        for (int i = 0; i < imgUrls.length; ++i) {
             DestinationBean bean = new DestinationBean();
-            bean.setImgUrl("http://47.106.77.184:8099/milu/img/" +imgUrl);
+            bean.setImgUrl("http://47.106.77.184:8099/milu/img/" +imgUrls[i]);
+            bean.setTitle(titles[i]);
             list.add(bean);
         }
 
@@ -246,10 +247,8 @@ public class HouseModelImpl implements IHouseModel {
     }
 
     @Override
-    public void searchHouse(final int type, final String text, final IModelCallback<List<HouseBean>> callback) {
-        if (!mAllHouses.isEmpty()){
-            callback.onSuccess(search(type, text));
-        }else {
+    public void searchHouse(final int type, final String text, boolean isRefresh, final IModelCallback<List<HouseBean>> callback) {
+        if (mAllHouses.isEmpty() || isRefresh){
             //为空重新获取
             getHouseData(HOUSE_TYPE_ALL, new IModelCallback<List<HouseBean>>() {
                 @Override
@@ -269,6 +268,8 @@ public class HouseModelImpl implements IHouseModel {
 
                 }
             });
+        }else {
+            callback.onSuccess(search(type, text));
         }
     }
 

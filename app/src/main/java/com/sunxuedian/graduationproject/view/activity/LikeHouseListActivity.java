@@ -15,7 +15,7 @@ public class LikeHouseListActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_house_list);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        LikeHouseFragment likeHouseFragment = new LikeHouseFragment(true);
+        LikeHouseFragment likeHouseFragment = new LikeHouseFragment();
         fragmentTransaction.add(R.id.mainFragment, likeHouseFragment);
         fragmentTransaction.commit();
     }

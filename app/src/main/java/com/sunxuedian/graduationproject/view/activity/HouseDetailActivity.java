@@ -287,6 +287,14 @@ public class HouseDetailActivity extends BaseSwipeBackActivity<IHouseDetailView,
                     }
                     mChooseDates.clear();
                     return;
+                }else if (dates.size() > mHouseBean.getMostDay()){
+                    ToastUtils.showToast("选择的天数超过了房东规定的最大天数！");
+                    //将已选择的日期取消选择
+                    for (CalendarDay day: dates){
+                        widget.setDateSelected(day, false);
+                    }
+                    mChooseDates.clear();
+                    return;
                 }
 
                 mChooseDates = dates;

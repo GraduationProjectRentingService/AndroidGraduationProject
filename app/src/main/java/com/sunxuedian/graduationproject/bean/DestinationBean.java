@@ -24,4 +24,12 @@ public class DestinationBean {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
+    @Override
+    public String toString() {
+        return "DestinationBean{" +
+                "imgUrl='" + imgUrl + '\'' +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

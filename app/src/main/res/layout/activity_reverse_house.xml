@@ -238,6 +238,7 @@
                 android:layout_height="wrap_content"
                 android:text="同意MiLuHouse的相关租房规定"
                 android:textColor="@color/colorMainGray"
+                android:textSize="10sp"
                 android:layout_margin="@dimen/sizeOfLagerMargin"/>
 
         </LinearLayout>
